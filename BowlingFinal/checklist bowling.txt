@@ -1,0 +1,27 @@
+Checklist Bowling:
+
+01. Przed pierwszym rzutem score() == zero.
+02. Przed pierwszym rzutem isFinished() == false.
+03. roll(10)		score(10)
+04. roll(0)		score(0)
+05. roll(10 1)		score(12)
+06. roll(1 9)		score(10)
+07. roll(2 8 3)		score(16)
+08. roll(10 10)		score(30)
+09. roll(10 10 1)	score(33)
+10. roll(5 6)		exception
+11. roll(-1)		exception
+12. roll(5 0 6)		score(11)
+13. Po ostatnim rzucie isFinished == true.
+14. Po ostatnim rzucie score <= max_score.
+15. isFinished == true <=> 21 >= numberOfRolls >= 11 
+16. roll(11)		exception
+17. roll all (10)	score(300)
+18. Spare w ostatniej rundzie
+19. Ostatnia runda bez bonusa
+20. Randomowa gra
+21. isFinished false w trakcie gry
+22. isFinished true gdy brak bonusowego rzutu
+23. isFinished false gdy ma byc dodatkowy ryut ale jeszcze nie bylo
+24. Gdy ryut po zakonczeniu gry	exception
+

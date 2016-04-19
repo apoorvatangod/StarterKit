@@ -22,6 +22,12 @@ public enum Figures {
 		this.figure = figure;
 		this.symbol = symbol;
 	}
+	/**
+	 * Gives int value of card by it's String value.
+	 * @param symbol - String for which int value is to be found.
+	 * @return int value for symbol
+	 * @throws IllegalArgumentException if String argument is not a valid figure
+	 */
 	public static int getValueBySymbol(String symbol) {
 		  for(Figures e: Figures.values()) {
 		    if(e.symbol.equals(symbol)) {

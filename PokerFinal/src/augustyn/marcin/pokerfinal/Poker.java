@@ -15,7 +15,10 @@ public class Poker {
 	private List<Card> hand1 = new ArrayList<>();
 	private List<Card> hand2 = new ArrayList<>();
 	private int readLineNumberCounter = 0;
-	
+	/**
+	 * Reads all hands(games) from file and compare hands in all games.
+	 * @return how many times 1st player won
+	 */
 	public int playAllGames(){
 		int winNumberFirstPlayer = 0;
 		int totalNumberOfGamesRead = readAllCards();

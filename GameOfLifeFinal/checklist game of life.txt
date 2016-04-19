@@ -1,0 +1,9 @@
+1. komorka zyje i ma mniej niz dwoch sasiadow => umiera
+2. komorka zyje i ma 2 sasiadow => zyje
+3. komorka zyje i ma 3 sasiadow => zyje
+4. komorka zyje i ma wiecej niz 3 sasiadow => umiera
+5. komorka nie zyje i ma 3 sasiadow => zyje
+6. komorka nie zyje i ma 2 sasiadow => nie zyje
+7. komorka nie zyje i ma wiecej niz 3 sasiadow => nie zyje
+8. prownanie stanu kilku ukladow dla 3x3
+9. porowanie stanu dla ukladu wiekszego niz 3x3

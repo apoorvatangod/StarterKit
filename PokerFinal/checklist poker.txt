@@ -1,0 +1,5 @@
+1. wczytaj sparsowana reke i porownaj z wzorcem - x3 - converter
+2. Czy dobrze okresla kolor - przyklad tak i nie
+3. czy dobrze rozpoznaje strit - przyklad tak i nie
+4. Czy dobrze ropoznaje pare, 2 pary, trojke, karete, full, high card
+5. Cz dobrze wyliczyl zwyciestwa pierwszego gracza z pliku

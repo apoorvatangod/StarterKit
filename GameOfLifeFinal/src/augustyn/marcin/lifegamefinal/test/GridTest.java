@@ -94,7 +94,7 @@ public class GridTest {
 			assertEquals(CellState.ALIVE.getValue(), fields.get(4).getCellState());
 	}
 	@Test
-	public void shouldCellStayDeadWhenLessThanTwoNeighbours(){
+	public void shouldCellStayDeadWhenLessThanThreeNeighbours(){
 		//given
 		boolean[][] inputGrid = {
 				{false, false, false},

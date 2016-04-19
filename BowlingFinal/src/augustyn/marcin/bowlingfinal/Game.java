@@ -41,10 +41,7 @@ public class Game implements BowlingGameResultCalculator {
 
 	@Override
 	public boolean isFinished() {
-		if(rounds.get(rounds.size() - 1).getRoundNumber() == 10 && rounds.get(rounds.size() - 1).checkIfRoundFinished()){
-			return true;
-		}
-		return false;
+		return rounds.get(rounds.size() - 1).getRoundNumber() == 10 && 
+				rounds.get(rounds.size() - 1).checkIfRoundFinished();
 	}
-
 }

@@ -66,7 +66,10 @@ public class GameOfLife extends JPanel{
 			}
 		}
 	}
-	
+	/**
+	 * Main loop. Initilizes swing components and visualisation.
+	 * @throws InterruptedException if error in Thread.sleep
+	 */
 	public static void main(String[] args) throws InterruptedException {
 		JFrame frame = new JFrame("Game Of Life");
 		JSlider slider = new JSlider(JSlider.VERTICAL, SPEED_MIN, SPEED_MAX, SPEED_DEFAULT);

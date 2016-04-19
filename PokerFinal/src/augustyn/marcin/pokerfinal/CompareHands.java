@@ -20,7 +20,11 @@ public class CompareHands {
 	private static final int FIRST_LAST_CARD_VALUE_DIFFERENCE_FOR_STRAIGHT = 4;
 	private static final int CARDS_IN_HAND = 5;
 
-	
+	/**
+	 * Checks if set is color for a hand.
+	 * @param hand - list of 5 to be checked
+	 * @return value(5) if hand has color, 0 if not
+	 */
 	public int findValueForColor(List<Card> hand){
 		for(int i = 0; i < NUMBER_OF_COMPARISONS_FOR_FINDING_COLOR; i++){
 			if(hand.size() != CARDS_IN_HAND || !hand.get(i).getShape().equals(hand.get(i + 1).getShape())){
@@ -45,7 +49,11 @@ public class CompareHands {
 		}
 		return figuresQuantity;
 	}
-	
+	/**
+	 * Finds value for quantity sets: high card, pair, two pairs, three and four of kind and full house. 
+	 * @param hand - list of 5 to be checked
+	 * @return value of a set eg full house = 6, four of kind = 7.
+	 */
 	public int findValueForQuantitySets(List<Card> hand){
 		Map<Integer,Integer> figuresQuantity = mapCards(hand);
 		int valueOfSet = HIGH_CARD;
@@ -79,12 +87,22 @@ public class CompareHands {
 		}
 		return valueOfSet;*/
 	}
+	/**
+	 * Sorts cards in hand first by quantity of particular figures, then by figure value
+	 * @param hand - list of 5 to be sorted
+	 * @return List of map entries sorted by value then by key
+	 */
 	public List<Map.Entry<Integer, Integer>> sortHand(List<Card> hand) {
 		Map<Integer,Integer> figuresQuantity = mapCards(hand);
 		List<Map.Entry<Integer, Integer>> list = new ArrayList<Map.Entry<Integer, Integer>>(figuresQuantity.entrySet());
 		Collections.sort(list, new ValueThenKeyComparator<Integer, Integer>());
 		return list;
 	}
+	/**
+	 * Checks if there is straight in hand.
+	 * @param hand - list of 5 to be checked
+	 * @return value for straight(4) if there is straight or 0 if not
+	 */
 	public int findValueForStraight(List<Card> hand){
 		List<Map.Entry<Integer, Integer>> sortedList = sortHand(hand);
 		if(sortedList.size() == CARDS_IN_HAND && sortedList.get(sortedList.size() - 1).getKey() - 

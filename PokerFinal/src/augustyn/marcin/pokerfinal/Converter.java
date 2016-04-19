@@ -55,17 +55,28 @@ public class Converter {
 	
 	private void transformCardsIntoObjects(){
 		for(String card : splitedCards){
+			if(card.length() != 2){
+				throw new IllegalArgumentException("Card has to consist of 2 chars."); 
+			}
 			int figure = Figures.getValueBySymbol(card.substring(0, 1));
 			Shapes shape = Shapes.getValueBySymbol(card.substring(1, 2));
 			Card newCard = new Card(figure,shape);
 			cardsRead.add(newCard);
 		}
 	}
+	/**
+	 * Converts text file to card objects.
+	 * @return list of card objects.
+	 */
 	public List<Card> convertFromFile(){
 		readCardsFromFile();
 		transformCardsIntoObjects();
 		return cardsRead;
 	}
+	/**
+	 * Gives number of games read from file.
+	 * @return number of games
+	 */
 	public int getNumberOfGames(){
 		return cardsRead.size() / CARDS_PER_GAME;
 	}

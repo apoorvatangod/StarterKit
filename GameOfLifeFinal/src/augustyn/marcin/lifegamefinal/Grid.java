@@ -9,8 +9,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * int gridRows - number of rows in grid 
- * int gridColumns - number of columns in grid
  * int generation - generation number, starts from 0
  * List<Field> grid - represents grid of cells
  * @author MARCIAUG

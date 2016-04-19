@@ -10,10 +10,7 @@ public class LastRound extends Round {
 	public boolean checkIfRoundFinished() {
 		boolean twoRollsNoBonus = getNumberOfRollsInRound() == 2 && getScore() < 10;
 		boolean threeRolls = getNumberOfRollsInRound() == 3;
-		if(twoRollsNoBonus || threeRolls){
-			return true;
-		}
-		return false;
+		return twoRollsNoBonus || threeRolls;
 	}
 
 	@Override
@@ -47,10 +44,6 @@ public class LastRound extends Round {
 		boolean invalidSumWhenThreeRolls = getNumberOfRollsInRound() == 2 && rolls.get(0).getRollValue() + 
 				rolls.get(1).getRollValue() + numberOfPins > 30;
 				
-		if(invalidSumWhenTwoRolls || invalidSumWhenThreeRolls){
-			return false;
-		}
-		return true;
+		return !(invalidSumWhenTwoRolls || invalidSumWhenThreeRolls);
 	}
-	
 }
