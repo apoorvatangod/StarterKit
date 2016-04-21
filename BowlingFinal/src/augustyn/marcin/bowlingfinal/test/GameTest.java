@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
+import augustyn.marcin.bowlingfinal.BowlingException;
 import augustyn.marcin.bowlingfinal.Game;
 
 public class GameTest {
@@ -37,7 +38,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnTenForFirstRollBeingTen(){
+	public void shouldReturnTenForFirstRollBeingTen() throws BowlingException{
 		//given
 		game.roll(10);
 		//when
@@ -47,7 +48,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnZeroForFirstRollBeingZero(){
+	public void shouldReturnZeroForFirstRollBeingZero() throws BowlingException{
 		//given
 		game.roll(0);
 		//when
@@ -57,7 +58,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnTwelveWhenRollTenOne(){
+	public void shouldReturnTwelveWhenRollTenOne() throws BowlingException{
 		//given
 		game.roll(10);
 		game.roll(1);
@@ -68,7 +69,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnSixteenWhenRollTwoEightThree(){
+	public void shouldReturnSixteenWhenRollTwoEightThree() throws BowlingException{
 		//given
 		game.roll(2);
 		game.roll(8);
@@ -80,7 +81,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnThirtyWhenRollTenTen(){
+	public void shouldReturnThirtyWhenRollTenTen() throws BowlingException{
 		//given
 		game.roll(10);
 		game.roll(10);
@@ -91,7 +92,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnThirtyThreeWhenRollTenTenOne(){
+	public void shouldReturnThirtyThreeWhenRollTenTenOne() throws BowlingException{
 		//given
 		game.roll(10);
 		game.roll(10);
@@ -103,7 +104,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnElevenWhenRollFiveZeroSix(){
+	public void shouldReturnElevenWhenRollFiveZeroSix() throws BowlingException{
 		//given
 		game.roll(5);
 		game.roll(0);
@@ -115,7 +116,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnTenlveWhenRollOneNine(){
+	public void shouldReturnTenlveWhenRollOneNine() throws BowlingException{
 		//given
 		game.roll(1);
 		game.roll(9);
@@ -126,7 +127,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnThreeHounderedWhenRollAllTens(){
+	public void shouldReturnThreeHounderedWhenRollAllTens() throws BowlingException{
 		//given
 		game.roll(10);
 		game.roll(10);
@@ -147,7 +148,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturn271WhenRollAllTenButOneNineTenInLastRound(){
+	public void shouldReturn271WhenRollAllTenButOneNineTenInLastRound() throws BowlingException{
 		//given
 		game.roll(10);
 		game.roll(10);
@@ -168,7 +169,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturn134WhenRollRandomGameWithoutBonusRound(){
+	public void shouldReturn134WhenRollRandomGameWithoutBonusRound() throws BowlingException{
 		//given
 		game.roll(3);
 		game.roll(6);
@@ -196,7 +197,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturn187WhenUsingExampleGameFromPresentation(){
+	public void shouldReturn187WhenUsingExampleGameFromPresentation() throws BowlingException{
 		//given
 		game.roll(10);
 		game.roll(9);
@@ -221,8 +222,8 @@ public class GameTest {
 		assertEquals(187, score);
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void shouldThrowExceptionWhenRollFiveSixInOneRound(){
+	@Test(expected = BowlingException.class)
+	public void shouldThrowExceptionWhenRollFiveSixInOneRound() throws BowlingException{
 		//given
 
 		//when
@@ -232,8 +233,8 @@ public class GameTest {
 		//then 
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void shouldThrowExceptionWhenRollIsMinusOne(){
+	@Test(expected = BowlingException.class)
+	public void shouldThrowExceptionWhenRollIsMinusOne() throws BowlingException{
 		//given
 
 		//when
@@ -242,8 +243,8 @@ public class GameTest {
 		//then 
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public void shouldThrowExceptionWhenRollIsEleven(){
+	@Test(expected = BowlingException.class)
+	public void shouldThrowExceptionWhenRollIsEleven() throws BowlingException{
 		//given
 
 		//when
@@ -253,7 +254,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnIsFinishedTrueWhenRollAllTens(){
+	public void shouldReturnIsFinishedTrueWhenRollAllTens() throws BowlingException{
 		//given
 		for (int i = 0; i < 12; i++){
 			game.roll(10);
@@ -265,7 +266,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnIsFinishedTrueWhenInTheMiddleOfGame(){
+	public void shouldReturnIsFinishedTrueWhenInTheMiddleOfGame() throws BowlingException{
 		//given
 		game.roll(10);
 		game.roll(10);
@@ -281,7 +282,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnIsFinishedTrueWhenNoBonusRound(){
+	public void shouldReturnIsFinishedTrueWhenNoBonusRound() throws BowlingException{
 		//given
 		game.roll(10);
 		game.roll(10);
@@ -302,7 +303,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnIsFinishedTrueWhenStrikeInSecondRollInLastRound(){
+	public void shouldReturnIsFinishedTrueWhenStrikeInSecondRollInLastRound() throws BowlingException{
 		//given
 		game.roll(10);
 		game.roll(10);
@@ -323,7 +324,7 @@ public class GameTest {
 		assertEquals(true, result);
 	}
 	@Test
-	public void shouldReturnIsFinishedFalseWhenLastRoundIsOneNine(){
+	public void shouldReturnIsFinishedFalseWhenLastRoundIsOneNine() throws BowlingException{
 		//given
 		game.roll(10);
 		game.roll(10);
@@ -344,7 +345,7 @@ public class GameTest {
 	}
 	
 	@Test
-	public void shouldReturnIsFinishedTrueWhenLastRoundIsOneNineTen(){
+	public void shouldReturnIsFinishedTrueWhenLastRoundIsOneNineTen() throws BowlingException{
 		//given
 		game.roll(10);
 		game.roll(10);
@@ -365,8 +366,8 @@ public class GameTest {
 		assertEquals(true, result);
 	}
 	
-	@Test(expected = UnsupportedOperationException.class)
-	public void shouldThrowExceptionWhenRollAfterLastRound(){
+	@Test(expected = BowlingException.class)
+	public void shouldThrowExceptionWhenRollAfterLastRound() throws BowlingException{
 		//given
 
 		//when

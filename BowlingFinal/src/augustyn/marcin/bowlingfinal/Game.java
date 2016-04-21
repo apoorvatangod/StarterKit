@@ -7,25 +7,25 @@ public class Game implements BowlingGameResultCalculator {
 	private List<Round> rounds = new LinkedList<>();
 	
 	public Game() {
-		rounds.add(new Round(1));
+		rounds.add(new Round());
 	}
 
 	@Override
-	public void roll(int numberOfPins) {
+	public void roll(int numberOfPins) throws BowlingException {
 		if(isFinished()){
-			throw new UnsupportedOperationException("Cannot roll when game is over!");
+			throw new BowlingException("Cannot roll when game is over!");
 		}
 		if(rounds.get(rounds.size() - 1).checkIfRoundFinished()){
-			int roundNumber = rounds.get(rounds.size() - 1).getRoundNumber() + 1;
+			int roundNumber = rounds.size() + 1;
 			if(roundNumber == 10){
 				rounds.add(new LastRound());
 			}
 			else{
-				rounds.add(new Round (roundNumber));
+				rounds.add(new Round());
 			}
 			
 			Round previousRound = rounds.get(roundNumber - 2); 
-			previousRound.setNextRound(rounds.get(rounds.size() - 1));
+			previousRound.setNextRound(rounds.get(roundNumber - 1));
 		}
 		rounds.get(rounds.size() - 1).addRoll(numberOfPins);
 	}
@@ -41,7 +41,6 @@ public class Game implements BowlingGameResultCalculator {
 
 	@Override
 	public boolean isFinished() {
-		return rounds.get(rounds.size() - 1).getRoundNumber() == 10 && 
-				rounds.get(rounds.size() - 1).checkIfRoundFinished();
+		return rounds.size() == 10 && rounds.get(rounds.size() - 1).checkIfRoundFinished();
 	}
 }

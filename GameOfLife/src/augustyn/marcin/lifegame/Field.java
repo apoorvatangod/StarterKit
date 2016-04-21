@@ -28,7 +28,7 @@ public class Field {
 	}
 
 	public boolean isCellAlive() {
-		return cellAlive;//TODO enumem
+		return cellAlive;
 	}
 
 	public void setCellAlive(boolean cellAlive) {

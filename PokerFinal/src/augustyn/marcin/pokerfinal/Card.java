@@ -6,28 +6,23 @@ package augustyn.marcin.pokerfinal;
  *
  */
 public class Card{
-	private int figure = 0;
+	private Figures figure;
 	private Shapes shape;
 	/**
 	 * public constructor
-	 * @param figure - figure of the card - starts with 2,3,... and ends with 12(represents Queen),13(King),14(Ace)
+	 * @param figure - figure of the card
 	 * @param shape - shape of the card - S=Spades, H=Hearts, D=Diamonds, C=Clubs
 	 */
-	public Card(int figure, Shapes shape) {
+	public Card(Figures figure, Shapes shape) {
 		this.figure = figure;
 		this.shape = shape;
 	}
 
-	public int getFigure() {
+	public Figures getFigure() {
 		return figure;
 	}
 
 	public Shapes getShape() {
 		return shape;
-	}
-
-	@Override
-	public String toString() {
-		return "Card [figure=" + figure + ", shape=" + shape + "]";
 	}	
 }

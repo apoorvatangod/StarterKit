@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import augustyn.marcin.pokerfinal.Card;
 import augustyn.marcin.pokerfinal.CompareHands;
+import augustyn.marcin.pokerfinal.Figures;
 import augustyn.marcin.pokerfinal.Shapes;
 
 public class CompareHandsTest {
@@ -23,11 +24,11 @@ public class CompareHandsTest {
 	@Test
 	public void shouldReturnFiveForFindValueForColorWhenColor(){
 		//given
-		hand.add(new Card(2,Shapes.HEART));
-		hand.add(new Card(3,Shapes.HEART));
-		hand.add(new Card(7,Shapes.HEART));
-		hand.add(new Card(5,Shapes.HEART));
-		hand.add(new Card(6,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.HEART));
+		hand.add(new Card(Figures.THREE,Shapes.HEART));
+		hand.add(new Card(Figures.SEVEN,Shapes.HEART));
+		hand.add(new Card(Figures.FIVE,Shapes.HEART));
+		hand.add(new Card(Figures.SIX,Shapes.HEART));
 		
 		//when
 		int result = comparator.findValueForColor(hand);
@@ -37,11 +38,11 @@ public class CompareHandsTest {
 	@Test
 	public void shouldReturnZeroForFindValueForColorWhenNotColor(){
 		//given
-		hand.add(new Card(2,Shapes.HEART));
-		hand.add(new Card(3,Shapes.CLUB));
-		hand.add(new Card(7,Shapes.HEART));
-		hand.add(new Card(5,Shapes.HEART));
-		hand.add(new Card(6,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.HEART));
+		hand.add(new Card(Figures.THREE,Shapes.CLUB));
+		hand.add(new Card(Figures.SEVEN,Shapes.HEART));
+		hand.add(new Card(Figures.FIVE,Shapes.HEART));
+		hand.add(new Card(Figures.SIX,Shapes.HEART));
 		
 		//when
 		int result = comparator.findValueForColor(hand);
@@ -51,11 +52,11 @@ public class CompareHandsTest {
 	@Test
 	public void shouldReturnFourForFindValueForStraightWhenStraight(){
 		//given
-		hand.add(new Card(2,Shapes.HEART));
-		hand.add(new Card(3,Shapes.CLUB));
-		hand.add(new Card(4,Shapes.HEART));
-		hand.add(new Card(5,Shapes.HEART));
-		hand.add(new Card(6,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.HEART));
+		hand.add(new Card(Figures.THREE,Shapes.CLUB));
+		hand.add(new Card(Figures.FOUR,Shapes.HEART));
+		hand.add(new Card(Figures.FIVE,Shapes.HEART));
+		hand.add(new Card(Figures.SIX,Shapes.HEART));
 		
 		//when
 		int result = comparator.findValueForStraight(hand);
@@ -65,11 +66,11 @@ public class CompareHandsTest {
 	@Test
 	public void shouldReturnZeroForFindValueForStraightWhenNotStraight(){
 		//given
-		hand.add(new Card(2,Shapes.HEART));
-		hand.add(new Card(7,Shapes.CLUB));
-		hand.add(new Card(4,Shapes.HEART));
-		hand.add(new Card(5,Shapes.HEART));
-		hand.add(new Card(6,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.HEART));
+		hand.add(new Card(Figures.SEVEN,Shapes.CLUB));
+		hand.add(new Card(Figures.FOUR,Shapes.HEART));
+		hand.add(new Card(Figures.FIVE,Shapes.HEART));
+		hand.add(new Card(Figures.SIX,Shapes.HEART));
 		
 		//when
 		int result = comparator.findValueForStraight(hand);
@@ -79,11 +80,11 @@ public class CompareHandsTest {
 	@Test
 	public void shouldReturnZeroForFindValueForQuantitySetsWhenHighCard(){
 		//given
-		hand.add(new Card(2,Shapes.HEART));
-		hand.add(new Card(7,Shapes.CLUB));
-		hand.add(new Card(4,Shapes.HEART));
-		hand.add(new Card(5,Shapes.HEART));
-		hand.add(new Card(6,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.HEART));
+		hand.add(new Card(Figures.SEVEN,Shapes.CLUB));
+		hand.add(new Card(Figures.FOUR,Shapes.HEART));
+		hand.add(new Card(Figures.FIVE,Shapes.HEART));
+		hand.add(new Card(Figures.SIX,Shapes.HEART));
 		
 		//when
 		int result = comparator.findValueForStraight(hand);
@@ -93,11 +94,11 @@ public class CompareHandsTest {
 	@Test
 	public void shouldReturnOneForFindValueForQuantitySetsWhenPair(){
 		//given
-		hand.add(new Card(2,Shapes.HEART));
-		hand.add(new Card(2,Shapes.CLUB));
-		hand.add(new Card(4,Shapes.DIAMOND));
-		hand.add(new Card(5,Shapes.SPADE));
-		hand.add(new Card(6,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.CLUB));
+		hand.add(new Card(Figures.FOUR,Shapes.DIAMOND));
+		hand.add(new Card(Figures.FIVE,Shapes.SPADE));
+		hand.add(new Card(Figures.SIX,Shapes.HEART));
 		
 		//when
 		int result = comparator.findValueForQuantitySets(hand);
@@ -107,11 +108,11 @@ public class CompareHandsTest {
 	@Test
 	public void shouldReturnTwoForFindValueForQuantitySetsWhenTwoPairs(){
 		//given
-		hand.add(new Card(2,Shapes.HEART));
-		hand.add(new Card(2,Shapes.CLUB));
-		hand.add(new Card(4,Shapes.DIAMOND));
-		hand.add(new Card(4,Shapes.SPADE));
-		hand.add(new Card(6,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.CLUB));
+		hand.add(new Card(Figures.FOUR,Shapes.DIAMOND));
+		hand.add(new Card(Figures.FOUR,Shapes.SPADE));
+		hand.add(new Card(Figures.SIX,Shapes.HEART));
 		
 		//when
 		int result = comparator.findValueForQuantitySets(hand);
@@ -121,11 +122,11 @@ public class CompareHandsTest {
 	@Test
 	public void shouldReturnThreeForFindValueForQuantitySetsWhenThreeOfKind(){
 		//given
-		hand.add(new Card(2,Shapes.HEART));
-		hand.add(new Card(2,Shapes.CLUB));
-		hand.add(new Card(2,Shapes.DIAMOND));
-		hand.add(new Card(4,Shapes.SPADE));
-		hand.add(new Card(6,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.CLUB));
+		hand.add(new Card(Figures.TWO,Shapes.DIAMOND));
+		hand.add(new Card(Figures.FOUR,Shapes.SPADE));
+		hand.add(new Card(Figures.SIX,Shapes.HEART));
 		
 		//when
 		int result = comparator.findValueForQuantitySets(hand);
@@ -135,11 +136,11 @@ public class CompareHandsTest {
 	@Test
 	public void shouldReturnSixForFindValueForQuantitySetsWhenFullHouse(){
 		//given
-		hand.add(new Card(2,Shapes.HEART));
-		hand.add(new Card(2,Shapes.CLUB));
-		hand.add(new Card(2,Shapes.DIAMOND));
-		hand.add(new Card(4,Shapes.SPADE));
-		hand.add(new Card(4,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.CLUB));
+		hand.add(new Card(Figures.TWO,Shapes.DIAMOND));
+		hand.add(new Card(Figures.FOUR,Shapes.SPADE));
+		hand.add(new Card(Figures.FOUR,Shapes.HEART));
 		
 		//when
 		int result = comparator.findValueForQuantitySets(hand);
@@ -149,11 +150,11 @@ public class CompareHandsTest {
 	@Test
 	public void shouldReturnSevenForFindValueForQuantitySetsWhenFourOfKind(){
 		//given
-		hand.add(new Card(2,Shapes.HEART));
-		hand.add(new Card(2,Shapes.CLUB));
-		hand.add(new Card(2,Shapes.DIAMOND));
-		hand.add(new Card(2,Shapes.SPADE));
-		hand.add(new Card(4,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.HEART));
+		hand.add(new Card(Figures.TWO,Shapes.CLUB));
+		hand.add(new Card(Figures.TWO,Shapes.DIAMOND));
+		hand.add(new Card(Figures.TWO,Shapes.SPADE));
+		hand.add(new Card(Figures.FOUR,Shapes.HEART));
 		
 		//when
 		int result = comparator.findValueForQuantitySets(hand);
