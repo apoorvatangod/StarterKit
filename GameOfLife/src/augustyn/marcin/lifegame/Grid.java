@@ -65,7 +65,7 @@ public class Grid {
 			field.setCellAlive(random.nextBoolean());
 		}
 	}
-	private void updateNeighbousForCell(Field field){//TODO tylko raz zrobic bo sie nie zmienia
+	private void updateNeighbousForCell(Field field){
 		int x = field.getPositionX();
 		int y = field.getPositionY();
 		int neighboursCount = 0;

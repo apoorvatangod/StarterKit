@@ -12,13 +12,9 @@ public class Round {
 	private static final Logger logger = LogManager.getLogger(Round.class);
 	private static final int PINS_FOR_STRIKE = 10;
 	private static final int MAX_PINS_IN_ONE_ROUND = 10;
-	private int roundNumber;
 	protected List<Roll> rolls = new ArrayList<>();
 	private Round nextRound;
 	
-	public Round(int roundNumber) {
-		this.roundNumber = roundNumber;
-	}
 	/**
 	 * Gives bonus points when requested by previous round.
 	 * @param bonus - type of bonus: SPARE/STRIKE
@@ -26,24 +22,27 @@ public class Round {
 	 */
 	public int giveBonus(Bonus bonus){
 		int bonusValue = 0;
-		if (bonus == Bonus.SPARE){
+		if (Bonus.SPARE.equals(bonus)){
 			bonusValue = rolls.get(0).getRollValue();
 		}
-		if (bonus == Bonus.STRIKE && rolls.get(0).getRollValue() == PINS_FOR_STRIKE){
+		if (Bonus.STRIKE.equals(bonus) && amIStrike()){
 			bonusValue = isThereNextRound() ? nextRound.giveBonus(Bonus.SPARE) + PINS_FOR_STRIKE : PINS_FOR_STRIKE;
 		}
-		if(bonus == Bonus.STRIKE && getNumberOfRollsInRound() >= 1 && rolls.get(0).getRollValue() != PINS_FOR_STRIKE){
+		if(Bonus.STRIKE.equals(bonus) && getNumberOfRollsInRound() >= 1 && rolls.get(0).getRollValue() != PINS_FOR_STRIKE){
 			bonusValue = rolls.get(0).getRollValue();
 			bonusValue = getNumberOfRollsInRound() == 2 ? bonusValue + rolls.get(1).getRollValue() : bonusValue;
 		}
 		return bonusValue;
+	}
+	private boolean amIStrike() {
+		return rolls.get(0).getRollValue() == PINS_FOR_STRIKE;
 	}
 	/**
 	 * Checkes if round has been finished.
 	 * @return true if round is finished
 	 */
 	public boolean checkIfRoundFinished(){
-		return getNumberOfRollsInRound() > 0 && (rolls.get(0).getRollValue() == PINS_FOR_STRIKE || 
+		return getNumberOfRollsInRound() > 0 && (amIStrike() || 
 				getNumberOfRollsInRound() == 2);
 	}
 	/**
@@ -64,21 +63,19 @@ public class Round {
 		}
 		return score;
 	}
-	public int getRoundNumber() {
-		return roundNumber;
-	}
+
 	/**
 	 * Adds new roll for a round.
 	 * @param numberOfPins - number of pins of new roll
-	 * @throws IllegalArgumentException if roll is not an int 0-10
-	 * @throws IllegalArgumentException if sum of two rolls is bigger than 10
+	 * @throws BowlingException if roll is not an int 0-10
+	 * @throws BowlingException if sum of two rolls is bigger than 10
 	 */
-	public void addRoll(int numberOfPins){
+	public void addRoll(int numberOfPins) throws BowlingException{
 		if(!validateSingleRoll(numberOfPins)){
-			throw new IllegalArgumentException("Illegal argument in roll. Roll must be 0-10.");
+			throw new BowlingException("Illegal argument in roll. Roll must be 0-10.");
 		}
 		if(getNumberOfRollsInRound() != 0 && !validateRollsInRound(numberOfPins)){
-			throw new IllegalArgumentException("Illegal argument in roll. Sum of rolls in round bigger than 10.");
+			throw new BowlingException("Illegal argument in roll. Sum of rolls in round bigger than 10.");
 		}
 		rolls.add(new Roll(numberOfPins));
 	}

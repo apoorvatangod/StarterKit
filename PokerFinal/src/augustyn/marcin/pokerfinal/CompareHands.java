@@ -8,14 +8,6 @@ import java.util.List;
 import java.util.Map;
 
 public class CompareHands {
-	private static final int HIGH_CARD = 0;
-	private static final int PAIR = 1;
-	private static final int TWO_PAIRS = 2;
-	private static final int THREE_OF_KIND = 3;
-	private static final int STRAIGHT = 4;
-	private static final int FLUSH = 5;
-	private static final int FULL_HOUSE = 6;
-	private static final int FOUR_OF_KIND = 7;
 	private static final int NUMBER_OF_COMPARISONS_FOR_FINDING_COLOR = 4;
 	private static final int FIRST_LAST_CARD_VALUE_DIFFERENCE_FOR_STRAIGHT = 4;
 	private static final int CARDS_IN_HAND = 5;
@@ -27,18 +19,20 @@ public class CompareHands {
 	 */
 	public int findValueForColor(List<Card> hand){
 		for(int i = 0; i < NUMBER_OF_COMPARISONS_FOR_FINDING_COLOR; i++){
-			if(hand.size() != CARDS_IN_HAND || !hand.get(i).getShape().equals(hand.get(i + 1).getShape())){
+			Shapes shapeCard = hand.get(i).getShape();
+			Shapes shapeNextCard = hand.get(i + 1).getShape();
+			if(hand.size() != CARDS_IN_HAND || !shapeCard.equals(shapeNextCard)){
 				return 0;
 			}
 		}
-		return FLUSH;
+		return Sets.FLUSH.getValue();
 	}
 	
-	private Map<Integer,Integer> mapCards(List<Card> hand){
-		Map<Integer,Integer> figuresQuantity = new HashMap<>();
+	private Map<Figures,Integer> mapCards(List<Card> hand){
+		Map<Figures,Integer> figuresQuantity = new HashMap<>();
 		
 		for(Card card : hand){
-			Integer figure = card.getFigure();
+			Figures figure = card.getFigure();
 			if(figuresQuantity.get(figure) != null){
 				Integer currentQuantity = figuresQuantity.get(figure);
 				figuresQuantity.put(figure, currentQuantity + 1);
@@ -55,22 +49,22 @@ public class CompareHands {
 	 * @return value of a set eg full house = 6, four of kind = 7.
 	 */
 	public int findValueForQuantitySets(List<Card> hand){
-		Map<Integer,Integer> figuresQuantity = mapCards(hand);
-		int valueOfSet = HIGH_CARD;
+		Map<Figures,Integer> figuresQuantity = mapCards(hand);
+		int valueOfSet = Sets.HIGH_CARD.getValue();
 		if(figuresQuantity.containsValue(4)){
-			valueOfSet = FOUR_OF_KIND;
+			valueOfSet = Sets.FOUR_OF_KIND.getValue();
 		}
 		if(figuresQuantity.containsValue(3) && !figuresQuantity.containsValue(2)){
-			valueOfSet = THREE_OF_KIND;
+			valueOfSet = Sets.THREE_OF_KIND.getValue();
 		}
 		if(figuresQuantity.containsValue(3) && figuresQuantity.containsValue(2)){
-			valueOfSet = FULL_HOUSE;
+			valueOfSet = Sets.FULL_HOUSE.getValue();
 		}
 		if(!figuresQuantity.containsValue(3) && figuresQuantity.containsValue(2) && figuresQuantity.size() == 3){
-			valueOfSet = TWO_PAIRS;
+			valueOfSet = Sets.TWO_PAIRS.getValue();
 		}
 		if(!figuresQuantity.containsValue(3) && figuresQuantity.containsValue(2) && figuresQuantity.size() == 4){
-			valueOfSet = PAIR;
+			valueOfSet = Sets.PAIR.getValue();
 		}
 		return valueOfSet;
 		/*for(Map.Entry<Integer,Integer> entry : figuresQuantity.entrySet()) {
@@ -92,10 +86,10 @@ public class CompareHands {
 	 * @param hand - list of 5 to be sorted
 	 * @return List of map entries sorted by value then by key
 	 */
-	public List<Map.Entry<Integer, Integer>> sortHand(List<Card> hand) {
-		Map<Integer,Integer> figuresQuantity = mapCards(hand);
-		List<Map.Entry<Integer, Integer>> list = new ArrayList<Map.Entry<Integer, Integer>>(figuresQuantity.entrySet());
-		Collections.sort(list, new ValueThenKeyComparator<Integer, Integer>());
+	public List<Map.Entry<Figures, Integer>> sortHand(List<Card> hand) {
+		Map<Figures,Integer> figuresQuantity = mapCards(hand);
+		List<Map.Entry<Figures, Integer>> list = new ArrayList<Map.Entry<Figures, Integer>>(figuresQuantity.entrySet());
+		Collections.sort(list, new ValueThenKeyComparator<Figures, Integer>());
 		return list;
 	}
 	/**
@@ -104,13 +98,21 @@ public class CompareHands {
 	 * @return value for straight(4) if there is straight or 0 if not
 	 */
 	public int findValueForStraight(List<Card> hand){
-		List<Map.Entry<Integer, Integer>> sortedList = sortHand(hand);
-		if(sortedList.size() == CARDS_IN_HAND && sortedList.get(sortedList.size() - 1).getKey() - 
-				sortedList.get(0).getKey() == FIRST_LAST_CARD_VALUE_DIFFERENCE_FOR_STRAIGHT){
-			return STRAIGHT;
+		List<Map.Entry<Figures, Integer>> sortedList = sortHand(hand);
+		if(sortedList.size() == CARDS_IN_HAND && sortedList.get(sortedList.size() - 1).getKey().getValue() - 
+				sortedList.get(0).getKey().getValue() == FIRST_LAST_CARD_VALUE_DIFFERENCE_FOR_STRAIGHT){
+			return Sets.STRAIGHT.getValue();
 		}
 		return 0;
 	}	
+	/**
+	 * Gives set score (level) of hand.
+	 * @param hand - 5 card list to be scored
+	 * @return - score of set
+	 */
+	public int getScoreForHand(List<Card> hand){
+		return findValueForColor(hand) + findValueForQuantitySets(hand) + findValueForStraight(hand);
+	}
 }
 //source: http://stackoverflow.com/questions/3074154/sorting-a-hashmap-based-on-value-then-key
 class ValueThenKeyComparator<K extends Comparable<? super K>,V extends Comparable<? super V>> 

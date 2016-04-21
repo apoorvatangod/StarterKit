@@ -5,9 +5,9 @@ public interface BowlingGameResultCalculator {
 	/**
 	 * Register a thrown a ball.
 	 * @param numberOfPins number of knocked down pins
-	 * @throws UnsupportedOperationException - when try to roll and game is over
+	 * @throws BowlingException - when try to roll and game is over
 	 */
-	public void roll(int numberOfPins);
+	public void roll(int numberOfPins) throws BowlingException;
 
 	/**
 	 * @return current game score

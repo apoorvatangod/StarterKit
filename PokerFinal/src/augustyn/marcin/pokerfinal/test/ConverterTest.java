@@ -9,6 +9,8 @@ import org.junit.Test;
 
 import augustyn.marcin.pokerfinal.Card;
 import augustyn.marcin.pokerfinal.Converter;
+import augustyn.marcin.pokerfinal.Figures;
+import augustyn.marcin.pokerfinal.PokerException;
 import augustyn.marcin.pokerfinal.Shapes;
 
 public class ConverterTest {
@@ -20,14 +22,14 @@ public class ConverterTest {
 		hand = new ArrayList<>();
 	}
 	@Test
-	public void shouldParseFiguresCorrectlyForFirstHand(){
+	public void shouldParseFiguresCorrectlyForFirstHand() throws PokerException{
 		//given
 		List<Card> expectedHand = new ArrayList<>();
-		expectedHand.add(new Card(8,Shapes.CLUB));
-		expectedHand.add(new Card(10,Shapes.SPADE));
-		expectedHand.add(new Card(13,Shapes.CLUB));
-		expectedHand.add(new Card(9,Shapes.HEART));
-		expectedHand.add(new Card(4,Shapes.SPADE));
+		expectedHand.add(new Card(Figures.EIGHT,Shapes.CLUB));
+		expectedHand.add(new Card(Figures.TEN,Shapes.SPADE));
+		expectedHand.add(new Card(Figures.KING,Shapes.CLUB));
+		expectedHand.add(new Card(Figures.NINE,Shapes.HEART));
+		expectedHand.add(new Card(Figures.FOUR,Shapes.SPADE));
 		//when
 		hand = converter.convertFromFile();
 		//then 
@@ -36,14 +38,14 @@ public class ConverterTest {
 		}
 	}
 	@Test
-	public void shouldParseFiguresCorrectlyForSecondHand(){
+	public void shouldParseFiguresCorrectlyForSecondHand() throws PokerException{
 		//given
 		List<Card> expectedHand = new ArrayList<>();
-		expectedHand.add(new Card(7,Shapes.DIAMOND));
-		expectedHand.add(new Card(2,Shapes.SPADE));
-		expectedHand.add(new Card(5,Shapes.DIAMOND));
-		expectedHand.add(new Card(3,Shapes.SPADE));
-		expectedHand.add(new Card(14,Shapes.CLUB));
+		expectedHand.add(new Card(Figures.SEVEN,Shapes.DIAMOND));
+		expectedHand.add(new Card(Figures.TWO,Shapes.SPADE));
+		expectedHand.add(new Card(Figures.FIVE,Shapes.DIAMOND));
+		expectedHand.add(new Card(Figures.THREE,Shapes.SPADE));
+		expectedHand.add(new Card(Figures.ACE,Shapes.CLUB));
 		//when
 		hand = converter.convertFromFile();
 		//then 
@@ -52,14 +54,14 @@ public class ConverterTest {
 		}
 	}
 	@Test
-	public void shouldParseFiguresCorrectlyForFirstHandSecondGame(){
+	public void shouldParseFiguresCorrectlyForFirstHandSecondGame() throws PokerException{
 		//given
 		List<Card> expectedHand = new ArrayList<>();
-		expectedHand.add(new Card(5,Shapes.CLUB));
-		expectedHand.add(new Card(14,Shapes.DIAMOND));
-		expectedHand.add(new Card(5,Shapes.DIAMOND));
-		expectedHand.add(new Card(14,Shapes.CLUB));
-		expectedHand.add(new Card(9,Shapes.CLUB));
+		expectedHand.add(new Card(Figures.FIVE,Shapes.CLUB));
+		expectedHand.add(new Card(Figures.ACE,Shapes.DIAMOND));
+		expectedHand.add(new Card(Figures.FIVE,Shapes.DIAMOND));
+		expectedHand.add(new Card(Figures.ACE,Shapes.CLUB));
+		expectedHand.add(new Card(Figures.NINE,Shapes.CLUB));
 		//when
 		hand = converter.convertFromFile();
 		//then 

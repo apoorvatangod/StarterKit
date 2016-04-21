@@ -1,7 +1,6 @@
 package augustyn.marcin.bowlingfinal;
 
 public enum Bonus {
-	NONE(0),
 	SPARE(1),
 	STRIKE(2);
 	

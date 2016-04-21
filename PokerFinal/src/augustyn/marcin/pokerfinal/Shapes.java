@@ -17,7 +17,7 @@ public enum Shapes {
 	 * @return enum for symbol
 	 * @throws IllegalArgumentException if String argument is not a valid shape
 	 */
-	public static Shapes getValueBySymbol(String symbol) {
+	public static Shapes getEnumBySymbol(String symbol) {
 		  for(Shapes e: Shapes.values()) {
 		    if(e.symbol.equals(symbol)) {
 		      return e;
