@@ -32,12 +32,12 @@ public class PathPanel extends JPanel {
 	}
 	
 	public static void sayFileOpened() {
-		label.setText("Fle Opened !");
+		label.setText("File Opened !");
 		label.setForeground(Color.GREEN);
 	}
 	
 	public static void sayFileSaved() {
-		label.setText("Fle Saved !");
+		label.setText("File Saved !");
 		label.setForeground(Color.GREEN);
 	}
 

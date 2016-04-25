@@ -10,11 +10,12 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.*;
 
+import org.mockito.*;
+
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.*;
 
 import pl.luciow.warehouse.impl.*;
 import pl.luciow.warehouse.matchers.*;
