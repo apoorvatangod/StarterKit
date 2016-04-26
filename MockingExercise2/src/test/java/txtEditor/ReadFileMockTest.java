@@ -49,18 +49,20 @@ public class ReadFileMockTest {
 			assertTrue(false);
 		}
 	}
-	@Test
-    public void fileInAreaFailTest() {
-		ReadFile rf = new ReadFile();
+	@Test(expected=NoFileToReadException.class)
+    public void fileInAreaFailTest() throws NoFileToReadException {
 		Mockito.when(textFieldMock.getText()).thenReturn("wrongPath");
 		String path = textFieldMock.getText();
-		try {
+		readFile.fileInArea(textAreaMock, path);
+		
+		/*lub tak - wtedy bez throws
+		 * try {
 			rf.fileInArea(textAreaMock, path);
 			logger.info("Error not occured.");
 			assertTrue(false);
 		} catch (NoFileToReadException e) {
 			assertTrue(true);
-		}
+		}*/
 	}
 	/**
 	 * TODO 4: Przetestuj metode ReadFile.fileInArea(JTextArea, String). Sprawdz,
