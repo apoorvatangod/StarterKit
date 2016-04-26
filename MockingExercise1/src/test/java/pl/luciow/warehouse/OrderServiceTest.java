@@ -26,11 +26,10 @@ import pl.luciow.warehouse.model.*;
  * @author Mariusz
  */
 public class OrderServiceTest {
+	private OrderService orderService;
 	
 	@Mock 
 	private Warehouse warehouseMock;
-	@Mock
-	private OrderService orderService;
 	@Mock
 	private Order orderMock;
 	@Mock

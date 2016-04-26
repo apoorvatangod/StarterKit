@@ -5,12 +5,15 @@
  */
 package pl.luciow.warehouse.impl;
 
+import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -23,9 +26,6 @@ import org.mockito.stubbing.Answer;
 import pl.luciow.warehouse.PaymentProcessor;
 import pl.luciow.warehouse.model.Payment;
 import pl.luciow.warehouse.util.PaymentValidator;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 /**
  *
  * @author Mariusz
@@ -75,6 +75,7 @@ public class PaymentServiceImplTest {
     	try {
 			paymentServiceImpl.processPayment(new Payment());
 			logger.info("Error not occured");
+			verify(paymentProcessor, Mockito.times(1)).processPayment(any(Payment.class));
 		} catch (Exception e) {
 			verify(paymentProcessor, never()).processPayment(any(Payment.class));
 			logger.info("Error occured");
