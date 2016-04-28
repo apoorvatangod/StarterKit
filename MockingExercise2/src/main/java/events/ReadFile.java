@@ -60,7 +60,7 @@ public class ReadFile implements ActionListener {
 			br = new BufferedReader(new FileReader(path));
 			area.read(br, null);
 		} catch (IOException e) {
-			throw new NoFileToReadException();
+			throw new NoFileToReadException(e.getMessage());
 		}
 		try {
 			br.close();
