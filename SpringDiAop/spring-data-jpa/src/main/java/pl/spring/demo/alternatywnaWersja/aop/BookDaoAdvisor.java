@@ -1,4 +1,4 @@
-package pl.spring.demo.aop;
+/*package pl.spring.demo.alternatywnaWersja.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import pl.spring.demo.annotation.NullableId;
 import pl.spring.demo.common.Sequence;
-import pl.spring.demo.dao.DaoAbstract;
 import pl.spring.demo.exception.BookNotNullIdException;
 import pl.spring.demo.to.IdAware;
 
@@ -17,14 +16,13 @@ public class BookDaoAdvisor {
 	
 	@Autowired
 	private Sequence sequence;
-	private DaoAbstract<? extends IdAware> objects;
+	private CollectionAware<?> objects;
 
-	@SuppressWarnings("unchecked")
 	@Before("@annotation(nullableId)")
     public void before(JoinPoint joinPoint, NullableId nullableId) throws BookNotNullIdException {
     	checkNotNullId(joinPoint.getArgs()[0]);
-    	if (joinPoint.getThis() instanceof DaoAbstract){
-    		objects = (DaoAbstract<? extends IdAware>)joinPoint.getThis();
+    	if (joinPoint.getThis() instanceof CollectionAware){
+	    	objects = (CollectionAware<?>)joinPoint.getThis();
 	    	setNextId(joinPoint.getArgs()[0]);
     	}
     }
@@ -36,7 +34,7 @@ public class BookDaoAdvisor {
     }
     private void setNextId(Object o){
     	if (o instanceof IdAware){
-    		((IdAware) o).setId(sequence.nextValue(objects.findAll()));
+    		((IdAware) o).setId(sequence.nextValue(objects.getCollection()));
     	}
     }
-}
+}*/

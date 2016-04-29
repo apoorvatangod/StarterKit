@@ -1,7 +1,12 @@
 package pl.spring.demo.service;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -9,14 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import pl.spring.demo.dao.BookDao;
-import pl.spring.demo.exception.BookNotNullIdException;
+import pl.spring.demo.to.AuthorTo;
 import pl.spring.demo.to.BookTo;
-
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"CommonServiceTest-context.xml", "BookServiceImplCacheTest-context.xml"})
@@ -37,7 +38,8 @@ public class BookServiceImplCacheTest {
     @Test
     public void testShouldFindAllBooksFirstFromDaoThenFromCache() {
         // when
-        Mockito.when(bookDao.findAll()).thenReturn(Arrays.asList(new BookTo(1L, "Title", "Author")));
+        Mockito.when(bookDao.findAll()).thenReturn(Arrays.asList(new BookTo(1L, "Title", 
+        		new ArrayList<>(Arrays.asList(new AuthorTo(1L, "Example", "Author"))))));
 
         List<BookTo> allBooks = bookService.findAllBooks();
         assertEquals(1, allBooks.size());

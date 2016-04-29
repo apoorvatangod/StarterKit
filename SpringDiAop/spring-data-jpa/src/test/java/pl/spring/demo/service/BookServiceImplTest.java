@@ -75,4 +75,24 @@ public class BookServiceImplTest {
         assertEquals(Long.valueOf(7), id);
         
     }
+    @Test
+    public void testShouldFindOneBookByTitle(){
+        // given
+    	String title = "Rom";
+        // when
+        List<BookTo> foundBooks = bookService.findBooksByTitle(title);
+        // then
+        assertEquals(1, foundBooks.size());
+        
+    }
+    @Test
+    public void testShouldFindOneBookByAuthor(){
+        // given
+    	String authorName = "Edmund Niziurski";
+        // when
+        List<BookTo> foundBooks = bookService.findBooksByAuthor(authorName);
+        // then
+        assertEquals(1, foundBooks.size());
+        
+    }
 }

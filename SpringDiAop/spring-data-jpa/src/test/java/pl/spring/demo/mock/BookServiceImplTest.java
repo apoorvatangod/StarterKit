@@ -8,9 +8,13 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import pl.spring.demo.dao.BookDao;
 import pl.spring.demo.service.impl.BookServiceImpl;
+import pl.spring.demo.to.AuthorTo;
 import pl.spring.demo.to.BookTo;
 
 import static org.junit.Assert.assertEquals;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class BookServiceImplTest {
 
@@ -27,8 +31,10 @@ public class BookServiceImplTest {
     @Test
     public void testShouldSaveBook() {
         // given
-        BookTo book = new BookTo(null, "title", "author");
-        Mockito.when(bookDao.save(book)).thenReturn(new BookTo(1L, "title", "author"));
+        BookTo book = new BookTo(null, "title", 
+        		new ArrayList<>(Arrays.asList(new AuthorTo(1L,"author", "1"))));
+        Mockito.when(bookDao.save(book)).thenReturn(new BookTo(1L, "title", 
+        		new ArrayList<>(Arrays.asList(new AuthorTo(1L,"author", "1")))));
         // when
         BookTo result = bookService.saveBook(book);
         // then
