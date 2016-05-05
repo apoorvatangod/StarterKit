@@ -55,7 +55,7 @@ public class Poker {
 	private boolean doesFirstHandWin(CompareHands comparator, List<List<Card>> hands){
 		int score1 = comparator.getScoreForHand(hands.get(0));
 		int score2 = comparator.getScoreForHand(hands.get(1));
-		if(score1 > score2){
+		if(score1 > score2){//TODO jesli tozsame to settle draw
 			return true;
 		}
 		if(score1 < score2){

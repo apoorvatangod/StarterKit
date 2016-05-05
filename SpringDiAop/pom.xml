@@ -10,8 +10,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-data-jpa</module>
-        <module>spring-data-model</module>
+        <module>spring_data_jpa</module>
+        <module>spring_data_model</module>
     </modules>
 
     <properties>
