@@ -4,6 +4,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.Mockito.*;
 
 import java.io.File;
 import java.util.Arrays;
@@ -54,7 +56,7 @@ public class BookRestServiceTest {
 		// register response for bookService.findAllBooks() mock
 		Mockito.when(bookService.findAllBooks()).thenReturn(Arrays.asList(bookTo1));
 		// when
-		ResultActions response = this.mockMvc.perform(get("/allBooks").accept(MediaType.APPLICATION_JSON)
+		ResultActions response = this.mockMvc.perform(get("/rest/books").accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON).content("1"));
 
 		response.andExpect(status().isOk())//
@@ -69,9 +71,47 @@ public class BookRestServiceTest {
 		File file = FileUtils.getFileFromClasspath("classpath:pl/spring/demo/web/json/bookToSave.json");
 		String json = FileUtils.readFileToString(file);
 		// when
-		ResultActions response = this.mockMvc.perform(post("/book").accept(MediaType.APPLICATION_JSON)
+		ResultActions response = this.mockMvc.perform(post("/rest/book").accept(MediaType.APPLICATION_JSON)
 				.contentType(MediaType.APPLICATION_JSON).content(json.getBytes()));
 		// then
-		response.andExpect(status().isOk());
+		response.andExpect(status().isCreated());
+	}
+	
+	@Test
+	public void testShouldFindBookById() throws Exception {
+
+		// given:
+		final BookTo bookTo1 = new BookTo(1L, "title", "Author1", BookStatus.FREE);
+		Mockito.when(bookService.findBooksById(anyLong())).thenReturn(Arrays.asList(bookTo1));
+		
+		// when
+		ResultActions response = this.mockMvc.perform(get("/rest/book?id=1").accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON).content("1"));
+
+		//then
+		response.andExpect(status().isOk())
+				.andExpect(jsonPath("id").value(bookTo1.getId().intValue()))
+				.andExpect(jsonPath("title").value(bookTo1.getTitle()))
+				.andExpect(jsonPath("authors").value(bookTo1.getAuthors()));
+	}
+	
+	@Test
+	public void testShouldFindBookByTitleAndAuthors() throws Exception {
+
+		// given:
+		final BookTo bookTo1 = new BookTo(1L, "title1", "Author1", BookStatus.FREE);
+		final BookTo bookTo2 = new BookTo(2L, "title2", "Author2", BookStatus.FREE);
+		Mockito.when(bookService.findBooksByTitleAndAuthor(anyString(), anyString())).thenReturn(Arrays.asList(bookTo1, bookTo2));
+		
+		// when
+		ResultActions response = this.mockMvc.perform(get("/rest/book/find?title=tit&authors=auto").accept(MediaType.APPLICATION_JSON)
+				.contentType(MediaType.APPLICATION_JSON).content("1"));
+
+		//then
+		response.andExpect(status().isOk())
+				.andExpect(jsonPath("$", hasSize(2)))
+				.andExpect(jsonPath("[0].id").value(bookTo1.getId().intValue()))
+				.andExpect(jsonPath("[0].title").value(bookTo1.getTitle()))
+				.andExpect(jsonPath("[0].authors").value(bookTo1.getAuthors()));
 	}
 }
