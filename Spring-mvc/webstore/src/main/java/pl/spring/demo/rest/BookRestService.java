@@ -80,5 +80,17 @@ public class BookRestService {
 	// TODO: implement some search methods considering single request parameters
 	// / multiple request parameters / array request parameters
 
-	
+	/**
+	 * Sample method which convert's any object from Java to String
+	 */
+	/*private static String asJsonString(final Object obj) {
+		try {
+			final ObjectMapper mapper = new ObjectMapper();
+			final String jsonContent = mapper.writeValueAsString(obj);
+			return jsonContent;
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}*/
+
 }

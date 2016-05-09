@@ -38,7 +38,7 @@
 								<a
 									href=" <spring:url value="/books/delete?id=${book.id}" /> "
 									class="btn btn-primary"> <span
-									class="glyphicon-info-sign glyphicon" /></span> Delete
+									class="glyphicon-remove glyphicon" /></span> Delete
 								</a>
 							</p>
 						</div>
@@ -61,5 +61,38 @@
 			</div>
 		</div>
 	</section>
+	
+	<div class="container">
+	  <h2>Book table</h2>   
+	  <table class="table table-hover">
+	    <thead>
+	      <tr>
+	        <th>Id</th>
+	        <th>Title</th>
+	        <th>Authors</th>
+	        <th>Status</th>
+	        <th>Actions</th>
+	      </tr>
+	    </thead>
+	    <tbody>
+	     <c:forEach items="${bookList}" var="book">
+			<tr>
+				<td>${book.id}</td>
+				<td>${book.title}</td>
+				<td>${book.authors}</td>
+				<td>${book.status}</td>
+				<td>
+					<a href=" <spring:url value="/books/book?id=${book.id}" /> " class="btn btn-primary"> 
+					<span class="glyphicon-info-sign glyphicon" /></span> Details </a>
+					
+					<a href=" <spring:url value="/books/delete?id=${book.id}" /> " class="btn btn-primary"> 
+					<span class="glyphicon-remove glyphicon" /></span> Delete </a>
+				</td>
+			</tr>
+			</c:forEach>
+	    </tbody>
+	  </table>
+	</div>
+	
 </body>
 </html>

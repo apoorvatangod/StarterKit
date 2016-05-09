@@ -78,7 +78,7 @@ public class BookServiceImplTest {
     @Test
     public void testShouldFindOneBookByTitle(){
         // given
-    	String title = "Rom";
+    	String title = "rom";
         // when
         List<BookTo> foundBooks = bookService.findBooksByTitle(title);
         // then
@@ -86,13 +86,33 @@ public class BookServiceImplTest {
         
     }
     @Test
+    public void testShouldNotFindAnyBookByTitle(){
+        // given
+    	String title = "Bob";
+        // when
+        List<BookTo> foundBooks = bookService.findBooksByTitle(title);
+        // then
+        assertTrue(foundBooks.isEmpty());
+        
+    }
+    @Test
     public void testShouldFindOneBookByAuthor(){
         // given
-    	String authorName = "Edmund Niziurski";
+    	String authorName = "Edmun Niziursk";
         // when
         List<BookTo> foundBooks = bookService.findBooksByAuthor(authorName);
         // then
         assertEquals(1, foundBooks.size());
+        
+    }
+    @Test
+    public void testShouldNotFindAnyBookByAuthor(){
+        // given
+    	String authorName = "John Smith";
+        // when
+        List<BookTo> foundBooks = bookService.findBooksByAuthor(authorName);
+        // then
+        assertTrue(foundBooks.isEmpty());
         
     }
 }

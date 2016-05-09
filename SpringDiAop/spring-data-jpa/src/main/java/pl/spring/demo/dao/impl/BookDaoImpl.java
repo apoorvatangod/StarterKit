@@ -66,8 +66,10 @@ public class BookDaoImpl implements BookDao {
 			BookTo bookTo = bookMapper.mapToBookToFromBookEntity(entity);
 			
 			for(AuthorTo singleAuthor : bookTo.getAuthors()){
-				boolean doesFirstNameMatch = authorTo.getFirstName().equalsIgnoreCase(singleAuthor.getFirstName());
-				boolean doesLastNameMatch = authorTo.getLastName().equalsIgnoreCase(singleAuthor.getLastName());
+				boolean doesFirstNameMatch = authorTo.getFirstName().length() <= singleAuthor.getFirstName().length() &&
+						singleAuthor.getFirstName().substring(0, authorTo.getFirstName().length()).equalsIgnoreCase(authorTo.getFirstName());
+				boolean doesLastNameMatch = authorTo.getLastName().length() <= singleAuthor.getLastName().length() &&
+						singleAuthor.getLastName().substring(0, authorTo.getLastName().length()).equalsIgnoreCase(authorTo.getLastName());
 				if(doesFirstNameMatch && doesLastNameMatch){
 					foundBooks.add(bookTo);
 				}
@@ -84,8 +86,8 @@ public class BookDaoImpl implements BookDao {
 	}
 
 	private void addTestBooks() {
-		ALL_BOOKS.add(new BookEntity(1L, "Romeo i Julia", "Wiliamszekspir"));
-		ALL_BOOKS.add(new BookEntity(2L, "Opium w rosole", "HannaOżogowska"));
+		ALL_BOOKS.add(new BookEntity(1L, "Romeo i Julia", "Wiliam Szekspir"));
+		ALL_BOOKS.add(new BookEntity(2L, "Opium w rosole", "Hanna Ożogowska"));
 		ALL_BOOKS.add(new BookEntity(3L, "Przygody Odyseusza", "Jan Parandowski"));
 		ALL_BOOKS.add(new BookEntity(4L, "Awantura w Niekłaju", "Edmund Niziurski"));
 		ALL_BOOKS.add(new BookEntity(5L, "Pan Samochodzik i Fantomas", "Zbigniew Nienacki"));

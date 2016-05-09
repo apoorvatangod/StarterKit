@@ -12,8 +12,12 @@
 	<section>
 		<div class="jumbotron">
 			<div class="container">
-				<h1>${greeting}</h1>
+				<h1>${greeting} 
+				<img src="https://www.asme.org/getmedia/c2c8ea5a-b690-4ba7-92bb-34bd1432862b/book_guide_hero_books.aspx" class="img-rounded" alt="Web store" align="right" width="150" height="auto">
+				</h1>
+				
 				<p>${info}</p>
+				
 			</div>
 		</div>
 	</section>
@@ -43,7 +47,7 @@
 						<p>Create new book</p>
 						<p>
 							<a href="/webstore/books/add" class="btn btn-default"> <span
-								class="glyphicon-info-sign glyphicon" /></span> Add book
+								class="glyphicon-plus glyphicon" /></span> Add book
 							</a>
 						</p>
 					</div>
@@ -61,7 +65,7 @@
 						<p>Search for book</p>
 						<p>
 							<a href="/webstore/books/find" class="btn btn-default"> <span
-								class="glyphicon-info-sign glyphicon" /></span> Find book
+								class="glyphicon-search glyphicon" /></span> Find book
 							</a>
 						</p>
 					</div>
