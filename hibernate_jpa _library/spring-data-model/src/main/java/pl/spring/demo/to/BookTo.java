@@ -4,10 +4,16 @@ public class BookTo {
     private Long id;
     private String title;
     private String authors;
-
+    private Long version;
     public BookTo() {
     }
 
+    public BookTo(Long id, String title, String authors, Long version) {
+        this.id = id;
+        this.title = title;
+        this.authors = authors;
+        this.version = version;
+    }
     public BookTo(Long id, String title, String authors) {
         this.id = id;
         this.title = title;
@@ -37,4 +43,13 @@ public class BookTo {
     public void setAuthors(String authors) {
         this.authors = authors;
     }
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+    
 }

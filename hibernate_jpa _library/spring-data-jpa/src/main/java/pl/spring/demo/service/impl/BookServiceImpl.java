@@ -36,8 +36,13 @@ public class BookServiceImpl implements BookService {
     @Override
     @Transactional(readOnly = false)
     public BookTo saveBook(BookTo book) {
-        BookEntity entity = BookMapper.map(book);
-        entity = bookRepository.save(entity);
-        return BookMapper.map(entity);
-    }
+          BookEntity entity = BookMapper.map(book);
+          if(book.getId() != null){
+                 BookEntity tmpEntity = bookRepository.findOne(entity.getId());
+                 entity.setLibrary(tmpEntity.getLibrary());
+          }
+          entity = bookRepository.save(entity);
+          return BookMapper.map(entity);
+    } 
+
 }

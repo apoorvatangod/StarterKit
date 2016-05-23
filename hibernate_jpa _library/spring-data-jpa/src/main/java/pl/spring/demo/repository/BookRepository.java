@@ -14,4 +14,10 @@ public interface BookRepository extends JpaRepository<BookEntity, Long> {
 
     @Query("select book from BookEntity book JOIN book.authors author where upper(author.firstName) like concat('%', upper(:author), '%') or upper(author.lastName) like concat('%', upper(:author), '%')")
     public List<BookEntity> findBookByAuthor(@Param("author") String author);
+    
+    @Query("select book from BookEntity book JOIN FETCH book.authors author JOIN FETCH book.library library where"
+    		+ "(upper(author.firstName) like concat('%', upper(:author), '%') or upper(author.lastName) like concat('%', upper(:author), '%')) "
+    		+ "AND upper(book.title) like concat (upper(:title), '%')"
+    		+ "AND upper(library.name) like concat (upper(:libraryName), '%')")
+    public List<BookEntity> findBookBySearchCriteria(@Param("author") String author, @Param("title") String title, @Param("libraryName") String libraryName);
 }

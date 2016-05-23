@@ -12,14 +12,14 @@ public class BookMapper {
 
     public static BookTo map(BookEntity bookEntity) {
         if (bookEntity != null) {
-            return new BookTo(bookEntity.getId(), bookEntity.getTitle(), mapAuthors(bookEntity.getAuthors()));
+            return new BookTo(bookEntity.getId(), bookEntity.getTitle(), mapAuthors(bookEntity.getAuthors()), bookEntity.getVersion());
         }
         return null;
     }
 
     public static BookEntity map(BookTo bookTo) {
         if (bookTo != null) {
-            return new BookEntity(bookTo.getId(), bookTo.getTitle());
+            return new BookEntity(bookTo.getId(), bookTo.getTitle(), bookTo.getVersion());
         }
         return null;
     }

@@ -1,14 +1,29 @@
 package pl.spring.demo.entity;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Version;
+
 @Entity
 @Table(name = "BOOK")
 public class BookEntity implements Serializable {
-    @Id
+
+	private static final long serialVersionUID = -6084713825969853937L;
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false, length = 50)
@@ -20,11 +35,23 @@ public class BookEntity implements Serializable {
             inverseJoinColumns = {@JoinColumn(name = "AUTHOR_ID", nullable = false, updatable = false)}
     )
     private Set<AuthorEntity> authors = new HashSet<>();
+    
+    @ManyToOne (optional = false)
+    @JoinColumn(name="library_id")
+    private LibraryEntity library;
+    
+    @Version 
+    private Long version;
 
     // for hibernate
     protected BookEntity() {
 }
 
+    public BookEntity(Long id, String title, Long version) {
+        this.id = id;
+        this.title = title;
+        this.version = version;
+    }
     public BookEntity(Long id, String title) {
         this.id = id;
         this.title = title;
@@ -53,4 +80,21 @@ public class BookEntity implements Serializable {
     public void setAuthors(Set<AuthorEntity> authors) {
         this.authors = authors;
     }
+
+	public LibraryEntity getLibrary() {
+		return library;
+	}
+
+	public void setLibrary(LibraryEntity library) {
+		this.library = library;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+    
 }
