@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>JavaScript StarterKit</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/half-slider.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            Brand and toggle get grouped for better mobile display
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+
+                </button>
+                <a class="navbar-brand" href="#">Calculator</a>
+            </div>
+             Collect the nav links, forms, and other content for toggling
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Http Request</a>
+                    </li>
+                </ul>
+            </div>
+             /.navbar-collapse
+        </div>
+         /.container
+    </nav>-->
+
+    <!-- Half Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+        </ol>
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+
+                  <a href="#" onClick = "navigation.showCalculator()">
+                    <p style="text-align:center">
+                      <img src="fonts/calculator.jpg" class="make-it-fit" >
+                    </p>
+                  </a>
+
+                <div class="carousel-caption">
+                    <h1>Simple calculator</h1>
+                </div>
+            </div>
+            <div class="item">
+                <!-- Set the second background image using inline CSS below. -->
+                <a href="#" onClick = "navigation.showHttpRequest()">
+                  <p style="text-align:center">
+                    <img src="fonts/http.jpg" class="make-it-fit" >
+                  </p>
+                </a>
+                <div class="carousel-caption">
+                    <h1>Send simple HTTP request</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+            <span class="icon-prev"></span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+            <span class="icon-next"></span>
+        </a>
+
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+              <h1>StarterKit JavaScript Exercise</h1>
+              <p>Simple calculator and HTTP request sender.</p>
+            </div>
+        </div>
+        <!-- Calculator section -->
+        <section id="calculatorSection">
+          <div class="row">
+              <div class="col-lg-12">
+                <p style="text-align:center">
+                  <img src="fonts/calculator-img.png" width="500" height="500" style="position: absolute; top: 0px; left: 335px;" >
+                  <a href="#" onclick = "calculator.add()">
+                    <img src="fonts/add.png" width="60" height="100" style="position: absolute; top: 355px; left: 650px;">
+                  </a>
+                  <a href="#" onClick = "calculator.substract()">
+                    <img src="fonts/minus.png" width="60" height="40" style="position: absolute; top: 305px; left: 650px;">
+                  </a>
+                  <a href="#" onClick = "calculator.multiply()">
+                    <img src="fonts/times.png" width="60" height="40" style="position: absolute; top: 255px; left: 650px;">
+                  </a>
+                  <a href="#" onClick = "calculator.devide()">
+                    <img src="fonts/devide.png" width="60" height="40" style="position: absolute; top: 205px; left: 650px;">
+                  </a>
+                  <a href="#" onClick = "calculator.factorial()">
+                    <img src="fonts/factorial.png" width="60" height="40" style="position: absolute; top: 205px; left: 505px;">
+                  </a>
+                  <form>
+                    <input type="number" name="First number" id="firstNumber" style="position: absolute; top: 165px; left: 425px; width: 100px;"><br>
+                    <input type="number" name="Second number" id="secondNumber" style="position: absolute; top: 165px; left: 550px;  width: 100px;"><br>
+                  </form>
+                  <input type="number" name="Result" id="result" style="position: absolute; top: 75px; left: 460px; height: 55px; width: 240px; font-size: 25px" disabled="disabled"></input>
+                </p>
+              </div>
+          </div>
+        </section>
+        <!-- HTTP Request section -->
+        <section id="http">
+          <div class="row">
+              <div class="col-lg-12">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Title</th>
+                      <th>Year</th>
+                      <th>Genre</th>
+                      <th>Production</th>
+                      <th>Director</th>
+                      <th>Score</th>
+                    </tr>
+                  </thead>
+                  <tbody id="movieTable">
+                  </tbody>
+              </table>
+              </div>
+          </div>
+        </section>
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h6>Created by Marcin Augustyn</h6>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    <!-- /.container -->
+  </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Script to Activate the Carousel -->
+    <script>
+    $('.carousel').carousel({
+        interval: 5000 //changes the speed
+    })
+    </script>
+
+    <!-- My JavaScripts -->
+    <script src="js/navigation.js"></script>
+    <script src="js/calculate.js"></script>
+    <script src="js/calculator.js"></script>
+    <script src="js/movies.js"></script>
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
