@@ -1,0 +1,26 @@
+Mockito + Hamcrest
+Spring
+Spring MVC
+Spring AOP
+Spring + REST
+AspectJ
+Swing (javax.swing)
+TDD
+JUnit
+Bootstrap
+JSP
+CleanCode
+Tomcat
+Maven
+Git
+Jackson - konwertuje do JSON automatycznie dla REST
+MySQL (+ Workbench) (program, system do baz danych) + jezyk (zapytania) mySQL (relacyjna baza danych)
+JDBC
+Hibernate (JPA) + JPQL
+JavaScript
+Atom(IDE dla JS) dodatkowe packages: atom-beautify, angularjs, emmet, linter
+ConEmu - mozliwosc otwierania wielu konsol jednoczesnie
+nodeJS + npm + http-server
+karma (do testow jak JUnit) + jasmine (framework do karmy) + PhantomJS (symulator przegladarki)
+HTML + CSS
+Papyrus (plugin do Eclipse do robienia diagramow UML)
