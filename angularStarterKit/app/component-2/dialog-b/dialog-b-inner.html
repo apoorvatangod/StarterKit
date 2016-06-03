@@ -1,1 +1,53 @@
-<h2>Hello from Dialog B!</h2>
+<div class="container">
+  <section>
+    <h2>Filter movies by genre</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Year</th>
+          <th>Genre</th>
+          <th>Production</th>
+          <th>Director</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="movie in data.movies" ng-click="setClickedMovie(movie)">
+          <td>{{movie.title}}</td>
+          <td>{{movie.year}}</td>
+          <td>{{movie.genre}}</td>
+          <td>{{movie.production}}</td>
+          <td>{{movie.director}}</td>
+          <td>{{movie.score}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Filtered by: {{clickedMovie.genre}}</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Year</th>
+          <th>Genre</th>
+          <th>Production</th>
+          <th>Director</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-ng-repeat="movie in filterByGenre(clickedMovie.genre)">
+          <td>{{movie.title}}</td>
+          <td>{{movie.year}}</td>
+          <td>{{movie.genre}}</td>
+          <td>{{movie.production}}</td>
+          <td>{{movie.director}}</td>
+          <td>{{movie.score}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</div>

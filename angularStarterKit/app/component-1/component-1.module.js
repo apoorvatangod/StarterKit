@@ -5,11 +5,9 @@ angular.module('app.component1', ['ngRoute','app.component1.templates'])
             templateUrl: 'component-1/dialog-a/dialog-a.html',
             controller: 'MyFirstController',
             resolve: {
-                books: function($http){
-                    return $http.get('/component-1/books.json');
+                movies: function($http){
+                    return $http.get('/component-1/movies.json');
                 }
             }
         });
     });
-
-
