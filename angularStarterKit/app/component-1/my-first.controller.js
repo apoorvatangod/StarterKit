@@ -1,22 +1,27 @@
-angular.module('app.component1').controller('MyFirstController', function($scope, $http, $modal, movies){
+angular.module('app.component1').controller('MyFirstController', function($scope, $http, $modal, movies, movieStorage){
    'use strict';
    $scope.data = {
      movies : []
    };
-   angular.copy(movies.data, $scope.data.movies);
-
-   $scope.editedMovie = "";
+   if(movieStorage.get() === undefined){
+     angular.copy(movies.data, $scope.data.movies);
+     movieStorage.store($scope.data.movies);
+   }
+   else{
+     angular.copy(movieStorage.get(), $scope.data.movies);
+   }
+   $scope.editedMovie = {};
 
    $scope.setEditedMovie = function(movie){
-      if($scope.editedMovie === movie){
-        $scope.editedMovie = "";
+      if($scope.editedMovie.id === movie.id){
+        $scope.editedMovie = {};
       }else{
-        $scope.editedMovie = movie;
+        angular.copy(movie, $scope.editedMovie);
       }
    };
 
    $scope.isAnyMovieSelectedToEdit = function(){
-      if($scope.editedMovie === ""){
+      if(!$scope.editedMovie.id){
         return false;
       }
       return true;
@@ -31,6 +36,7 @@ angular.module('app.component1').controller('MyFirstController', function($scope
 
       modalInstance.result.then(function (newMovie) {
         $scope.data.movies.push(newMovie);
+        movieStorage.store($scope.data.movies);
       });
 
     };
@@ -48,9 +54,32 @@ angular.module('app.component1').controller('MyFirstController', function($scope
        });
 
        modalInstance.result.then(function (movie) {
-         $scope.data.movies.push(movie);
+         var editedMovie = $scope.getMovieById(movie.id);
+         angular.copy(movie, editedMovie);
+         movieStorage.store($scope.data.movies);
        });
+     };
+     $scope.getMovieById = function(id){
+       for (var i = 0, len = $scope.data.movies.length; i < len; i++) {
+         if($scope.data.movies[i].id === id){
+            return $scope.data.movies[i];
+         }
+       }
+       return undefined;
+     };
 
+     $scope.getMovieTitle = function(movie){
+       if(movie){
+         return movie.title;
+       }
+       return "";
+     };
+
+     $scope.getRowColor = function(movie, editedMovie){
+       if(movie.id !== editedMovie.id){
+         return "#ffffff";
+       }
+       return "#f5f5f5";
      };
 
 }).controller('AddMovieModalCtrl', function($scope, $modalInstance){
@@ -84,3 +113,10 @@ angular.module('app.component1').controller('MyFirstController', function($scope
       $modalInstance.dismiss("cancel");
     };
 })
+.factory('movieStorage', function (){
+  var storage = undefined;
+  return {
+    store: function (movies) { storage = movies; },
+    get: function () { return storage; }
+  };
+});

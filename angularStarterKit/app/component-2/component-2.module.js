@@ -1,4 +1,4 @@
-angular.module('app.component2', ['ngRoute', 'app.component2.templates'])
+angular.module('app.component2', ['ngRoute', 'app.component2.templates', 'app.component1'])
     .config(function ($routeProvider) {
         'use strict';
         $routeProvider.when('/component-2/dialog-b', {

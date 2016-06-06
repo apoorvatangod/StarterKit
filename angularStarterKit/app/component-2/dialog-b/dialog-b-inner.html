@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="movie in data.movies" ng-click="setClickedMovie(movie)">
+        <tr ng-repeat="movie in data.movies" ng-click="setClickedMovie(movie)" bgcolor={{getRowColor(movie,clickedMovie)}}>
           <td>{{movie.title}}</td>
           <td>{{movie.year}}</td>
           <td>{{movie.genre}}</td>
@@ -39,7 +39,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr data-ng-repeat="movie in filterByGenre(clickedMovie.genre)">
+        <tr data-ng-repeat="movie in filterByGenre(clickedMovie.genre)"}>
           <td>{{movie.title}}</td>
           <td>{{movie.year}}</td>
           <td>{{movie.genre}}</td>

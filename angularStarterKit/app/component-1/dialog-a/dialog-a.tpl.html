@@ -17,7 +17,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="movie in data.movies" ng-click="setEditedMovie(movie)">
+        <tr ng-repeat="movie in data.movies" ng-click="setEditedMovie(movie)" bgcolor={{getRowColor(movie,editedMovie)}}>
           <td>{{movie.title}}</td>
           <td>{{movie.year}}</td>
           <td>{{movie.genre}}</td>
@@ -27,8 +27,9 @@
         </tr>
       </tbody>
     </table>
-    <button class="btn btn-default glyphicon glyphicon-plus-sign" ng-click="addMovieModal()"> Add </button>
-    <button class="btn btn-default"  ng-click="editMovieModal()" ng-disabled = "!isAnyMovieSelectedToEdit()"> Edit <b>{{editedMovie.title}}</b></button>
+    <button class="btn btn-success" ng-click="addMovieModal()"> Add </button>
+    <!-- <button class="btn btn-default"  ng-click="editMovieModal()" ng-disabled = "!isAnyMovieSelectedToEdit()"> Edit <b>{{getMovieTitle(getMovieById(editedMovie.id))}}</b></button> -->
+    <button class="btn btn-default"  ng-click="editMovieModal()" ng-disabled = "!isAnyMovieSelectedToEdit()"> Edit </button>
   </section>
 </div>
 
