@@ -11,11 +11,11 @@ public interface Bank {
 	
 	public List<PlayerFoundTo> checkBalance();
 	
-	public FoundTransactionTo executeTransaction(TransactionType type, Currency currency, Long quantity);
+	public FoundTransactionTo executeTransaction(TransactionType type, Currency currency, Integer quantity);
 	
-	public Boolean confirmTransaction(FoundTransactionTo transaction);
+	public boolean confirmTransaction(FoundTransactionTo transaction);
 	
-	public Long checkExchangeRate(Currency inputCurrency, Currency outputCurrency, Integer quantity);
+	public Float checkExchangeRate(Currency inputCurrency, Currency outputCurrency, Integer quantity);
 	
-	public Boolean executeExchange(Currency inputCurrency, Currency outputCurrency, Integer quantity);
+	public boolean executeExchange(Currency inputCurrency, Currency outputCurrency, Integer quantity);
 }

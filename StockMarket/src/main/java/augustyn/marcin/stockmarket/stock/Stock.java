@@ -6,7 +6,7 @@ import augustyn.marcin.stockmarket.stock.to.ShareDataTo;
 
 public interface Stock {
 	
-	public List<ShareDataTo> getCurrentDataForShare(String share);
+	public ShareDataTo getCurrentDataForShare(String share);
 	
 	public List<ShareDataTo> getHistoryDataForShare(String share, int historySizeInDays);
 }

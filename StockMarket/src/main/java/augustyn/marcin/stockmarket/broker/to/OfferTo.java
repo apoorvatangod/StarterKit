@@ -3,6 +3,10 @@ package augustyn.marcin.stockmarket.broker.to;
 import java.io.Serializable;
 import java.util.Date;
 
+import augustyn.marcin.stockmarket.enumation.ActionType;
+import augustyn.marcin.stockmarket.enumation.Currency;
+import augustyn.marcin.stockmarket.enumation.OfferStatus;
+
 
 
 public class OfferTo implements Serializable {
@@ -10,20 +14,20 @@ public class OfferTo implements Serializable {
 
 
 	private Long id;
-	private String actionType;
+	private ActionType actionType;
 	private String share;
-	private Integer quantity;
-	private Integer price;
+	private int quantity;
+	private int price;
 	private Date date;
-	private String currency;
-	private Integer comission;
-	private String status;
+	private Currency currency;
+	private int comission;
+	private OfferStatus status;
 
 	public OfferTo() {
 	}
 
-	public OfferTo(Long id, String actionType, String share, Integer quantity, Integer price, Date date, String currency,
-			Integer comission, String status) {
+	public OfferTo(Long id, ActionType actionType, String share, int quantity, int price, Date date, Currency currency,
+			int comission, OfferStatus status) {
 		this.id = id;
 		this.actionType = actionType;
 		this.share = share;
@@ -43,11 +47,11 @@ public class OfferTo implements Serializable {
 		this.id = id;
 	}
 
-	public String getActionType() {
+	public ActionType getActionType() {
 		return actionType;
 	}
 
-	public void setActionType(String actionType) {
+	public void setActionType(ActionType actionType) {
 		this.actionType = actionType;
 	}
 
@@ -59,19 +63,19 @@ public class OfferTo implements Serializable {
 		this.share = share;
 	}
 
-	public Integer getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public Integer getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -83,27 +87,27 @@ public class OfferTo implements Serializable {
 		this.date = date;
 	}
 
-	public String getCurrency() {
+	public Currency getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(String currency) {
+	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
 
-	public Integer getComission() {
+	public int getComission() {
 		return comission;
 	}
 
-	public void setComission(Integer comission) {
+	public void setComission(int comission) {
 		this.comission = comission;
 	}
 
-	public String getStatus() {
+	public OfferStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(OfferStatus status) {
 		this.status = status;
 	}
 	

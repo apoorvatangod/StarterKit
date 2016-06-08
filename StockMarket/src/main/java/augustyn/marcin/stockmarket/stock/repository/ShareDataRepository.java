@@ -16,10 +16,10 @@ import augustyn.marcin.stockmarket.stock.entity.ShareDataEntity;
 public interface ShareDataRepository extends JpaRepository<ShareDataEntity, Long> {
 
 	
-	@Query("SELECT sd FROM ShareDataEntity sd WHERE UPPER(sd.name) like UPPER(:name) AND sd.date >= :startDate AND sd.date <:endDate")
+	@Query("SELECT sd FROM ShareDataEntity sd WHERE UPPER(sd.name) like UPPER(:name) AND (sd.date BETWEEN :startDate AND :endDate)")
 	List<ShareDataEntity> findByNameAndDate( @Param("name") String name, @Param("startDate") Date startDate, @Param("endDate") Date endDate);
 	
 	@Query("SELECT sd FROM ShareDataEntity sd WHERE sd.id = :id")
-	List<ShareDataEntity> findById( @Param("id") String id);
+	List<ShareDataEntity> findById( @Param("id") Long id);
 	
 }

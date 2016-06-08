@@ -9,13 +9,13 @@ public class PlayerShareTo implements Serializable {
 	
 	private Long id;
 	private String name;
-	private Integer quantity;
+	private int quantity;
 
 	public PlayerShareTo() {
 	}
 
 	
-	public PlayerShareTo(Long id, String name, Integer quantity) {
+	public PlayerShareTo(Long id, String name, int quantity) {
 		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
@@ -39,12 +39,12 @@ public class PlayerShareTo implements Serializable {
 	}
 
 
-	public Integer getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 

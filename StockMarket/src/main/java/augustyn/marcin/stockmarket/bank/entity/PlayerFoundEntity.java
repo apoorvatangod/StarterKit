@@ -1,7 +1,18 @@
 package augustyn.marcin.stockmarket.bank.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+import augustyn.marcin.stockmarket.enumation.Currency;
 
 
 /**
@@ -15,19 +26,20 @@ public class PlayerFoundEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="currency")
-	private String currency;
+	@Enumerated(EnumType.STRING)
+	private Currency currency;
 	
 	@Column(name="quantity")
-	private Integer quantity;
+	private int quantity;
 
 	public PlayerFoundEntity() {
 	}
 
-	public PlayerFoundEntity(Long id, String currency, Integer quantity) {
+	public PlayerFoundEntity(Long id, Currency currency, int quantity) {
 		this.id = id;
 		this.currency = currency;
 		this.quantity = quantity;
@@ -41,19 +53,19 @@ public class PlayerFoundEntity implements Serializable {
 		this.id = id;
 	}
 
-	public String getCurrency() {
+	public Currency getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(String currency) {
+	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
 
-	public Integer getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 	

@@ -15,7 +15,6 @@ import augustyn.marcin.stockmarket.bank.entity.FoundTransactionEntity;
 public interface FoundTransactionRepository extends JpaRepository<FoundTransactionEntity, Long> {
 
 	@Query("SELECT ft FROM FoundTransactionEntity ft WHERE ft.id = :id")
-	List<FoundTransactionEntity> findTransactionById(@Param("id") Long id);
-	
+	List<FoundTransactionEntity> findTransactionById(@Param("id") Long id);	
 	
 }

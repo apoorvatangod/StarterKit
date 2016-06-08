@@ -15,20 +15,20 @@ public class PlayerShareEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="name")
 	private String name;
 	
 	@Column(name="quantity")
-	private Integer quantity;
+	private int quantity;
 
 	public PlayerShareEntity() {
 	}
 
 	
-	public PlayerShareEntity(Long id, String name, Integer quantity) {
+	public PlayerShareEntity(Long id, String name, int quantity) {
 		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
@@ -52,12 +52,12 @@ public class PlayerShareEntity implements Serializable {
 	}
 
 
-	public Integer getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 

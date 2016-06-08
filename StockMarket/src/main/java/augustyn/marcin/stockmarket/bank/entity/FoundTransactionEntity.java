@@ -5,11 +5,16 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import augustyn.marcin.stockmarket.enumation.Currency;
+import augustyn.marcin.stockmarket.enumation.TransactionType;
 
 
 /**
@@ -23,17 +28,19 @@ public class FoundTransactionEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="type")
-	private String type;
+	@Enumerated(EnumType.STRING)
+	private TransactionType type;
 	
 	@Column(name="currency")
-	private String currency;
+	@Enumerated(EnumType.STRING)
+	private Currency currency;
 	
 	@Column(name="quantity")
-	private Integer quantity;
+	private int quantity;
 	
 	@Column(name="date")
 	private Date date;
@@ -41,7 +48,7 @@ public class FoundTransactionEntity implements Serializable {
 	public FoundTransactionEntity() {
 	}
 
-	public FoundTransactionEntity(Long id, String type, String currency, Integer quantity, Date date) {
+	public FoundTransactionEntity(Long id, TransactionType type, Currency currency, int quantity, Date date) {
 		this.id = id;
 		this.type = type;
 		this.currency = currency;
@@ -57,27 +64,27 @@ public class FoundTransactionEntity implements Serializable {
 		this.id = id;
 	}
 
-	public String getType() {
+	public TransactionType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(TransactionType type) {
 		this.type = type;
 	}
 
-	public String getCurrency() {
+	public Currency getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(String currency) {
+	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
 
-	public Integer getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
@@ -88,5 +95,47 @@ public class FoundTransactionEntity implements Serializable {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((currency == null) ? 0 : currency.hashCode());
+		result = prime * result + ((date == null) ? 0 : date.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + quantity;
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		FoundTransactionEntity other = (FoundTransactionEntity) obj;
+		if (currency != other.currency)
+			return false;
+		if (date == null) {
+			if (other.date != null)
+				return false;
+		} else if (!date.equals(other.date))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (quantity != other.quantity)
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
+			return false;
+		return true;
+	}
 }

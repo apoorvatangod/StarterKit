@@ -5,11 +5,17 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+
+import augustyn.marcin.stockmarket.enumation.ActionType;
+import augustyn.marcin.stockmarket.enumation.Currency;
+import augustyn.marcin.stockmarket.enumation.OfferStatus;
 
 
 /**
@@ -23,38 +29,41 @@ public class OfferEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="action_type")
-	private String actionType;
+	@Enumerated(EnumType.STRING)
+	private ActionType actionType;
 	
 	@Column(name="share")
 	private String share;
 	
 	@Column(name="quantity")
-	private Integer quantity;
+	private int quantity;
 	
 	@Column(name="price")
-	private Integer price;
+	private int price;
 	
 	@Column(name="date")
 	private Date date;
 	
 	@Column(name="currency")
-	private String currency;
+	@Enumerated(EnumType.STRING)
+	private Currency currency;
 	
 	@Column(name="comission")
-	private Integer comission;
+	private int comission;
 	
 	@Column(name="status")
-	private String status;
+	@Enumerated(EnumType.STRING)
+	private OfferStatus status;
 
 	public OfferEntity() {
 	}
 
-	public OfferEntity(Long id, String actionType, String share, Integer quantity, Integer price, Date date, String currency,
-			Integer comission, String status) {
+	public OfferEntity(Long id, ActionType actionType, String share, int quantity, int price, Date date, Currency currency,
+			int comission, OfferStatus status) {
 		this.id = id;
 		this.actionType = actionType;
 		this.share = share;
@@ -74,11 +83,11 @@ public class OfferEntity implements Serializable {
 		this.id = id;
 	}
 
-	public String getActionType() {
+	public ActionType getActionType() {
 		return actionType;
 	}
 
-	public void setActionType(String actionType) {
+	public void setActionType(ActionType actionType) {
 		this.actionType = actionType;
 	}
 
@@ -90,19 +99,19 @@ public class OfferEntity implements Serializable {
 		this.share = share;
 	}
 
-	public Integer getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public Integer getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
@@ -114,27 +123,27 @@ public class OfferEntity implements Serializable {
 		this.date = date;
 	}
 
-	public String getCurrency() {
+	public Currency getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(String currency) {
+	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
 
-	public Integer getComission() {
+	public int getComission() {
 		return comission;
 	}
 
-	public void setComission(Integer comission) {
+	public void setComission(int comission) {
 		this.comission = comission;
 	}
 
-	public String getStatus() {
+	public OfferStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(OfferStatus status) {
 		this.status = status;
 	}
 	

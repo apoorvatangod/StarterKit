@@ -21,5 +21,4 @@ public interface PlayerShareRepository extends JpaRepository<PlayerShareEntity, 
 	@Query("SELECT ps FROM PlayerShareEntity ps WHERE ps.id = :id")
 	List<PlayerShareEntity> findPlayerShareById(@Param("id") Long id);
 	
-	
 }

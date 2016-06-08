@@ -23,14 +23,14 @@ public class ShareDataEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@Column(name="name")
 	private String name;
 	
 	@Column(name="price")
-	private Integer price;
+	private int price;
 	
 	@Column(name="date")
 	private Date date;
@@ -38,7 +38,7 @@ public class ShareDataEntity implements Serializable {
 	public ShareDataEntity() {
 	}
 
-	public ShareDataEntity(Long id, String name, Integer price, Date date) {
+	public ShareDataEntity(Long id, String name, int price, Date date) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
@@ -61,11 +61,11 @@ public class ShareDataEntity implements Serializable {
 		this.name = name;
 	}
 
-	public Integer getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(Integer price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

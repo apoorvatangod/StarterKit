@@ -3,20 +3,23 @@ package augustyn.marcin.stockmarket.bank.to;
 import java.io.Serializable;
 import java.util.Date;
 
+import augustyn.marcin.stockmarket.enumation.Currency;
+import augustyn.marcin.stockmarket.enumation.TransactionType;
+
 
 public class FoundTransactionTo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;	
-	private String type;
-	private String currency;
-	private Integer quantity;
+	private TransactionType type;
+	private Currency currency;
+	private int quantity;
 	private Date date;
 
 	public FoundTransactionTo() {
 	}
 
-	public FoundTransactionTo(Long id, String type, String currency, Integer quantity, Date date) {
+	public FoundTransactionTo(Long id, TransactionType type, Currency currency, int quantity, Date date) {
 		this.id = id;
 		this.type = type;
 		this.currency = currency;
@@ -32,27 +35,27 @@ public class FoundTransactionTo implements Serializable {
 		this.id = id;
 	}
 
-	public String getType() {
+	public TransactionType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(TransactionType type) {
 		this.type = type;
 	}
 
-	public String getCurrency() {
+	public Currency getCurrency() {
 		return currency;
 	}
 
-	public void setCurrency(String currency) {
+	public void setCurrency(Currency currency) {
 		this.currency = currency;
 	}
 
-	public Integer getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(Integer quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
