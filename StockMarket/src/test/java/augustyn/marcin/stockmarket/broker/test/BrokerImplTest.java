@@ -13,6 +13,7 @@ import static org.mockito.Mockito.when;
 import java.util.Arrays;
 import java.util.Date;
 
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -34,7 +35,7 @@ import augustyn.marcin.stockmarket.broker.repository.OfferRepository;
 import augustyn.marcin.stockmarket.broker.repository.PlayerShareRepository;
 import augustyn.marcin.stockmarket.broker.to.OfferTo;
 import augustyn.marcin.stockmarket.broker.to.PlayerShareTo;
-import augustyn.marcin.stockmarket.calendar.Calendar;
+import augustyn.marcin.stockmarket.calendar.MyCalendar;
 import augustyn.marcin.stockmarket.enumation.ActionType;
 import augustyn.marcin.stockmarket.enumation.Currency;
 import augustyn.marcin.stockmarket.enumation.OfferStatus;
@@ -49,7 +50,7 @@ public class BrokerImplTest {
 	private Stock stockMock;
 	
 	@Mock 
-	private Calendar calendarMock;
+	private MyCalendar calendarMock;
 	
 	@Mock 
 	private Bank bankMock;
@@ -79,7 +80,7 @@ public class BrokerImplTest {
 		
 		// when
 		when(stockMock.getCurrentDataForShare(anyString())).thenReturn(shareDataTo);
-		when(calendarMock.getCurrentDate()).thenReturn(new Date()); 
+		when(calendarMock.getCurrentDate()).thenReturn(new DateTime()); 
 		when(offerRepositoryMock.save(any(OfferEntity.class))).thenReturn(null); 
 		OfferTo offer = brokerImpl.getSellOffer("PKO", 100);
 
@@ -101,7 +102,7 @@ public class BrokerImplTest {
 		
 		// when
 		when(stockMock.getCurrentDataForShare(anyString())).thenReturn(shareDataTo);
-		when(calendarMock.getCurrentDate()).thenReturn(new Date()); 
+		when(calendarMock.getCurrentDate()).thenReturn(new DateTime()); 
 		when(offerRepositoryMock.save(any(OfferEntity.class))).thenReturn(null); 
 		OfferTo offer = brokerImpl.getSellOffer(null, 100);
 
@@ -116,7 +117,7 @@ public class BrokerImplTest {
 		
 		// when
 		when(stockMock.getCurrentDataForShare(anyString())).thenReturn(shareDataTo);
-		when(calendarMock.getCurrentDate()).thenReturn(new Date()); 
+		when(calendarMock.getCurrentDate()).thenReturn(new DateTime()); 
 		when(offerRepositoryMock.save(any(OfferEntity.class))).thenReturn(null); 
 		OfferTo offer = brokerImpl.getSellOffer("PKO", -1);
 
@@ -131,7 +132,7 @@ public class BrokerImplTest {
 		
 		// when
 		when(stockMock.getCurrentDataForShare(anyString())).thenReturn(shareDataTo);
-		when(calendarMock.getCurrentDate()).thenReturn(new Date()); 
+		when(calendarMock.getCurrentDate()).thenReturn(new DateTime()); 
 		when(offerRepositoryMock.save(any(OfferEntity.class))).thenReturn(null); 
 		OfferTo offer = brokerImpl.getBuyOffer("PKO", 100);
 

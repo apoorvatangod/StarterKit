@@ -1,7 +1,7 @@
 package augustyn.marcin.stockmarket.bank.repository.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 
 import java.util.Date;
 import java.util.List;
@@ -40,11 +40,9 @@ public class FoundTransactionRepositoryTest {
 		// given
 		
 		// when
-		List<FoundTransactionEntity> transactions = transactionRepository.findTransactionById(1L);
-		FoundTransactionEntity transaction = transactions.get(0);
+		FoundTransactionEntity transaction = transactionRepository.findTransactionById(1L);
 
 		// then
-		assertEquals(1, transactions.size());
 		assertEquals(TransactionType.DEPOSIT, transaction.getType());
 		assertEquals(Currency.PLN, transaction.getCurrency());
 		assertEquals(1000, transaction.getQuantity());
@@ -56,10 +54,10 @@ public class FoundTransactionRepositoryTest {
 		// given
 		
 		// when
-		List<FoundTransactionEntity> transactions = transactionRepository.findTransactionById(null);
+		FoundTransactionEntity transaction = transactionRepository.findTransactionById(null);
 
 		// then
-		assertTrue(transactions.isEmpty());
+		assertNull(transaction);
 	}
 	
 	@Test

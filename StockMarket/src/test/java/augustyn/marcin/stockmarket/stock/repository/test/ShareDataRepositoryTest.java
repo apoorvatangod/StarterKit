@@ -2,6 +2,7 @@ package augustyn.marcin.stockmarket.stock.repository.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 
 import java.util.Date;
 import java.util.List;
@@ -38,11 +39,9 @@ public class ShareDataRepositoryTest {
 		// given
 		
 		// when
-		List<ShareDataEntity> sharesData = shareDataRepository.findById(1L);
-		ShareDataEntity shareData = sharesData.get(0);
+		ShareDataEntity shareData = shareDataRepository.findById(1L);
 
 		// then
-		assertEquals(1, sharesData.size());
 		assertEquals("PKO", shareData.getName());
 		assertEquals(1000, shareData.getPrice());
 	}
@@ -78,10 +77,11 @@ public class ShareDataRepositoryTest {
 		// given
 		
 		// when
-		List<ShareDataEntity> sharesData = shareDataRepository.findById(null);
+		ShareDataEntity shareData = shareDataRepository.findById(null);
 
 		// then
-		assertTrue(sharesData.isEmpty());
+		assertNull(shareData);
+		
 	}
 	
 	@Test
@@ -107,5 +107,18 @@ public class ShareDataRepositoryTest {
 		
 		//after
 		shareDataRepository.delete(sharesData.get(0));
+	}
+	
+	@Test
+	public void testShouldFindCurrentByName() {
+		// given
+		Date currentDate = new Date(990489600000L);
+
+		// when
+		ShareDataEntity shareData = shareDataRepository.findCurrentByName("PKO", currentDate);
+		String shareName = shareData.getName();
+
+		// then
+		assertEquals("PKO", shareName);
 	}
 }

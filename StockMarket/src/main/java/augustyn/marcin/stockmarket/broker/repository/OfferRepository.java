@@ -16,10 +16,10 @@ public interface OfferRepository extends JpaRepository<OfferEntity, Long> {
 
 	
 	@Query("SELECT o FROM OfferEntity o WHERE UPPER(o.status) like UPPER(:status)")
-	List<OfferEntity> findOfferByStatus( @Param("status") String status);
+	List<OfferEntity> findOffersByStatus( @Param("status") String status);
 
 	@Query("SELECT o FROM OfferEntity o WHERE o.id = :id")
-	List<OfferEntity> findOfferById(@Param("id") Long id);
+	OfferEntity findOfferById(@Param("id") Long id);
 	
 	
 }

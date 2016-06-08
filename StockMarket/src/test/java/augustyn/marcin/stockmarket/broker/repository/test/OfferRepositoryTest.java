@@ -2,6 +2,7 @@ package augustyn.marcin.stockmarket.broker.repository.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 
 import java.util.Date;
 import java.util.List;
@@ -41,11 +42,9 @@ public class OfferRepositoryTest {
 		// given
 		
 		// when
-		List<OfferEntity> offers = offerRepository.findOfferById(1L);
-		OfferEntity offer = offers.get(0);
+		OfferEntity offer = offerRepository.findOfferById(1L);
 
 		// then
-		assertEquals(1, offers.size());
 		assertEquals(ActionType.BUY, offer.getActionType());
 		assertEquals("PKO", offer.getShare());
 		assertEquals(5, offer.getQuantity());
@@ -60,7 +59,7 @@ public class OfferRepositoryTest {
 		// given
 		
 		// when
-		List<OfferEntity> offers = offerRepository.findOfferByStatus(OfferStatus.ACTIVE.toString());
+		List<OfferEntity> offers = offerRepository.findOffersByStatus(OfferStatus.ACTIVE.toString());
 		int recordsFound = offers.size();
 
 		// then
@@ -72,7 +71,7 @@ public class OfferRepositoryTest {
 		// given
 		
 		// when
-		List<OfferEntity> offers = offerRepository.findOfferByStatus("Not a status");
+		List<OfferEntity> offers = offerRepository.findOffersByStatus("Not a status");
 
 		// then
 		assertTrue(offers.isEmpty());
@@ -83,10 +82,10 @@ public class OfferRepositoryTest {
 		// given
 		
 		// when
-		List<OfferEntity> offers = offerRepository.findOfferById(null);
+		OfferEntity offer = offerRepository.findOfferById(null);
 
 		// then
-		assertTrue(offers.isEmpty());
+		assertNull(offer);
 	}
 	
 	@Test
@@ -97,7 +96,7 @@ public class OfferRepositoryTest {
 		// when
 		offerRepository.save(newEntity);
 		
-		List<OfferEntity> offers = offerRepository.findOfferByStatus(OfferStatus.COMPLETED.toString());
+		List<OfferEntity> offers = offerRepository.findOffersByStatus(OfferStatus.COMPLETED.toString());
 		OfferEntity offer = offers.get(0);
 		// then
 		

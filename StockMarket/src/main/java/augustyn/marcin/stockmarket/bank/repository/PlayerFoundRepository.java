@@ -1,7 +1,5 @@
 package augustyn.marcin.stockmarket.bank.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,10 +14,10 @@ public interface PlayerFoundRepository extends JpaRepository<PlayerFoundEntity, 
 
 	
 	@Query("SELECT pf FROM PlayerFoundEntity pf WHERE UPPER(pf.currency) like UPPER(:currency)")
-	List<PlayerFoundEntity> findPlayerFoundByCurrency( @Param("currency") String currency);
+	PlayerFoundEntity findPlayerFoundByCurrency( @Param("currency") String currency);
 
 	@Query("SELECT pf FROM PlayerFoundEntity pf WHERE pf.id = :id")
-	List<PlayerFoundEntity> findPlayerFoundById(@Param("id") Long id);
+	PlayerFoundEntity findPlayerFoundById(@Param("id") Long id);
 	
 	
 }

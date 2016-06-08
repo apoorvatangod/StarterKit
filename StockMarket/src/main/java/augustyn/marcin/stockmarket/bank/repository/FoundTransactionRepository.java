@@ -1,7 +1,5 @@
 package augustyn.marcin.stockmarket.bank.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,6 +13,6 @@ import augustyn.marcin.stockmarket.bank.entity.FoundTransactionEntity;
 public interface FoundTransactionRepository extends JpaRepository<FoundTransactionEntity, Long> {
 
 	@Query("SELECT ft FROM FoundTransactionEntity ft WHERE ft.id = :id")
-	List<FoundTransactionEntity> findTransactionById(@Param("id") Long id);	
+	FoundTransactionEntity findTransactionById(@Param("id") Long id);	
 	
 }

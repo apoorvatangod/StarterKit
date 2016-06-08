@@ -9,9 +9,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
-import java.util.Date;
-
+import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,7 +26,7 @@ import augustyn.marcin.stockmarket.bank.entity.PlayerFoundEntity;
 import augustyn.marcin.stockmarket.bank.repository.FoundTransactionRepository;
 import augustyn.marcin.stockmarket.bank.repository.PlayerFoundRepository;
 import augustyn.marcin.stockmarket.bank.to.FoundTransactionTo;
-import augustyn.marcin.stockmarket.calendar.Calendar;
+import augustyn.marcin.stockmarket.calendar.MyCalendar;
 import augustyn.marcin.stockmarket.enumation.Currency;
 import augustyn.marcin.stockmarket.enumation.TransactionType;
 
@@ -37,7 +35,7 @@ import augustyn.marcin.stockmarket.enumation.TransactionType;
 public class BankImplTest {
 
 	@Mock 
-	private Calendar calendarMock;
+	private MyCalendar calendarMock;
 	
 	@Mock
 	private PlayerFoundRepository playerFoundRepositoryMock;
@@ -61,8 +59,8 @@ public class BankImplTest {
 		PlayerFoundEntity playerFoundEntity = new PlayerFoundEntity(1L, Currency.PLN, 1000);
 		
 		// when
-		when(playerFoundRepositoryMock.findPlayerFoundByCurrency(anyString())).thenReturn(Arrays.asList(playerFoundEntity));
-		when(calendarMock.getCurrentDate()).thenReturn(new Date()); 
+		when(playerFoundRepositoryMock.findPlayerFoundByCurrency(anyString())).thenReturn(playerFoundEntity);
+		when(calendarMock.getCurrentDate()).thenReturn(new DateTime()); 
 		
 		FoundTransactionTo foundTransaction= bankImpl.executeTransaction(TransactionType.WITHDRAW, Currency.PLN, 100);
 
@@ -81,8 +79,8 @@ public class BankImplTest {
 		PlayerFoundEntity playerFoundEntity = new PlayerFoundEntity(1L, Currency.PLN, 1000);
 		
 		// when
-		when(playerFoundRepositoryMock.findPlayerFoundByCurrency(anyString())).thenReturn(Arrays.asList(playerFoundEntity));
-		when(calendarMock.getCurrentDate()).thenReturn(new Date()); 
+		when(playerFoundRepositoryMock.findPlayerFoundByCurrency(anyString())).thenReturn(playerFoundEntity);
+		when(calendarMock.getCurrentDate()).thenReturn(new DateTime()); 
 		
 		FoundTransactionTo foundTransaction= bankImpl.executeTransaction(TransactionType.WITHDRAW, Currency.PLN, 1001);
 
@@ -97,8 +95,8 @@ public class BankImplTest {
 		PlayerFoundEntity playerFoundEntity = new PlayerFoundEntity(1L, Currency.PLN, 1000);
 		
 		// when
-		when(playerFoundRepositoryMock.findPlayerFoundByCurrency(anyString())).thenReturn(Arrays.asList(playerFoundEntity));
-		when(calendarMock.getCurrentDate()).thenReturn(new Date()); 
+		when(playerFoundRepositoryMock.findPlayerFoundByCurrency(anyString())).thenReturn(playerFoundEntity);
+		when(calendarMock.getCurrentDate()).thenReturn(new DateTime()); 
 		
 		FoundTransactionTo foundTransaction= bankImpl.executeTransaction(TransactionType.DEPOSIT, Currency.PLN, 100);
 

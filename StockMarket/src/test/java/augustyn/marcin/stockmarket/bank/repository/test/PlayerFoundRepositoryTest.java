@@ -1,7 +1,7 @@
 package augustyn.marcin.stockmarket.bank.repository.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
@@ -38,11 +38,10 @@ public class PlayerFoundRepositoryTest {
 		// given
 		
 		// when
-		List<PlayerFoundEntity> playerFounds = playerFoundRepository.findPlayerFoundById(1L);
-		PlayerFoundEntity playerFound = playerFounds.get(0);
+		PlayerFoundEntity playerFound = playerFoundRepository.findPlayerFoundById(1L);
 
 		// then
-		assertEquals(1, playerFounds.size());
+
 		assertEquals(Currency.PLN, playerFound.getCurrency());
 		assertEquals(1000000, playerFound.getQuantity());
 
@@ -53,12 +52,9 @@ public class PlayerFoundRepositoryTest {
 		// given
 		
 		// when
-		List<PlayerFoundEntity> playerFounds = playerFoundRepository.findPlayerFoundByCurrency(Currency.EUR.toString());
-		int recordsFound = playerFounds.size();
-		PlayerFoundEntity playerFound = playerFounds.get(0);
+		PlayerFoundEntity playerFound = playerFoundRepository.findPlayerFoundByCurrency(Currency.EUR.toString());
 
 		// then
-		assertEquals(1, recordsFound);
 		assertEquals(Currency.EUR, playerFound.getCurrency());
 		assertEquals(1, playerFound.getQuantity());
 	}
@@ -68,10 +64,10 @@ public class PlayerFoundRepositoryTest {
 		// given
 		
 		// when
-		List<PlayerFoundEntity> playerFounds = playerFoundRepository.findPlayerFoundByCurrency("Not a currency");
+		PlayerFoundEntity playerFound = playerFoundRepository.findPlayerFoundByCurrency("Not a currency");
 
 		// then
-		assertTrue(playerFounds.isEmpty());
+		assertNull(playerFound);
 	}
 	
 	@Test
@@ -79,10 +75,10 @@ public class PlayerFoundRepositoryTest {
 		// given
 		
 		// when
-		List<PlayerFoundEntity> playerFounds = playerFoundRepository.findPlayerFoundById(null);
+		PlayerFoundEntity playerFound = playerFoundRepository.findPlayerFoundById(null);
 
 		// then
-		assertTrue(playerFounds.isEmpty());
+		assertNull(playerFound);
 	}
 	
 	@Test
@@ -93,16 +89,13 @@ public class PlayerFoundRepositoryTest {
 		// when
 		playerFoundRepository.save(newEntity);
 		
-		List<PlayerFoundEntity> playerFounds = playerFoundRepository.findPlayerFoundByCurrency(Currency.GBP.toString());
-		PlayerFoundEntity playerFound = playerFounds.get(0);
-		int recordsFound = playerFounds.size();
+		PlayerFoundEntity playerFound = playerFoundRepository.findPlayerFoundByCurrency(Currency.GBP.toString());
+
 		// then
-		
-		assertEquals(1, recordsFound);
 		assertEquals(Currency.GBP, playerFound.getCurrency());
 		assertEquals(7, playerFound.getQuantity());
 		
 		//after
-		playerFoundRepository.delete(playerFounds.get(0));
+		playerFoundRepository.delete(playerFound);
 	}
 }

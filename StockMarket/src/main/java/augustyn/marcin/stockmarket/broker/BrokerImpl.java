@@ -18,7 +18,7 @@ import augustyn.marcin.stockmarket.broker.repository.OfferRepository;
 import augustyn.marcin.stockmarket.broker.repository.PlayerShareRepository;
 import augustyn.marcin.stockmarket.broker.to.OfferTo;
 import augustyn.marcin.stockmarket.broker.to.PlayerShareTo;
-import augustyn.marcin.stockmarket.calendar.Calendar;
+import augustyn.marcin.stockmarket.calendar.MyCalendar;
 import augustyn.marcin.stockmarket.enumation.ActionType;
 import augustyn.marcin.stockmarket.enumation.Currency;
 import augustyn.marcin.stockmarket.enumation.OfferStatus;
@@ -50,7 +50,7 @@ public class BrokerImpl implements Broker {
 	private OfferRepository offerRepository;
 	
 	@Autowired
-	private Calendar calendar;
+	private MyCalendar calendar;
 	//TODO weryfikacja przy executeOffer czy przeslana oferta zgadza sie z wystawiona i po zakonczeniu execte musi byc aktualizacja statusu oferty na COMPLETED, statyczny helper nowa klasa
 	@Override
 	public OfferTo getSellOffer(String share, int quantity) {
@@ -65,7 +65,7 @@ public class BrokerImpl implements Broker {
 		int comission = calculateComission(offeredQuantity, offeredPrice);
 		
 		OfferTo offer = new OfferTo(null, ActionType.SELL, share, offeredQuantity, offeredPrice, 
-				calendar.getCurrentDate(), Currency.PLN, comission, OfferStatus.ACTIVE);
+				calendar.getCurrentDate().toDate(), Currency.PLN, comission, OfferStatus.ACTIVE);
 		
 		offerRepository.save(OfferMapper.map(offer));
 		return offer;
@@ -85,7 +85,7 @@ public class BrokerImpl implements Broker {
 		int comission = calculateComission(offeredQuantity, offeredPrice);
 		
 		OfferTo offer = new OfferTo(null, ActionType.BUY, share, offeredQuantity, offeredPrice, 
-				calendar.getCurrentDate(), Currency.PLN, comission, OfferStatus.ACTIVE);
+				calendar.getCurrentDate().toDate(), Currency.PLN, comission, OfferStatus.ACTIVE);
 		
 		offerRepository.save(OfferMapper.map(offer));
 		return offer;

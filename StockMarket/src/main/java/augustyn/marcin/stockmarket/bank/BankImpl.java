@@ -16,7 +16,7 @@ import augustyn.marcin.stockmarket.bank.repository.FoundTransactionRepository;
 import augustyn.marcin.stockmarket.bank.repository.PlayerFoundRepository;
 import augustyn.marcin.stockmarket.bank.to.FoundTransactionTo;
 import augustyn.marcin.stockmarket.bank.to.PlayerFoundTo;
-import augustyn.marcin.stockmarket.calendar.Calendar;
+import augustyn.marcin.stockmarket.calendar.MyCalendar;
 import augustyn.marcin.stockmarket.enumation.Currency;
 import augustyn.marcin.stockmarket.enumation.TransactionType;
 import augustyn.marcin.stockmarket.main.Randomizer;
@@ -39,7 +39,7 @@ public class BankImpl implements Bank {
 	private FoundTransactionRepository foundTransactionRepository;
 	
 	@Autowired
-	private Calendar calendar;
+	private MyCalendar calendar;
 
 	@Override
 	public List<PlayerFoundTo> checkBalance() {
@@ -56,7 +56,7 @@ public class BankImpl implements Bank {
 				return null;
 			}
 		}
-		PlayerFoundEntity playerFoundEntity = playerFoundRepository.findPlayerFoundByCurrency(currency.toString()).get(0);
+		PlayerFoundEntity playerFoundEntity = playerFoundRepository.findPlayerFoundByCurrency(currency.toString());
 		
 		if(type == TransactionType.WITHDRAW){
 			playerFoundEntity.setQuantity(playerFoundEntity.getQuantity() - quantity);
@@ -65,7 +65,7 @@ public class BankImpl implements Bank {
 			playerFoundEntity.setQuantity(playerFoundEntity.getQuantity() + quantity);
 		}
 		playerFoundRepository.save(playerFoundEntity);
-		FoundTransactionTo transactionTo = new FoundTransactionTo(null, type, currency, quantity, calendar.getCurrentDate());
+		FoundTransactionTo transactionTo = new FoundTransactionTo(null, type, currency, quantity, calendar.getCurrentDate().toDate());
 		
 		foundTransactionRepository.save(FoundTransactionMapper.map(transactionTo));
 		
@@ -101,7 +101,7 @@ public class BankImpl implements Bank {
 	}
 	
 	private void checkIfEnoughFoundsForWithdraw(Currency currency, int quantity) throws InsufficientFoundBalance{
-		int foundsQuantityOnAccount = playerFoundRepository.findPlayerFoundByCurrency(currency.toString()).get(0).getQuantity();
+		int foundsQuantityOnAccount = playerFoundRepository.findPlayerFoundByCurrency(currency.toString()).getQuantity();
 		
 		if(foundsQuantityOnAccount < quantity){
 			throw new InsufficientFoundBalance("Insufficient founds on player account to perform withdraw.");
