@@ -1,5 +1,6 @@
 package augustyn.marcin.stockmarket.player;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -37,10 +38,10 @@ public class PlayerImpl implements Player {
 		List<StockActionToPerform> actions = strategy.getActions(checkBankResources(), checkBrokerResources());
 		for(StockActionToPerform action : actions){
 			if(action.getType() == ActionType.BUY){
-				logger.info(performBuyAction(action));
+				logPerformedBuy(performBuyAction(action), action.getDate());
 			}
 			if(action.getType() == ActionType.SELL){
-				logger.info(performSellAction(action));
+				logPerformedSell(performSellAction(action), action.getDate());
 			}
 		}
 	}
@@ -75,5 +76,17 @@ public class PlayerImpl implements Player {
 	
 	private List<PlayerShareTo> checkBrokerResources(){
 		return broker.checkShareBalance();
+	}
+	
+	private void logPerformedBuy(PlayerShareTo share, Date date){
+		if(share != null){
+			logger.info("Day: " + date + " BUY: " + share.getName() + ", quantity: " + share.getQuantity());
+		}
+	}
+	
+	private void logPerformedSell(FoundTransactionTo transaction, Date date){
+		if(transaction != null){
+			logger.info("Day: " + date + " SELL FOR: " + transaction.getQuantity() + " " + transaction.getCurrency());
+		}
 	}
 }

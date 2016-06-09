@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import augustyn.marcin.stockmarket.bank.entity.FoundTransactionEntity;
 import augustyn.marcin.stockmarket.bank.entity.PlayerFoundEntity;
 import augustyn.marcin.stockmarket.bank.exception.InsufficientFoundBalance;
 import augustyn.marcin.stockmarket.bank.exception.NegativeQuantityValue;
@@ -65,11 +66,12 @@ public class BankImpl implements Bank {
 			playerFoundEntity.setQuantity(playerFoundEntity.getQuantity() + quantity);
 		}
 		playerFoundRepository.save(playerFoundEntity);
-		FoundTransactionTo transactionTo = new FoundTransactionTo(null, type, currency, quantity, calendar.getCurrentDate().toDate());
+		FoundTransactionEntity transactionEntity = new FoundTransactionEntity(null, type, currency, quantity, 
+				calendar.getCurrentDate().toDate());
 		
-		foundTransactionRepository.save(FoundTransactionMapper.map(transactionTo));
+		foundTransactionRepository.save(transactionEntity);
 		
-		return transactionTo;
+		return FoundTransactionMapper.map(transactionEntity);
 	}
 
 	@Override

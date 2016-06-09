@@ -1,0 +1,14 @@
+-zebrac informacje o wymaganiach - np user stories
+-diagram klas
+-diagram sekwencji
+-enumy
+-encje
+-obiekty TO (transfer Object)
+-mappery
+-repozytoria (DAO)
+-testy repozytoriow
+-interfejsy
+-implementacje interfejsow
+-excenptions
+-testy implementacji interfejsow
+-reszta

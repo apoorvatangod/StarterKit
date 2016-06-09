@@ -17,12 +17,12 @@ public class Main {
 	private static final Logger logger = LogManager.getLogger(Main.class);
 	
 	@Autowired
-	private static Player player;
+	private Player player;
 	
 	@Autowired
-	private static MyCalendar calendar;
+	private MyCalendar calendar;
 
-	public static void main(String[] args) {
+	public void executeSim() {
 		List<DateTime> properties = loadConfig();
 		calendar.setStartDay(properties.get(0));
 		do{
@@ -32,7 +32,7 @@ public class Main {
 		}while(!calendar.getCurrentDate().equals(properties.get(1)));
 	}
 	
-	private static List<DateTime> loadConfig(){
+	private List<DateTime> loadConfig(){
 		ConfigPropertiesLoader loader = new ConfigPropertiesLoader();
 		try {
 			return loader.getPropopertiesValues();

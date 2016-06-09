@@ -15,8 +15,11 @@ status="WARN">
     </Async>
 </Appenders>
 <Loggers>
-    <Root level="info">
+    <!-- <Root level="info">
         <AppenderRef ref="Console"/>
+    </Root> -->
+    <Root level="info">
+        <AppenderRef ref="ToFile"/>
     </Root>
 </Loggers>
 </Configuration>

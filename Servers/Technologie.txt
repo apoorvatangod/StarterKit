@@ -18,9 +18,12 @@ MySQL (+ Workbench) (program, system do baz danych) + jezyk (zapytania) mySQL (r
 JDBC
 Hibernate (JPA) + JPQL
 JavaScript
+HTML + CSS
 Atom(IDE dla JS) dodatkowe packages: atom-beautify, angularjs, emmet, linter
 ConEmu - mozliwosc otwierania wielu konsol jednoczesnie
-nodeJS + npm + http-server
+JS: nodeJS + npm + http-server (przez npm)
+Angular: bower (npm install - g bower)
+Angular: gulp (npm install -g gulp, lokalnie w pliku docelowym npm install oraz npm install --save-dev gulp)
 karma (do testow jak JUnit) + jasmine (framework do karmy) + PhantomJS (symulator przegladarki)
-HTML + CSS
 Papyrus (plugin do Eclipse do robienia diagramow UML)
+Protractor (do testowania E2E - end to end) czyli testowanie gui www od strony klienta - dla AngularJS - symulacja klikniec, wpisania jakis klawiszy itp

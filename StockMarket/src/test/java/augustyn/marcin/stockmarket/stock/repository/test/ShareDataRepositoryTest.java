@@ -31,7 +31,7 @@ public class ShareDataRepositoryTest {
 		List<ShareDataEntity> sharesData = shareDataRepository.findAll();
 		int recordsFound = sharesData.size();
 		// then
-		assertEquals(9, recordsFound);
+		assertEquals(27, recordsFound);
 	}
 	
 	@Test

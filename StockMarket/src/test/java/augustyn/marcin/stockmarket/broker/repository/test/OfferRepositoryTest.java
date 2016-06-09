@@ -34,7 +34,7 @@ public class OfferRepositoryTest {
 		List<OfferEntity> offers = offerRepository.findAll();
 		int recordsFound = offers.size();
 		// then
-		assertEquals(5, recordsFound);
+		assertTrue(recordsFound > 4);
 	}
 	
 	@Test
@@ -59,11 +59,11 @@ public class OfferRepositoryTest {
 		// given
 		
 		// when
-		List<OfferEntity> offers = offerRepository.findOffersByStatus(OfferStatus.ACTIVE.toString());
+		List<OfferEntity> offers = offerRepository.findOffersByStatus(OfferStatus.OUTDATED.toString());
 		int recordsFound = offers.size();
 
 		// then
-		assertEquals(2, recordsFound);
+		assertEquals(3, recordsFound);
 	}
 	
 	@Test

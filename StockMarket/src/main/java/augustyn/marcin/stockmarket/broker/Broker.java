@@ -20,4 +20,6 @@ public interface Broker {
 	public PlayerShareTo executeBuyOffer(OfferTo offer, FoundTransactionTo transactionConfirmation);
 	
 	public List<ShareDataTo> getHistoryDataForShare(String share, int historySizeInDays);
+	
+	public ShareDataTo getCurrentDataForShare(String share);
 }

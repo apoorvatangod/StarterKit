@@ -39,6 +39,10 @@ module.exports = function (config) {
         frameworks: ['jasmine'],
 
         // list of files / patterns to load in the browser
+        /*files: [
+          'app/component-1/my-first.controller.js',
+          'app/component-1/my-first.controller.spec.js',
+        ],*/
         files: _.flatten([libs, pathsConf.scripts.src(), pathsConf.scripts.testSrc()]),
 
         // list of files / patterns to exclude

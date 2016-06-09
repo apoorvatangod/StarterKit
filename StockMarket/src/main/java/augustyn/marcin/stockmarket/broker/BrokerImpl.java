@@ -196,4 +196,9 @@ public class BrokerImpl implements Broker {
 			throw new BrokerActionNoValid("Offer request not valid - share is null or quantity is negative");
 		}
 	}
+
+	@Override
+	public ShareDataTo getCurrentDataForShare(String share) {
+		return stock.getCurrentDataForShare(share);
+	}
 }
