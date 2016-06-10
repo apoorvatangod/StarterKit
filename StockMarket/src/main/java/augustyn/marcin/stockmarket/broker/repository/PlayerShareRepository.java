@@ -1,7 +1,5 @@
 package augustyn.marcin.stockmarket.broker.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,9 +14,9 @@ public interface PlayerShareRepository extends JpaRepository<PlayerShareEntity, 
 
 	
 	@Query("SELECT ps FROM PlayerShareEntity ps WHERE UPPER(ps.name) like UPPER(:name)")
-	List<PlayerShareEntity> findPlayerShareByName( @Param("name") String name);
+	PlayerShareEntity findPlayerShareByName( @Param("name") String name);
 
 	@Query("SELECT ps FROM PlayerShareEntity ps WHERE ps.id = :id")
-	List<PlayerShareEntity> findPlayerShareById(@Param("id") Long id);
+	PlayerShareEntity findPlayerShareById(@Param("id") Long id);
 	
 }

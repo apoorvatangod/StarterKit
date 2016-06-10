@@ -23,12 +23,17 @@ public class MainTest {
 	
 	@Test
 	public void testShouldFindAllOffers() {
-		// given
+		//before
 		PlayerFoundEntity found = playerFoundRepository.findPlayerFoundByCurrency(Currency.PLN.toString());
 		found.setQuantity(1000000);
 		playerFoundRepository.save(found);
+		
+		// given
+		
 		// when
 		main.executeSim();
+		
 		// then
+
 	}
 }

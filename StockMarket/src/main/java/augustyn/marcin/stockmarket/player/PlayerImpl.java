@@ -1,6 +1,6 @@
 package augustyn.marcin.stockmarket.player;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import augustyn.marcin.stockmarket.bank.Bank;
+import augustyn.marcin.stockmarket.bank.exception.InsufficientFoundBalance;
 import augustyn.marcin.stockmarket.bank.to.FoundTransactionTo;
 import augustyn.marcin.stockmarket.bank.to.PlayerFoundTo;
 import augustyn.marcin.stockmarket.broker.Broker;
@@ -34,19 +35,31 @@ public class PlayerImpl implements Player {
 	private Strategy strategy;
 
 	@Override
-	public void performActions() {
+	public List<OfferTo> performActions() {
 		List<StockActionToPerform> actions = strategy.getActions(checkBankResources(), checkBrokerResources());
+		List<OfferTo> executedOffers = new ArrayList<>();
 		for(StockActionToPerform action : actions){
 			if(action.getType() == ActionType.BUY){
-				logPerformedBuy(performBuyAction(action), action.getDate());
+				OfferTo executedOffer = performBuyAction(action);
+				if(executedOffer != null){
+					logger.info("Day: " + executedOffer.getDate() + " BOUGHT: " + executedOffer.getShare() + ", in quantity: " + 
+							executedOffer.getQuantity() + " for " + executedOffer.getPrice() + " " + executedOffer.getCurrency());
+					executedOffers.add(executedOffer);
+				}
 			}
 			if(action.getType() == ActionType.SELL){
-				logPerformedSell(performSellAction(action), action.getDate());
+				OfferTo executedOffer = performSellAction(action);
+				if(executedOffer != null){
+					logger.info("Day: " + executedOffer.getDate() + " - SOLD " + executedOffer.getQuantity() + " " + executedOffer.getShare() + 
+							" actions FOR: " + executedOffer.getPrice() + " " + executedOffer.getCurrency());
+					executedOffers.add(executedOffer);
+				}
 			}
 		}
+		return executedOffers;
 	}
 	
-	private PlayerShareTo performBuyAction(StockActionToPerform action){
+	private OfferTo performBuyAction(StockActionToPerform action){
 		OfferTo offer = broker.getBuyOffer(action.getShareName(), action.getQuantity());
 		if(strategy.analyzeBuyOffer(offer, action)){
 			Integer totalTransactionPrice = offer.getPrice() * offer.getQuantity() + offer.getComission();
@@ -56,18 +69,18 @@ public class PlayerImpl implements Player {
 		return null;
 	}
 	
-	private FoundTransactionTo performSellAction(StockActionToPerform action){
+	private OfferTo performSellAction(StockActionToPerform action){
 		OfferTo offer = broker.getSellOffer(action.getShareName(), action.getQuantity());
-		if(strategy.analyzeSellOffer(offer, action)){
-			FoundTransactionTo confirmation = broker.executeSellOffer(offer);
-			return bank.confirmTransaction(confirmation) ? confirmation : null;
-		}
-		return null;
+		return strategy.analyzeSellOffer(offer, action) ? broker.executeSellOffer(offer) : null;
 	}
 	
 	@SuppressWarnings("unused")
 	private void performExchange(Currency input, Currency output, int quantity){
-		// TODO Auto-generated method stub
+		try {
+			bank.executeExchange(input, output, quantity);
+		} catch (InsufficientFoundBalance e) {
+			logger.info(e.getMessage());
+		}
 	}
 	
 	private List<PlayerFoundTo> checkBankResources(){
@@ -76,17 +89,5 @@ public class PlayerImpl implements Player {
 	
 	private List<PlayerShareTo> checkBrokerResources(){
 		return broker.checkShareBalance();
-	}
-	
-	private void logPerformedBuy(PlayerShareTo share, Date date){
-		if(share != null){
-			logger.info("Day: " + date + " BUY: " + share.getName() + ", quantity: " + share.getQuantity());
-		}
-	}
-	
-	private void logPerformedSell(FoundTransactionTo transaction, Date date){
-		if(transaction != null){
-			logger.info("Day: " + date + " SELL FOR: " + transaction.getQuantity() + " " + transaction.getCurrency());
-		}
 	}
 }

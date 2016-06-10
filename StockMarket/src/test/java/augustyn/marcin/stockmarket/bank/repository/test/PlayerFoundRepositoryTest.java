@@ -38,12 +38,12 @@ public class PlayerFoundRepositoryTest {
 		// given
 		
 		// when
-		PlayerFoundEntity playerFound = playerFoundRepository.findPlayerFoundById(1L);
+		PlayerFoundEntity playerFound = playerFoundRepository.findPlayerFoundById(3L);
 
 		// then
 
-		assertEquals(Currency.PLN, playerFound.getCurrency());
-		assertEquals(1000000, playerFound.getQuantity());
+		assertEquals(Currency.USD, playerFound.getCurrency());
+		assertEquals(100, playerFound.getQuantity());
 
 	}
 	

@@ -15,9 +15,9 @@ public interface Broker {
 	
 	public List<PlayerShareTo> checkShareBalance();
 	
-	public FoundTransactionTo executeSellOffer(OfferTo offer);
+	public OfferTo executeSellOffer(OfferTo offer);
 	
-	public PlayerShareTo executeBuyOffer(OfferTo offer, FoundTransactionTo transactionConfirmation);
+	public OfferTo executeBuyOffer(OfferTo offer, FoundTransactionTo transactionConfirmation);
 	
 	public List<ShareDataTo> getHistoryDataForShare(String share, int historySizeInDays);
 	

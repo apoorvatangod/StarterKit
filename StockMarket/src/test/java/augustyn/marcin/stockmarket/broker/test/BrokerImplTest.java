@@ -10,7 +10,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.Arrays;
 import java.util.Date;
 
 import org.joda.time.DateTime;
@@ -154,7 +153,7 @@ public class BrokerImplTest {
 		PlayerShareTo playerShareTo = new PlayerShareTo(1L, "PKO", 100);
 		
 		// when
-		when(playerShareRepositoryMock.findPlayerShareByName(any())).thenReturn(PlayerShareMapper.map2Entity(Arrays.asList(playerShareTo))); 
+		when(playerShareRepositoryMock.findPlayerShareByName(any())).thenReturn(PlayerShareMapper.map(playerShareTo)); 
 		brokerImpl.executeSellOffer(offer);
 
 		// then
@@ -170,11 +169,11 @@ public class BrokerImplTest {
 		PlayerShareTo playerShareTo = new PlayerShareTo(1L, "PKO", 99);
 		
 		// when	
-		when(playerShareRepositoryMock.findPlayerShareByName(any())).thenReturn(PlayerShareMapper.map2Entity(Arrays.asList(playerShareTo))); 
-		FoundTransactionTo transactionTo = brokerImpl.executeSellOffer(offer);
+		when(playerShareRepositoryMock.findPlayerShareByName(any())).thenReturn(PlayerShareMapper.map(playerShareTo)); 
+		OfferTo offerTo = brokerImpl.executeSellOffer(offer);
 
 		// then
-		assertEquals(transactionTo, null);
+		assertEquals(offerTo, null);
 	}
 	
 	@Test
@@ -183,7 +182,7 @@ public class BrokerImplTest {
 		OfferTo offer = new OfferTo(1L, ActionType.BUY, "PKO", 100, 1000, new Date(), Currency.PLN, 500, OfferStatus.ACTIVE);
 		PlayerShareTo playerShareTo = new PlayerShareTo(1L, "PKO", 1);
 		// when
-		when(playerShareRepositoryMock.findPlayerShareByName(any())).thenReturn(PlayerShareMapper.map2Entity(Arrays.asList(playerShareTo)));
+		when(playerShareRepositoryMock.findPlayerShareByName(any())).thenReturn(PlayerShareMapper.map(playerShareTo));
 		when(bankMock.confirmTransaction(any())).thenReturn(true); 
 		brokerImpl.executeBuyOffer(offer, new FoundTransactionTo());
 
@@ -199,7 +198,7 @@ public class BrokerImplTest {
 		OfferTo offer = new OfferTo(1L, ActionType.BUY, "PKO", 100, 1000, new Date(), Currency.PLN, 500, OfferStatus.ACTIVE);
 		PlayerShareTo playerShareTo = new PlayerShareTo(1L, "PKO", 1);
 		// when
-		when(playerShareRepositoryMock.findPlayerShareByName(any())).thenReturn(PlayerShareMapper.map2Entity(Arrays.asList(playerShareTo)));
+		when(playerShareRepositoryMock.findPlayerShareByName(any())).thenReturn(PlayerShareMapper.map(playerShareTo));
 		when(bankMock.confirmTransaction(any())).thenReturn(false); 
 		brokerImpl.executeBuyOffer(offer, new FoundTransactionTo());
 
@@ -214,7 +213,7 @@ public class BrokerImplTest {
 		OfferTo offer = new OfferTo(1L, ActionType.BUY, "PKO", 100, 1000, new Date(), Currency.PLN, 500, OfferStatus.OUTDATED);
 		PlayerShareTo playerShareTo = new PlayerShareTo(1L, "PKO", 1);
 		// when
-		when(playerShareRepositoryMock.findPlayerShareByName(any())).thenReturn(PlayerShareMapper.map2Entity(Arrays.asList(playerShareTo)));
+		when(playerShareRepositoryMock.findPlayerShareByName(any())).thenReturn(PlayerShareMapper.map(playerShareTo));
 		when(bankMock.confirmTransaction(any())).thenReturn(false); 
 		brokerImpl.executeBuyOffer(offer, new FoundTransactionTo());
 

@@ -9,4 +9,6 @@ public interface Stock {
 	public ShareDataTo getCurrentDataForShare(String share);
 	
 	public List<ShareDataTo> getHistoryDataForShare(String share, int historySizeInDays);
+	
+	public void initShareDataDb();
 }

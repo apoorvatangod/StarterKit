@@ -23,6 +23,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import augustyn.marcin.stockmarket.bank.BankImpl;
 import augustyn.marcin.stockmarket.bank.entity.PlayerFoundEntity;
+import augustyn.marcin.stockmarket.bank.exception.InsufficientFoundBalance;
 import augustyn.marcin.stockmarket.bank.repository.FoundTransactionRepository;
 import augustyn.marcin.stockmarket.bank.repository.PlayerFoundRepository;
 import augustyn.marcin.stockmarket.bank.to.FoundTransactionTo;
@@ -154,6 +155,44 @@ public class BankImplTest {
 
 		// then
 		assertEquals(exchangeRate, null);
+
+	}
+	
+	@Test
+	public void testShouldPerformExchange() {
+		// given
+
+		PlayerFoundEntity plnFound = new PlayerFoundEntity(1L, Currency.PLN, 100000);
+		PlayerFoundEntity eurFound = new PlayerFoundEntity(1L, Currency.EUR, 0);
+
+		// when
+		when(playerFoundRepositoryMock.findPlayerFoundByCurrency(Currency.PLN.toString())).thenReturn(plnFound);
+		when(playerFoundRepositoryMock.findPlayerFoundByCurrency(Currency.EUR.toString())).thenReturn(eurFound);
+		
+		try {
+			bankImpl.executeExchange(Currency.PLN, Currency.EUR, 100000);
+		} catch (InsufficientFoundBalance e) {
+			assertTrue(false);
+		}
+
+		// then
+		assertTrue(true);
+	}
+	
+	@Test(expected=InsufficientFoundBalance.class)
+	public void testShouldThrowExceptionInsufficientFoundBalance() throws InsufficientFoundBalance {
+		// given
+
+		PlayerFoundEntity plnFound = new PlayerFoundEntity(1L, Currency.PLN, 100);
+		PlayerFoundEntity eurFound = new PlayerFoundEntity(1L, Currency.EUR, 0);
+
+		// when
+		when(playerFoundRepositoryMock.findPlayerFoundByCurrency(Currency.PLN.toString())).thenReturn(plnFound);
+		when(playerFoundRepositoryMock.findPlayerFoundByCurrency(Currency.EUR.toString())).thenReturn(eurFound);
+		
+		bankImpl.executeExchange(Currency.PLN, Currency.EUR, 100000);
+
+		// then
 
 	}
 }

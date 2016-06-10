@@ -29,7 +29,6 @@ public class BankImpl implements Bank {
 	private static final float MAXIMAL_EUR_TO_PLN_EXCHANGE_RATE = 4.1f;
 	private static final float MINIMAL_PLN_TO_EUR_EXCHANGE_RATE = 0.23f;
 	private static final float MAXIMAL_PLN_TO_EUR_EXCHANGE_RATE = 0.27f;
-	@SuppressWarnings("unused")
 	private static final float EXCHANGE_COMISSION_PERCENTAGE = 0.02f;
 	
 	
@@ -66,6 +65,7 @@ public class BankImpl implements Bank {
 			playerFoundEntity.setQuantity(playerFoundEntity.getQuantity() + quantity);
 		}
 		playerFoundRepository.save(playerFoundEntity);
+		
 		FoundTransactionEntity transactionEntity = new FoundTransactionEntity(null, type, currency, quantity, 
 				calendar.getCurrentDate().toDate());
 		
@@ -97,9 +97,22 @@ public class BankImpl implements Bank {
 	}
 
 	@Override
-	public boolean executeExchange(Currency inputCurrency, Currency outputCurrency, Integer quantity) {
-		// TODO Auto-generated method stub
-		return false;
+	public void executeExchange(Currency inputCurrency, Currency outputCurrency, Integer quantity) throws InsufficientFoundBalance {
+		Float rate = checkExchangeRate(inputCurrency, outputCurrency, quantity);
+		Integer outputQuantity = Math.round((1 - EXCHANGE_COMISSION_PERCENTAGE) * quantity * rate);
+		PlayerFoundEntity inputFound = playerFoundRepository.findPlayerFoundByCurrency(inputCurrency.toString());
+		PlayerFoundEntity outputFound = playerFoundRepository.findPlayerFoundByCurrency(outputCurrency.toString());
+		
+		if(inputFound.getQuantity() < quantity){
+			throw new InsufficientFoundBalance("Insufficient founds to perform exchange");
+		}
+		inputFound.setQuantity(inputFound.getQuantity() - quantity);
+		
+		if(outputFound != null){
+			outputFound.setQuantity(outputFound.getQuantity() + outputQuantity);
+		} else{
+			outputFound = new PlayerFoundEntity(null, outputCurrency, outputQuantity);
+		}
 	}
 	
 	private void checkIfEnoughFoundsForWithdraw(Currency currency, int quantity) throws InsufficientFoundBalance{

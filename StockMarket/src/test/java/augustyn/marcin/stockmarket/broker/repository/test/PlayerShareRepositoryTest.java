@@ -37,11 +37,9 @@ public class PlayerShareRepositoryTest {
 		// given
 		
 		// when
-		List<PlayerShareEntity> shares = playerShareRepository.findPlayerShareById(1L);
-		int recordsFound = shares.size();
-		String shareName = shares.get(0).getName();
+		PlayerShareEntity share = playerShareRepository.findPlayerShareById(1L);
+		String shareName = share.getName();
 		// then
-		assertEquals(1, recordsFound);
 		assertEquals("PKO", shareName);
 	}
 	
@@ -50,11 +48,10 @@ public class PlayerShareRepositoryTest {
 		// given
 		
 		// when
-		List<PlayerShareEntity> shares = playerShareRepository.findPlayerShareByName("KGHM");
-		int recordsFound = shares.size();
-		String shareName = shares.get(0).getName();
+		PlayerShareEntity share = playerShareRepository.findPlayerShareByName("KGHM");
+
+		String shareName = share.getName();
 		// then
-		assertEquals(1, recordsFound);
 		assertEquals("KGHM", shareName);
 	}
 	
@@ -63,10 +60,10 @@ public class PlayerShareRepositoryTest {
 		// given
 		
 		// when
-		List<PlayerShareEntity> shares = playerShareRepository.findPlayerShareByName("Not a share");
+		PlayerShareEntity share = playerShareRepository.findPlayerShareByName("Not a share");
 
 		// then
-		assertTrue(shares.isEmpty());
+		assertTrue(share == null);
 	}
 	
 	@Test
@@ -74,10 +71,10 @@ public class PlayerShareRepositoryTest {
 		// given
 		
 		// when
-		List<PlayerShareEntity> shares = playerShareRepository.findPlayerShareById(null);
+		PlayerShareEntity share = playerShareRepository.findPlayerShareById(null);
 
 		// then
-		assertTrue(shares.isEmpty());
+		assertTrue(share == null);
 	}
 	
 	@Test
@@ -88,14 +85,13 @@ public class PlayerShareRepositoryTest {
 		// when
 		playerShareRepository.save(newEntity);
 		
-		List<PlayerShareEntity> shares = playerShareRepository.findPlayerShareByName("CORP");
-		// then
+		PlayerShareEntity share = playerShareRepository.findPlayerShareByName("CORP");
 		
-		assertEquals(shares.size(), 1);
-		assertEquals(shares.get(0).getName(), "CORP");
-		assertEquals(shares.get(0).getQuantity(), 100);
+		// then
+		assertEquals(share.getName(), "CORP");
+		assertEquals(share.getQuantity(), 100);
 		
 		//after
-		playerShareRepository.delete(shares.get(0));
+		playerShareRepository.delete(share);
 	}
 }

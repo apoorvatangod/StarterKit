@@ -59,11 +59,11 @@ public class OfferRepositoryTest {
 		// given
 		
 		// when
-		List<OfferEntity> offers = offerRepository.findOffersByStatus(OfferStatus.OUTDATED.toString());
+		List<OfferEntity> offers = offerRepository.findOffersByStatus(OfferStatus.COMPLETED.toString());
 		int recordsFound = offers.size();
 
 		// then
-		assertEquals(3, recordsFound);
+		assertTrue(recordsFound >= 3);
 	}
 	
 	@Test
@@ -91,23 +91,22 @@ public class OfferRepositoryTest {
 	@Test
 	public void testShouldSaveNewEntity() {
 		// given
-		OfferEntity newEntity = new OfferEntity(null, ActionType.BUY, "CORP", 100, 700, new Date(), Currency.PLN, 500, OfferStatus.COMPLETED);
+		OfferEntity newEntity = new OfferEntity(null, ActionType.BUY, "CORP", 100, 700, new Date(), Currency.PLN, 500, OfferStatus.OUTDATED);
 		
 		// when
 		offerRepository.save(newEntity);
 		
-		List<OfferEntity> offers = offerRepository.findOffersByStatus(OfferStatus.COMPLETED.toString());
+		List<OfferEntity> offers = offerRepository.findOffersByStatus(OfferStatus.OUTDATED.toString());
 		OfferEntity offer = offers.get(0);
-		// then
 		
-		assertEquals(1, offers.size());
+		// then
 		assertEquals(ActionType.BUY, offer.getActionType());
 		assertEquals("CORP", offer.getShare());
 		assertEquals(100, offer.getQuantity());
 		assertEquals(700, offer.getPrice());
 		assertEquals(Currency.PLN, offer.getCurrency());
 		assertEquals(500, offer.getComission());
-		assertEquals(OfferStatus.COMPLETED, offer.getStatus());
+		assertEquals(OfferStatus.OUTDATED, offer.getStatus());
 		
 		//after
 		offerRepository.delete(offers.get(0));

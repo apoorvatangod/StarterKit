@@ -25,9 +25,9 @@ public class ConfigPropertiesLoader {
 			if (inputStream != null) {
 				properties.load(inputStream);
 			} else {
-				throw new FileNotFoundException("property file '" + propFileName + "' not found in the classpath");
+				throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath.");
 			}
-			DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd");
+			DateTimeFormatter format = DateTimeFormat.forPattern(properties.getProperty("simBoundsDateFormat"));
 			
 			String startDate = properties.getProperty("startDate");
 			String endDate = properties.getProperty("endDate");
@@ -36,7 +36,7 @@ public class ConfigPropertiesLoader {
 			result.add(format.parseDateTime(endDate));
 			
 		} catch (Exception e) {
-			System.out.println("Exception: " + e);
+			throw new IOException("Error during reading properties.");
 		} finally {
 			inputStream.close();
 		}
