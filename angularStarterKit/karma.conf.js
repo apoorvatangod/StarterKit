@@ -46,7 +46,7 @@ module.exports = function (config) {
         files: _.flatten([libs, pathsConf.scripts.src(), pathsConf.scripts.testSrc()]),
 
         // list of files / patterns to exclude
-        exclude: [],
+        exclude: ['e2e-test.spec.js'],
 
         // web server port
         port: 7777,
@@ -60,7 +60,7 @@ module.exports = function (config) {
         // - PhantomJS
         // - IE (only Windows)
         browsers: [
-            'PhantomJS'
+            'PhantomJS', 'Chrome'
         ],
 
         // Which plugins to enable

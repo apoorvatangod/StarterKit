@@ -119,4 +119,51 @@ angular.module('app.component1').controller('MyFirstController', function($scope
     store: function (movies) { storage = movies; },
     get: function () { return storage; }
   };
+})
+.service('stringService', function (){
+  this.addStrings = function(first, second){
+    return first + second;
+  };
+
+  this.countChars = function(string){
+    return string.length;
+  };
+
+  this.createSubstring = function(string, begin, end){
+    return string.substring(begin, end);
+  };
+
+  this.reverseString = function(string){
+    return string.split('').reverse().join('');
+  };
+
+  this.replaceWordInString = function(string, wordToBeReplaced, replacingWord){
+    return string.replace(wordToBeReplaced, replacingWord);
+  };
+
+  this.convertToPokemonWrtiting = function(string){
+    var secondString = "";
+    for (var i = 0; i < string.length; i++) {
+      if(i%2 === 0){
+          secondString+=string[i].toLowerCase();
+      }else{
+        secondString+=string[i].toUpperCase();
+      }
+    }
+    return secondString;
+  };
+
+  this.isEqualIngoreCase = function(firstString, secondString){
+    for (var i = 0; i < firstString.length; i++) {
+      if(firstString[i].toLowerCase() != secondString[i].toLowerCase() || firstString.length != secondString.length){
+          return false;
+      }
+    }
+    return true;
+  };
+
+  this.isFirstStringLongerThanSecond = function(firstString, secondString){
+    return firstString.length > secondString.length;
+  };
+
 });
