@@ -21,58 +21,58 @@
 	</properties>
 
 	<dependencies>
- 		<dependency>
+ 		 <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-        </dependency>
+        </dependency> 
 		<dependency>
             	<groupId>org.mockito</groupId>
 	            <artifactId>mockito-all</artifactId>
 	        </dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>6.0.2</version>
 		</dependency>
-		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		http://mvnrepository.com/artifact/org.hibernate/hibernate-core
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.1.0.Final</version>
 		</dependency>
-		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager -->
+		http://mvnrepository.com/artifact/org.hibernate/hibernate-entitymanager
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>5.1.0.Final</version>
 		</dependency>
-		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+		http://mvnrepository.com/artifact/org.hibernate/hibernate-validator
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>5.2.4.Final</version>
 		</dependency>
-		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-annotations -->
+		http://mvnrepository.com/artifact/org.hibernate/hibernate-annotations
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-annotations</artifactId>
 			<version>3.5.6-Final</version>
 		</dependency>
-		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate -->
+		http://mvnrepository.com/artifact/org.hibernate/hibernate
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId>
 			<version>3.5.4-Final</version>
 			<type>pom</type>
 		</dependency>
-		<!-- http://mvnrepository.com/artifact/org.hibernate/hibernate-commons-annotations -->
+		http://mvnrepository.com/artifact/org.hibernate/hibernate-commons-annotations
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-commons-annotations</artifactId>
 			<version>3.2.0.Final</version>
 		</dependency>
 
-		<!-- http://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+		http://mvnrepository.com/artifact/org.slf4j/slf4j-simple
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-simple</artifactId>
@@ -83,7 +83,7 @@
 		    <groupId>javax.el</groupId>
 		    <artifactId>javax.el-api</artifactId>
 		    <version>3.0.0</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 		    <groupId>org.apache.logging.log4j</groupId>
 		    <artifactId>log4j-api</artifactId>

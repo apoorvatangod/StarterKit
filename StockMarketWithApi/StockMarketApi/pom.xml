@@ -40,7 +40,8 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
-			<version>4.0.3.RELEASE</version>
+			<version>4.2.5.RELEASE</version>
+			<!-- <version>4.0.3.RELEASE</version> -->
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -87,7 +88,7 @@
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path</artifactId>
 			<version>0.8.1</version>
-			<scope>test</scope>
+			<!-- <scope>test</scope> -->
 		</dependency>
 	</dependencies>
 	
