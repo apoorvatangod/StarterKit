@@ -1,5 +1,7 @@
 package augustyn.marcin.stockmarket.main.test;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,7 @@ public class MainTest {
 		main.executeSim();
 		
 		// then
-
+		found = playerFoundRepository.findPlayerFoundByCurrency(Currency.PLN.toString());
+		assertTrue(found.getQuantity() > 1000000);
 	}
 }

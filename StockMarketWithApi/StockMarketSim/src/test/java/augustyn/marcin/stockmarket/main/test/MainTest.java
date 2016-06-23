@@ -9,14 +9,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import augustyn.marcin.stockmarket.bank.entity.PlayerFoundEntity;
 import augustyn.marcin.stockmarket.bank.repository.PlayerFoundRepository;
 import augustyn.marcin.stockmarket.enumation.Currency;
-import augustyn.marcin.stockmarket.main.Main;
+import augustyn.marcin.stockmarket.main.MainImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 public class MainTest {
 
 	@Autowired
-	private Main main;
+	private MainImpl main;
 	
 	@Autowired
 	private PlayerFoundRepository playerFoundRepository;

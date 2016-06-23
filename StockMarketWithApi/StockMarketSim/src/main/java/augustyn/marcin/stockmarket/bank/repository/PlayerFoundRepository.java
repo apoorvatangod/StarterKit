@@ -12,12 +12,9 @@ import augustyn.marcin.stockmarket.bank.entity.PlayerFoundEntity;
 @Transactional(readOnly = true)
 public interface PlayerFoundRepository extends JpaRepository<PlayerFoundEntity, Long> {
 
-	
 	@Query("SELECT pf FROM PlayerFoundEntity pf WHERE UPPER(pf.currency) like UPPER(:currency)")
 	PlayerFoundEntity findPlayerFoundByCurrency( @Param("currency") String currency);
 
 	@Query("SELECT pf FROM PlayerFoundEntity pf WHERE pf.id = :id")
 	PlayerFoundEntity findPlayerFoundById(@Param("id") Long id);
-	
-	
 }

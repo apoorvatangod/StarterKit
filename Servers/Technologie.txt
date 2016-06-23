@@ -27,3 +27,5 @@ Angular: gulp (npm install -g gulp, lokalnie w pliku docelowym npm install oraz 
 karma (do testow jak JUnit) + jasmine (framework do karmy) + PhantomJS (symulator przegladarki)
 Papyrus (plugin do Eclipse do robienia diagramow UML)
 Protractor (do testowania E2E - end to end) czyli testowanie gui www od strony klienta - dla AngularJS - symulacja klikniec, wpisania jakis klawiszy itp
+unirest - biblioteka do wysylania zapytan restowych dla Javy
+Java FX + Scene Builder

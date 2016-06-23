@@ -6,6 +6,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import augustyn.marcin.stockmarket.bank.entity.FoundTransactionEntity;
 import augustyn.marcin.stockmarket.bank.entity.PlayerFoundEntity;
@@ -23,14 +24,8 @@ import augustyn.marcin.stockmarket.enumation.TransactionType;
 import augustyn.marcin.stockmarket.main.Randomizer;
 
 @Service
+@Transactional
 public class BankImpl implements Bank {
-	private static final Logger logger = LogManager.getLogger(BankImpl.class);
-	private static final float MINIMAL_EUR_TO_PLN_EXCHANGE_RATE = 3.9f;
-	private static final float MAXIMAL_EUR_TO_PLN_EXCHANGE_RATE = 4.1f;
-	private static final float MINIMAL_PLN_TO_EUR_EXCHANGE_RATE = 0.23f;
-	private static final float MAXIMAL_PLN_TO_EUR_EXCHANGE_RATE = 0.27f;
-	private static final float EXCHANGE_COMISSION_PERCENTAGE = 0.02f;
-	
 	
 	@Autowired
 	private PlayerFoundRepository playerFoundRepository;
@@ -40,7 +35,14 @@ public class BankImpl implements Bank {
 	
 	@Autowired
 	private MyCalendar calendar;
-
+	
+	private static final Logger logger = LogManager.getLogger(BankImpl.class);
+	private static final float MINIMAL_EUR_TO_PLN_EXCHANGE_RATE = 3.9f;
+	private static final float MAXIMAL_EUR_TO_PLN_EXCHANGE_RATE = 4.1f;
+	private static final float MINIMAL_PLN_TO_EUR_EXCHANGE_RATE = 0.23f;
+	private static final float MAXIMAL_PLN_TO_EUR_EXCHANGE_RATE = 0.27f;
+	private static final float EXCHANGE_COMISSION_PERCENTAGE = 0.02f;
+	
 	@Override
 	public List<PlayerFoundTo> checkBalance() {
 		return PlayerFoundMapper.map2To(playerFoundRepository.findAll());

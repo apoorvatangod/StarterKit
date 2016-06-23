@@ -43,7 +43,7 @@ public class PlayerImpl implements Player {
 				OfferTo executedOffer = performBuyAction(action);
 				if(executedOffer != null){
 					logger.info("Day: " + executedOffer.getDate() + " BOUGHT: " + executedOffer.getShare() + ", in quantity: " + 
-							executedOffer.getQuantity() + " for " + executedOffer.getPrice() + " " + executedOffer.getCurrency());
+							executedOffer.getQuantity() + " for " + executedOffer.getPrice() + " (x100)" + executedOffer.getCurrency());
 					executedOffers.add(executedOffer);
 				}
 			}
@@ -51,7 +51,7 @@ public class PlayerImpl implements Player {
 				OfferTo executedOffer = performSellAction(action);
 				if(executedOffer != null){
 					logger.info("Day: " + executedOffer.getDate() + " - SOLD " + executedOffer.getQuantity() + " " + executedOffer.getShare() + 
-							" actions FOR: " + executedOffer.getPrice() + " " + executedOffer.getCurrency());
+							" actions FOR: " + executedOffer.getPrice() + " (x100)" + executedOffer.getCurrency());
 					executedOffers.add(executedOffer);
 				}
 			}

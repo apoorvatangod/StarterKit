@@ -1,0 +1,2 @@
+Cannot change version of project facet Dynamic Web Module to 3.0 -> kliknac na projekt webowy -> properties -> 
+project facets -> usunac dynamic web module i dodac jeszcze raz tylko w wersji 3.0
