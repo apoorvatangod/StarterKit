@@ -8,7 +8,6 @@
 	
 	<!-- http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd  
 	xmlns:aop="http://www.springframework.org/schema/aop"-->
-	<import resource="db-context.xml" /> 
 	<context:annotation-config />
 	<context:component-scan base-package="augustyn.marcin" />
 
