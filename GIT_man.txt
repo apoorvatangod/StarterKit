@@ -1,0 +1,86 @@
+de-diva2020-bld.corp.capgemini.com/gerrit/p/price-tag.git 
+git clone http://mkubisz@de-diva2020-bld.corp.capgemini.com/gerrit/p/price-tag.git 
+iQxNloBXouPlRnWARersN8WYFmI9YLSoxfwNtdMcag
+cd /c/Projects/diva/price-tag
+
+Moje zmiany zapisane lokalnie:
+  git commit -am "Adding books only to scope, not json file"
+  git push origin master
+  git push -u origin MBCPOSDMBD-85_manualVinInput
+  git pull origin MBCPOSDMBD-109-Header_Price_Tag
+  git push -u origin MBCPOSDMBD-109-Header_Price_Tag
+
+  
+   
+Tworzenie brancha lokalnie:
+  git branch angularStarterKit-1-Rest
+  git branch  price-tag-hello
+
+Checkaoutowanie go - czyli przelaczanie sie na niego po nazwie lub funckji(master/branch):
+  git checkout angularStarterKit-1-Rest 
+  git checkout monday
+  git checkout master  
+
+Tworzenie/przelaczanie sie i checkout jednoczesnie opjca -b
+  git checkout -b MBCPOSDMBD-93 
+  
+  Usuwanie:
+  git branch -d price-tag-hello
+  Zmiana nazwy:
+  git branch -m price-tag-hello
+  
+Gdy mimo wszytsko master jest oddalony o kilka commitow:
+  git reset --hard
+  git pull  (fatch i merge do biezacej wersji)
+  
+Wyswietl branche:
+  git branch
+
+Kopoiowanie nieskomitownaych zmian z brancha   do branch2.
+git stash
+git checkout branch2
+git stash pop
+
+
+GITHUB- plik z moimi koordynantami na repo: 
+c:\Users\mkubisz\.gitconfig_github129473 
+Uzywac gitbash, nie zawsze nastepuje autentykacja uzytkownika na ConEmu i Cygwin
+cd c:/Projects/starterkit/workspaces/angularStarterKit/
+cd c/Projects/starterkit/workspaces/angularStarterKit/
+Wyswietl orygin:
+git remote show origin
+
+Po commice, mozna brancha lokalnego go dodac do githuba
+git remote add angularStarterKit-1-Rest  https://github.com/129473/angularStarterKit-1.git
+ i wypushowac
+git push angularStarterKit-1-Rest angularStarterKit-1-Rest
+
+Po pobraniu czyjegos repo, by je zakomitowac jako swoje trzeba usunac orygin i wpushowac do siebie:
+nadpisz:
+git remote set-url origin https://github.com/129473/spring-mvc-zadania.git
+
+usun i dodaj gdy nadpisanie nie zadziala
+git remote remove origin 
+git remote add origin https://github.com/129473/angularStarterKit.git
+git push -u origin master
+
+ modyfikacja moich danych lub id zmiany przy komicie
+git commit --amend -
+
+git reset
+Jak zrobie forka, z czyjegos repo, potem je klonuje na dysku:
+git clone https://github.com/129473/starter_kit_js_app-1
+
+git clone https://github.com/129473/angularStarterKit-1
+
+Tortise SNV Merge brancha z developem:
+Robie push mojego brancha,
+Switchuje sie na developa, 
+Pull developa
+Robie merge From, zostaja zacieganiete zmiany z brnacha do developa lokalnie
+Jak sa konflikty to po ich roziwaniu commit
+Push na developa - koniec mergowania
+ 
+ 
+
+

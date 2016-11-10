@@ -1,0 +1,57 @@
+.less - ulepszony .css, bo pozwala na uzywanie zmiennych, na jego podstawie gulp tworzy css
+bower.json - dependecy managment
+npm (package.json) - dependecy managment
+general (folder) - tu znajduje sie modul wspólny i inne wspólne elementy
+general.module.js - modul wspólny, którego inne moduly zaciagaja (czesc wspólna) - wspóldzielone service'y, dyrektywy itd
+app.module.js - modul glówny
+
+
+podzial na dialogi - w róznych folderach
+
+gulp - odpowiednik ant/grant dla Javy, task executor, transpiluje (jesli potrzeba) frontend (.less .js itd) i odpala folder .tmp na serverze, guld ma swój server
+server gulpowy ma reverse proxy wiec jak dostaje url z nazwa np services to przekierowuje zapytanie na inny port, na którym postawiony jest server np tomcat z 
+rest servicami backendowymi
+
+nodeJS - maszyna wirtualna dla JS - by mozna JS uruchamiac nie tylko w przegladarce
+
+WebStorm - platne IDE do developmentu webowego
+
+mvnw.cmd - maven wrapper - sciaga wersje mavena podana w maven-wrapper.properties, uruchamia go, uzywa sie go w cmd np. mvnw clean package
+
+node - folder z lokalna wersja nodeJS, wersja podana w pomie, w pluginie maven-frontend
+
+Karma - test runner
+
+Jasmine - framework do pisania testów JS
+
+nvm - node version manager - https://github.com/coreybutler/nvm-windows/releases
+
+OAPS4JS korzysta w node 5.0.0
+
+komenda dir w cmd pokazuje liste plikow w folderze
+
+w cmd bedac w folderze target java -jar ng2-with-spring-boot-0.0.1-SNAPSHOT.jar startuje wersje produkcyjna na tomacie na localhost:8080
+
+gulp odpalamy w folderze client
+
+gulp test:tdd - testowanie w formie watchdoga - czyli odpala test, jak zmienimy test to od razu sam odpala jeszcze raz test
+
+gulp test:tdd:debug - debuguje jako watchdog w przegladrce
+
+gulp lint - statyczny analizator kodu
+
+gulpfile.js - redirect backendu, lint i wszystkie inne taski gulpa
+
+angular material - jak bootstrap, ale lepiej przygotowany dla angulara2
+
+systemjs.config.js - okreslamy gdzie znajdywac niektóre importy np @angular/coreybutler/nvm-windows/releases
+
+npm shrinkwrap - tworzy plik schrink wrap, który sluzy do tego, zeby usyalic jaka dokladnie wersje ma sciagnac npm
+bo np w package json jak mamy wersje ^1.1.0 oznacza, ze npm ma sciagnac wersje 1.1.0 lub wyzsza
+
+angularJS = angular 1.X
+angular = angular 2.X
+
+<pre> {{nazwaZmiennej}}</pre> - podglad zmiennej w HTML lub jako JSON <pre> {{nazwaZmiennej | jason}}</pre>
+
+C:\ProgramData\Oracle\Java\javapath

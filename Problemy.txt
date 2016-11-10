@@ -1,0 +1,23 @@
+problem w IntelliJ z maven - nie chcial zaciagac repo z POMa ani dodawac do External Libraries (jak robilo sie Maven package to tworzyl folder ${env.BASE_DIR} w folderze z projektem)- trzeba bylo usunac folder .m2 z lokalizacji C:/Users/marciaug bo byl tam plik settings.xml, który kazal brac dependencies z lokal repositories
+
+
+
+
+w cmd: gulp serve
+module.js:339
+    throw err;
+    ^
+Error: Cannot find module 'gulp-sync'
+    at Function.Module._resolveFilename (module.js:337:15)
+	
+w folderze projektu (folder client): 
+npm install
+bower install  bower.json
+(answer 3)
+
+
+
+gulp test:
+Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.
+
+ustawic w pliku karma-test-shim.js zmienna jasmine.DEFAULT_TIMEOUT_INTERVAL na wieksza
