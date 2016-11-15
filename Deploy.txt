@@ -1,0 +1,16 @@
+Deploy:
+mvnw clean package
+
+PowerShell:
+
+C:\checkouts\diva\mvps\price-tag\price-tag> .\deploy\Deploy-LocalBuildToOse.ps1
+
+
+
+https://%windows-login%-preview-pricetag.app.ose-she.mercedes-benz.com
+
+
+
+Merge z developem:
+jestesmy na feature branch, w IntelliJ: (fetch, rebase onto develop)
+wchodzimy na lokalnego developa, pull, git merge --ff MBCPOSDMBD-173-Edit_Vehicle_Details, push

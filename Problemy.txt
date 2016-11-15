@@ -21,3 +21,6 @@ gulp test:
 Error: Timeout - Async callback was not invoked within timeout specified by jasmine.DEFAULT_TIMEOUT_INTERVAL.
 
 ustawic w pliku karma-test-shim.js zmienna jasmine.DEFAULT_TIMEOUT_INTERVAL na wieksza
+
+
+cos z sass - jeszcze raz mvnw clean install zrobic 
