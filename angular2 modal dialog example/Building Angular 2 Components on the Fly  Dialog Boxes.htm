@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html class=" js " prefix="og: http://ogp.me/ns#" lang="en-US"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://www.lucidchart.com/techblog/xmlrpc.php">
+<link rel="stylesheet" href="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/prism.css">
+
+<!-- This site is optimized with the Yoast SEO plugin v3.7.1 - https://yoast.com/wordpress/plugins/seo/ -->
+<title>Building Angular 2 Components on the Fly: Dialog Boxes</title>
+<meta name="description" content="There's no recipe for building dynamic Angular 2 components on the fly, but that doesn't mean it can't be done. Here's our solution.">
+<meta name="robots" content="noodp">
+<link rel="canonical" href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building Angular 2 Components on the Fly: Dialog Boxes">
+<meta property="og:description" content="There's no recipe for building dynamic Angular 2 components on the fly, but that doesn't mean it can't be done. Here's our solution.">
+<meta property="og:url" content="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/">
+<meta property="og:site_name" content="Lucidchart">
+<meta property="article:tag" content="angular 2">
+<meta property="article:section" content="Architecture">
+<meta property="article:published_time" content="2016-07-19T10:21:21-07:00">
+<meta property="article:modified_time" content="2016-11-08T13:18:30-07:00">
+<meta property="og:updated_time" content="2016-11-08T13:18:30-07:00">
+<meta property="og:image" content="https://d2slcw3kip6qmk.cloudfront.net/marketing/techblog/dynamic-ng2-components-and-dialog-box-example/init-state.png">
+<meta property="og:image" content="https://d2slcw3kip6qmk.cloudfront.net/marketing/techblog/dynamic-ng2-components-and-dialog-box-example/final-state.png">
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com/">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="Lucidchart » Feed" href="https://www.lucidchart.com/techblog/feed/">
+<link rel="alternate" type="application/rss+xml" title="Lucidchart » Comments Feed" href="https://www.lucidchart.com/techblog/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Lucidchart » Building Angular 2 Components on the Fly: A Dialog Box Example Comments Feed" href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/feed/">
+		<script type="text/javascript" async="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/a5d50354c435f0e24557077e252bf2a15fa75b51.js"></script><script type="text/javascript" async="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/i.js"></script><script async="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/analytics.js"></script><script id="hs-analytics" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/442690.js"></script><script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/2\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.lucidchart.com\/techblog\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.6.1"}};
+			!function(a,b,c){function d(a){var c,d,e,f,g,h=b.createElement("canvas"),i=h.getContext&&h.getContext("2d"),j=String.fromCharCode;if(!i||!i.fillText)return!1;switch(i.textBaseline="top",i.font="600 32px Arial",a){case"flag":return i.fillText(j(55356,56806,55356,56826),0,0),!(h.toDataURL().length<3e3)&&(i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,65039,8205,55356,57096),0,0),c=h.toDataURL(),i.clearRect(0,0,h.width,h.height),i.fillText(j(55356,57331,55356,57096),0,0),d=h.toDataURL(),c!==d);case"diversity":return i.fillText(j(55356,57221),0,0),e=i.getImageData(16,16,1,1).data,f=e[0]+","+e[1]+","+e[2]+","+e[3],i.fillText(j(55356,57221,55356,57343),0,0),e=i.getImageData(16,16,1,1).data,g=e[0]+","+e[1]+","+e[2]+","+e[3],f!==g;case"simple":return i.fillText(j(55357,56835),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode8":return i.fillText(j(55356,57135),0,0),0!==i.getImageData(16,16,1,1).data[0];case"unicode9":return i.fillText(j(55358,56631),0,0),0!==i.getImageData(16,16,1,1).data[0]}return!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g,h,i;for(i=Array("simple","flag","unicode8","diversity","unicode9"),c.supports={everything:!0,everythingExceptFlag:!0},h=0;h<i.length;h++)c.supports[i[h]]=d(i[h]),c.supports.everything=c.supports.everything&&c.supports[i[h]],"flag"!==i[h]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[i[h]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/wp-emoji-release.js" type="text/javascript"></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="mh-font-awesome-css" href="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/font-awesome.css" type="text/css" media="all">
+<link rel="stylesheet" id="mh-style-css" href="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/style.css" type="text/css" media="all">
+<link rel="stylesheet" id="mh-google-fonts-css" href="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/css.css" type="text/css" media="all">
+<link rel="stylesheet" id="A2A_SHARE_SAVE-css" href="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/addtoany.css" type="text/css" media="all">
+<link rel="stylesheet" id="hubspot-css" href="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/hubspot.css" type="text/css" media="all">
+<script type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/jquery.js"></script>
+<script type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/jquery-migrate.js"></script>
+<script type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/addtoany.js"></script>
+<script type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/scripts.js"></script>
+<link rel="https://api.w.org/" href="https://www.lucidchart.com/techblog/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.lucidchart.com/techblog/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.lucidchart.com/techblog/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.6.1">
+<link rel="shortlink" href="https://www.lucidchart.com/techblog/?p=2265">
+<link rel="alternate" type="application/json+oembed" href="https://www.lucidchart.com/techblog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.lucidchart.com%2Ftechblog%2F2016%2F07%2F19%2Fbuilding-angular-2-components-on-the-fly-a-dialog-box-example%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.lucidchart.com/techblog/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.lucidchart.com%2Ftechblog%2F2016%2F07%2F19%2Fbuilding-angular-2-components-on-the-fly-a-dialog-box-example%2F&amp;format=xml">
+
+<script type="text/javascript">
+var a2a_config=a2a_config||{};a2a_config.callbacks=a2a_config.callbacks||[];a2a_config.templates=a2a_config.templates||{};
+</script>
+<script type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/page.js" async="async"></script>
+	<style type="text/css">
+    	    		.header-wrap, .entry-social a, .entry-social .more-link:hover, #searchform div, #searchform #s, .page-numbers, a .pagelink, #infinite-handle span, #infinite-footer .container, footer { background: #3d4752; }
+    	    				.main-nav ul li:hover, .main-nav ul .current-menu-item, .main-nav ul li:hover > ul, .slicknav_menu, .entry-social a:hover, .entry-social .more-link, .page-numbers:hover, .current, .pagelink, a:hover .pagelink, input[type="submit"], table th, #infinite-handle span:hover, .flexslider .flex-prev:hover, .flexslider .flex-next:hover { background: #f78d1e; }
+			a:hover, .entry-content a, .entry-icon .fa-inverse, .commentlist a:hover, .comment-author, .comment-author a, .social-nav .fa-mh-social:hover { color: #f78d1e; }
+			.featured-caption, blockquote, .commentlist .bypostauthor .avatar { border-color: #f78d1e; }
+    	    	.header-wrap {
+padding:15px 0;
+}
+.header-wrap img{
+padding:0px 15px;
+}
+.main-nav .rss-button {
+margin-right:15px;
+}
+#featured-content {
+background:#3d4752;
+}
+.header-wrap,  #featured-content{
+margin-bottom:15px;
+}
+.star-icon {
+    background: url(//d2slcw3kip6qmk.cloudfront.net/marketing/pages/shared-assets/star-rating.png)center no-repeat;
+    height: 15px;
+    width: 15px;
+    display: inline-block;
+    background-size: 15px;
+}
+#crumbs {
+    margin-bottom: 1em;
+    display: block;
+}
+#crumbs li {
+    display: inline-block;
+}
+#crumbs li::after {
+    display: inline-block;
+    content:"|";
+    margin:0 10px;
+}
+#crumbs li:last-child::after {
+    display: none;
+}
+#crumbs li {
+    font-size:.8em;
+}
+.flexslider .slides img {
+    margin-top: 0;
+    height: 100%;
+}	</style>
+    <!--[if lt IE 9]>
+<script src="https://www.lucidchart.com/techblog/wp-content/themes/mh_cicero/js/css3-mediaqueries.js"></script>
+<![endif]-->
+<style type="text/css">.a2a_menu,.a2a_menu * {-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box;float:none;margin:0;padding:0;position: static;height:auto;width:auto;}.a2a_menu {border-radius: 6px;display:none;direction:ltr;background:#FFF;font: 16px sans-serif-light, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Arial, Helvetica, "Liberation Sans", sans-serif;color:#000;line-height:12px;border: 1px solid #CCC;vertical-align:baseline;outline: 0; overflow:hidden;}.a2a_mini {min-width:200px;position:absolute;width: 300px;z-index:9999997;}.a2a_overlay {display: none;background: #CCC; _height: expression( ((e=document.documentElement.clientHeight)?e:document.body.clientHeight)+"px" ); _width: expression( ((e=document.documentElement.clientWidth)?e:document.body.clientWidth)+"px" ); filter: alpha(opacity=50); opacity: .7;position: fixed;_position: absolute; top: 0;right: 0;left: 0;bottom: 0;z-index: 9999998;-webkit-tap-highlight-color: rgba(0,0,0,0);transition: opacity .14s;}.a2a_full {background: #FFF;height: auto;height: calc(320px);top: 15%;_top: expression(40+((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+"px"); left: 50%;margin-left: -320px; position: fixed;_position: absolute; text-align: center;width: 640px;z-index: 9999999;     transition: transform .14s, opacity .14s;}.a2a_full_header,.a2a_full_services,.a2a_full_footer {border: 0;margin: 0;padding: 12px;box-sizing: border-box;}.a2a_full_header {padding-bottom: 8px;}.a2a_full_services {height: 280px; overflow-y: scroll;padding: 0 12px;-webkit-overflow-scrolling: touch;}.a2a_full_services .a2a_i {display: inline-block;float: none;width: 181px;width: calc(33.334% - 18px);}div.a2a_full_footer {font-size: 12px;text-align: center;padding: 8px 14px;}div.a2a_full_footer a,div.a2a_full_footer a:visited {display: inline;font-size: 12px;line-height:14px;padding: 8px 14px; }div.a2a_full_footer a:hover,div.a2a_full_footer a:focus {background: none;border: 0;color: #0166FF;}div.a2a_full_footer a span.a2a_s_a2a,div.a2a_full_footer a span.a2a_w_a2a {background-size: 14px;border-radius: 3px;display: inline-block;height:14px;line-height:14px;margin: 0 3px 0 0;vertical-align: top;*vertical-align: middle; width:14px;}.a2a_modal {background: #FFF;font: 24px sans-serif-light, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Arial, Helvetica, "Liberation Sans", sans-serif;height: auto;top: 50%;_top: expression(40+((e=document.documentElement.scrollTop)?e:document.body.scrollTop)+"px"); left: 50%;margin-left: -320px; margin-top: -36px; position: fixed;_position: absolute; text-align: center;width: 640px;z-index: 9999999;     transition: transform .14s, opacity .14s;-webkit-tap-highlight-color: rgba(0,0,0,0);}.a2a_copy_link_container {position: relative;}span.a2a_s_link#a2a_copy_link_icon,span.a2a_w_link#a2a_copy_link_icon {background-size: 48px;border-radius: 0;display: inline-block;height:48px;left: 0;line-height:48px;margin: 0 3px 0 0;position: absolute;vertical-align: top;*vertical-align: middle; width:48px;}#a2a_copy_link_text {background-color: transparent;_background-color: #FFF;border: 0;color: #2A2A2A;font: inherit;height: 48px;left: 62px;padding: 0;position: relative;width: 564px;width: calc(100% - 76px);}#a2a_copy_link_copied {background-color: #0166ff;background: linear-gradient(90deg, #0166ff 80%, #9cbfff);color: #fff;display: none;font: inherit;font-size: 16px;padding: 6px 8px;}@media print {.a2a_menu,.a2a_overlay {visibility: hidden;}}@keyframes a2aFadeIn {from { opacity: 0; }  to { opacity: 1; }}.a2a_starting {opacity: 0;}.a2a_starting.a2a_full {transform: scale(.8);}@media (max-width: 639px) {.a2a_full {border-radius: 0;top: 15%;left: 0;margin-left: auto;width: 100%;}.a2a_modal {left: 0;margin-left: 10px;width: calc(100% - 20px);}}@media (min-width: 318px) and (max-width: 437px) {.a2a_full .a2a_full_services .a2a_i {width: calc(50% - 18px);}}@media (max-width: 317px) {.a2a_full .a2a_full_services .a2a_i {width: calc(100% - 18px);}}@media (max-height: 436px) {.a2a_full {bottom: 40px;height: auto;top: 40px;}}.a2a_menu a {color:#0166FF;text-decoration:none;font: 16px sans-serif-light, "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Arial, Helvetica, "Liberation Sans", sans-serif;line-height:14px;height:auto;width:auto;outline:none;-moz-outline:none;}.a2a_menu a:visited{color:#0166FF}.a2a_menu a:hover,.a2a_menu a:active,.a2a_menu a:focus{color: #2A2A2A;border-color: #EEE;border-style: solid;background-color: #EEE;text-decoration: none;}.a2a_menu span.a2a_s_find {background-size: 24px;height:24px;left: 8px;position:absolute;top: 7px;width:24px;}.a2a_menu span.a2a_s_find svg {background-color: #FFF;}.a2a_menu span.a2a_s_find svg path {fill: #CCC;}#a2a_menu_container{display:inline-block} #a2a_menu_container{_display:inline} .a2a_menu_find_container {border: 1px solid #CCC;border-radius: 6px;padding: 2px 24px 2px 0;position: relative;text-align: left;}.a2a_cols_container .a2a_col1{overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch}.a2a_menu input,.a2a_menu input[type="text"],input.a2a_copy_link_text,input.a2a_copy_link_text[type="text"] { display:block;background-image:none;box-shadow:none;line-height:100%;margin:0;outline:0;overflow:hidden;padding:0;-moz-box-shadow:none;-webkit-box-shadow:none;-webkit-appearance:none} .a2a_menu_find_container input.a2a_menu_find {background-color: transparent;_background-color: #FFF;border: 0;color: #2A2A2A;font: inherit;font-size: 16px;height: 28px;line-height: 20px;left: 38px;outline: 0;padding: 2px 0;position: relative;width: 99%;}.a2a_clear{clear:both} .a2a_img {background:url(https://static.addtoany.com/menu/icons.36.png);border:0;line-height:16px}.a2a_img,.a2a_svg {background-repeat:no-repeat;display:block;overflow:hidden;}.a2a_img{height:16px;line-height:16px;width:16px;}.a2a_svg{height:32px;line-height:32px;width:32px;background-color:rgba(0,0,0,.01);}a.a2a_i,i.a2a_i{display:block;float:left;border:1px solid #FFF;line-height:24px;padding:6px 8px;text-align:left;white-space:nowrap;overflow: hidden;text-overflow: ellipsis;width:132px;}a.a2a_i span,a.a2a_more span {display: inline-block;overflow: hidden;vertical-align: top;*vertical-align: middle; }a.a2a_i .a2a_img,a.a2a_i .a2a_svg {margin: 0 6px 0 0;}a.a2a_i .a2a_svg,a.a2a_more .a2a_svg {background-size: 24px;height:24px;line-height:24px;width:24px;}a.a2a_sss:hover {border-left: 1px solid #CCC;}a.a2a_menu_show_more_less{border-bottom:1px solid #FFF;border-left:0;border-right:0;line-height:24px;margin:6px 0 0;padding:6px}a.a2a_menu_show_more_less span{display:inline-block;height:24px;margin:0 6px 0 0;} .a2a_kit .a2a_svg { background-repeat: repeat; }.a2a_default_style a{float:left;line-height:16px;padding:0 2px}.a2a_default_style a:hover .a2a_img,.a2a_default_style a:hover .a2a_svg,.a2a_floating_style a:hover .a2a_img,.a2a_floating_style a:hover .a2a_svg {opacity: .7;}.a2a_default_style .a2a_count,.a2a_default_style .a2a_svg,.a2a_floating_style .a2a_svg,.a2a_vertical_style .a2a_count,.a2a_menu .a2a_svg {border-radius:4px ;}.a2a_default_style .a2a_img, .a2a_default_style .a2a_dd, .a2a_default_style .a2a_svg,.a2a_default_style .a2a_counter img { float: left;}.a2a_default_style .a2a_img_text{margin-right:4px}.a2a_default_style .a2a_divider{border-left:1px solid #000;display:inline;float:left;height:16px;line-height:16px;margin:0 5px}.a2a_kit a{cursor:pointer}.a2a_floating_style { background-color: #fff; border-radius: 6px; padding: 4px; position: fixed; z-index: 9999995;    animation: a2aFadeIn .2s ease-in;}.a2a_vertical_style a { clear: left;display: block;overflow: hidden;padding: 4px;text-decoration: none; }.a2a_floating_style.a2a_default_style { bottom: 0; }.a2a_floating_style.a2a_default_style a { padding: 4px; }.a2a_count {background-color: #fff;border: 1px solid #ccc;box-sizing: border-box;color: #2a2a2a;display: block;float: left;font: 12px Arial,Helvetica,sans-serif;height: 16px;margin-left: 4px;position: relative;text-align: center;width: 50px;}.a2a_count:before,.a2a_count:after {border: solid transparent;border-width: 4px 4px 4px 0;content: "";height: 0;left: 0;line-height: 0;margin: -4px 0 0 -4px;position: absolute;top: 50%;width: 0;}.a2a_count:before {border-right-color: #ccc;}.a2a_count:after {border-right-color: #fff;margin-left: -3px;}.a2a_count span {    animation: a2aFadeIn .14s ease-in;}.a2a_vertical_style .a2a_counter img {display: block;}.a2a_vertical_style .a2a_count {float: none;margin-left: 0;margin-top: 6px; }.a2a_vertical_style .a2a_count:before,.a2a_vertical_style .a2a_count:after {border: solid transparent;border-width: 0 4px 4px 4px;content: "";height: 0;left: 50%;line-height: 0;margin: -4px 0 0 -4px;position: absolute;top: 0;width: 0;}.a2a_vertical_style .a2a_count:before {border-bottom-color: #ccc;}.a2a_vertical_style .a2a_count:after {border-bottom-color: #fff;margin-top: -3px;}.a2a_nowrap{white-space:nowrap}.a2a_note{margin:0 auto;padding:9px;font-size:12px;text-align:center}.a2a_note .a2a_note_note{margin:0;color:#2A2A2A}.a2a_wide a{display:block;margin-top:3px;border-top:1px solid #EEE;text-align:center}.a2a_label {position: absolute !important;clip: rect(1px 1px 1px 1px); clip: rect(1px, 1px, 1px, 1px);overflow: hidden; }iframe.a2a_shim {background-color: transparent;border: 0;bottom: 0;filter: alpha(opacity=0); height: 100%;left: 0;right: 0;top: 0;position: absolute;width: 100%;z-index: 9999996;_height: expression( ((e=document.documentElement.clientHeight)?e:document.body.clientHeight)+"px" ); _width: expression( ((e=document.documentElement.clientWidth)?e:document.body.clientWidth)+"px" ); }.a2a_dd img {border:0;-ms-touch-action:manipulation;}.a2a_button_facebook_like iframe {max-width: none;}iframe[id^="PIN_"][id$="_nag"] {display: none !important;}.a2a_i_a2a{background-position:0 0!important}.a2a_i_a2a_sm{background-position:0 -17px!important}.a2a_i_agregator{background-position:0 -34px!important}.a2a_i_amazon{background-position:0 -51px!important}.a2a_i_aol{background-position:0 -68px!important}.a2a_i_app_net{background-position:0 -85px!important}.a2a_i_baidu{background-position:0 -102px!important}.a2a_i_balatarin{background-position:0 -119px!important}.a2a_i_behance{background-position:0 -136px!important}.a2a_i_bibsonomy{background-position:0 -153px!important}.a2a_i_bitty{background-position:0 -170px!important}.a2a_i_blinklist{background-position:0 -187px!important}.a2a_i_blogger{background-position:0 -204px!important}.a2a_i_blogmarks{background-position:0 -221px!important}.a2a_i_bookmark{background-position:0 -238px!important}.a2a_i_bookmarks_fr{background-position:0 -255px!important}.a2a_i_box{background-position:0 -272px!important}.a2a_i_buddymarks{background-position:0 -289px!important}.a2a_i_buffer{background-position:0 -306px!important}.a2a_i_care2{background-position:0 -323px!important}.a2a_i_chrome{background-position:0 -340px!important}.a2a_i_citeulike{background-position:0 -357px!important}.a2a_i_dailyrotation{background-position:0 -374px!important}.a2a_i_default{background-position:0 -391px!important}.a2a_i_delicious{background-position:0 -408px!important}.a2a_i_designfloat{background-position:0 -425px!important}.a2a_i_diary_ru{background-position:0 -442px!important}.a2a_i_diaspora{background-position:0 -459px!important}.a2a_i_digg{background-position:0 -476px!important}.a2a_i_dihitt{background-position:0 -493px!important}.a2a_i_diigo{background-position:0 -510px!important}.a2a_i_dzone{background-position:0 -527px!important}.a2a_i_email{background-position:0 -544px!important}.a2a_i_evernote{background-position:0 -561px!important}.a2a_i_facebook{background-position:0 -578px!important}.a2a_i_fark{background-position:0 -595px!important}.a2a_i_feed{background-position:0 -612px!important}.a2a_i_feedblitz{background-position:0 -629px!important}.a2a_i_feedbucket{background-position:0 -646px!important}.a2a_i_feedly{background-position:0 -663px!important}.a2a_i_feedmailer{background-position:0 -680px!important}.a2a_i_find{background-position:0 -697px!important}.a2a_i_firefox{background-position:0 -714px!important}.a2a_i_flickr{background-position:0 -731px!important}.a2a_i_flipboard{background-position:0 -748px!important}.a2a_i_folkd{background-position:0 -765px!important}.a2a_i_foursquare{background-position:0 -782px!important}.a2a_i_github{background-position:0 -799px!important}.a2a_i_gmail{background-position:0 -816px!important}.a2a_i_google{background-position:0 -833px!important}.a2a_i_google_classroom{background-position:0 -850px!important}.a2a_i_google_plus{background-position:0 -867px!important}.a2a_i_hatena{background-position:0 -884px!important}.a2a_i_instapaper{background-position:0 -901px!important}.a2a_i_itunes{background-position:0 -918px!important}.a2a_i_jamespot{background-position:0 -935px!important}.a2a_i_kakao{background-position:0 -952px!important}.a2a_i_kik{background-position:0 -969px!important}.a2a_i_kindle{background-position:0 -986px!important}.a2a_i_klipfolio{background-position:0 -1003px!important}.a2a_i_known{background-position:0 -1020px!important}.a2a_i_line{background-position:0 -1037px!important}.a2a_i_link{background-position:0 -1054px!important}.a2a_i_linkedin{background-position:0 -1071px!important}.a2a_i_livejournal{background-position:0 -1088px!important}.a2a_i_mail_ru{background-position:0 -1105px!important}.a2a_i_mendeley{background-position:0 -1122px!important}.a2a_i_meneame{background-position:0 -1139px!important}.a2a_i_miro{background-position:0 -1156px!important}.a2a_i_mixi{background-position:0 -1173px!important}.a2a_i_myspace{background-position:0 -1190px!important}.a2a_i_netlog{background-position:0 -1207px!important}.a2a_i_netvibes{background-position:0 -1224px!important}.a2a_i_netvouz{background-position:0 -1241px!important}.a2a_i_newsalloy{background-position:0 -1258px!important}.a2a_i_newsisfree{background-position:0 -1275px!important}.a2a_i_newsvine{background-position:0 -1292px!important}.a2a_i_nujij{background-position:0 -1309px!important}.a2a_i_odnoklassniki{background-position:0 -1326px!important}.a2a_i_oknotizie{background-position:0 -1343px!important}.a2a_i_oldreader{background-position:0 -1360px!important}.a2a_i_outlook_com{background-position:0 -1377px!important}.a2a_i_pinboard{background-position:0 -1394px!important}.a2a_i_pinterest{background-position:0 -1411px!important}.a2a_i_plurk{background-position:0 -1428px!important}.a2a_i_pocket{background-position:0 -1445px!important}.a2a_i_podnova{background-position:0 -1462px!important}.a2a_i_print{background-position:0 -1479px!important}.a2a_i_printfriendly{background-position:0 -1496px!important}.a2a_i_protopage{background-position:0 -1513px!important}.a2a_i_pusha{background-position:0 -1530px!important}.a2a_i_qzone{background-position:0 -1547px!important}.a2a_i_reddit{background-position:0 -1564px!important}.a2a_i_rediff{background-position:0 -1581px!important}.a2a_i_renren{background-position:0 -1598px!important}.a2a_i_segnalo{background-position:0 -1615px!important}.a2a_i_share{background-position:0 -1632px!important}.a2a_i_sina_weibo{background-position:0 -1649px!important}.a2a_i_sitejot{background-position:0 -1666px!important}.a2a_i_skype{background-position:0 -1683px!important}.a2a_i_slashdot{background-position:0 -1700px!important}.a2a_i_sms{background-position:0 -1717px!important}.a2a_i_snapchat{background-position:0 -1734px!important}.a2a_i_stumbleupon{background-position:0 -1751px!important}.a2a_i_stumpedia{background-position:0 -1768px!important}.a2a_i_svejo{background-position:0 -1785px!important}.a2a_i_symbaloo{background-position:0 -1802px!important}.a2a_i_telegram{background-position:0 -1819px!important}.a2a_i_thefreedictionary{background-position:0 -1836px!important}.a2a_i_thefreelibrary{background-position:0 -1853px!important}.a2a_i_tumblr{background-position:0 -1870px!important}.a2a_i_twiddla{background-position:0 -1887px!important}.a2a_i_twitter{background-position:0 -1904px!important}.a2a_i_typepad{background-position:0 -1921px!important}.a2a_i_viadeo{background-position:0 -1938px!important}.a2a_i_viber{background-position:0 -1955px!important}.a2a_i_vimeo{background-position:0 -1972px!important}.a2a_i_vk{background-position:0 -1989px!important}.a2a_i_wanelo{background-position:0 -2006px!important}.a2a_i_webnews{background-position:0 -2023px!important}.a2a_i_wechat{background-position:0 -2040px!important}.a2a_i_whatsapp{background-position:0 -2057px!important}.a2a_i_winksite{background-position:0 -2074px!important}.a2a_i_wordpress{background-position:0 -2091px!important}.a2a_i_wykop{background-position:0 -2108px!important}.a2a_i_xing{background-position:0 -2125px!important}.a2a_i_y18{background-position:0 -2142px!important}.a2a_i_yahoo{background-position:0 -2159px!important}.a2a_i_yim{background-position:0 -2176px!important}.a2a_i_yoolink{background-position:0 -2193px!important}.a2a_i_youmob{background-position:0 -2210px!important}.a2a_i_youtube{background-position:0 -2227px!important}.a2a_i_yummly{background-position:0 -2244px!important}</style><link rel="stylesheet" href="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/icons.css"><style type="text/css">.pika-single{z-index:9999;display:block;position:relative;color:#333;background:#fff;border:1px solid #ccc;border-bottom-color:#bbb;font-family:"Helvetica Neue",Helvetica,Arial,sans-serif}.pika-single.is-hidden{display:none}.pika-single.is-bound{position:absolute;box-shadow:0 5px 15px -5px rgba(0,0,0,0.5)}.pika-single{*zoom:1}.pika-single:before,.pika-single:after{content:" ";display:table}.pika-single:after{clear:both}.pika-lendar{float:left;width:240px;margin:8px}.pika-title{position:relative;text-align:center}.pika-title select{cursor:pointer;position:absolute;z-index:9998;margin:0;left:0;top:5px;filter:alpha(opacity=0);opacity:0}.pika-label{display:inline-block;*display:inline;position:relative;z-index:9999;overflow:hidden;margin:0;padding:5px 3px;font-size:14px;line-height:20px;font-weight:bold;background-color:#fff}.pika-prev,.pika-next{display:block;cursor:pointer;position:relative;outline:none;border:0;padding:0;width:20px;height:30px;text-indent:20px;white-space:nowrap;overflow:hidden;background-color:transparent;background-position:center center;background-repeat:no-repeat;background-size:75% 75%;opacity:0.5;*position:absolute;*top:0}.pika-prev:hover,.pika-next:hover{opacity:1}.pika-prev.is-disabled,.pika-next.is-disabled{cursor:default;opacity:0.2}.pika-prev,.is-rtl .pika-next{float:left;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAUklEQVR42u3VMQoAIBADQf8Pgj+OD9hG2CtONJB2ymQkKe0HbwAP0xucDiQWARITIDEBEnMgMQ8S8+AqBIl6kKgHiXqQqAeJepBo/z38J/U0uAHlaBkBl9I4GwAAAABJRU5ErkJggg==");*left:0}.pika-next,.is-rtl .pika-prev{float:right;background-image:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAeCAYAAAAsEj5rAAAAU0lEQVR42u3VOwoAMAgE0dwfAnNjU26bYkBCFGwfiL9VVWoO+BJ4Gf3gtsEKKoFBNTCoCAYVwaAiGNQGMUHMkjGbgjk2mIONuXo0nC8XnCf1JXgArVIZAQh5TKYAAAAASUVORK5CYII=");*right:0}.pika-select{display:inline-block;*display:inline}.pika-table{width:100%;border-collapse:collapse;border-spacing:0;border:0}.pika-table th,.pika-table td{width:14.28571%;padding:0}.pika-table th{color:#999;font-size:12px;line-height:25px;font-weight:bold;text-align:center}.pika-table abbr{border-bottom:none;cursor:help}.pika-button{cursor:pointer;display:block;-moz-box-sizing:border-box;box-sizing:border-box;outline:none;border:0;margin:0;width:100%;padding:5px;color:#666;font-size:12px;line-height:15px;text-align:right;background:#f5f5f5}.is-today .pika-button{color:#3af;font-weight:bold}.is-selected .pika-button{color:#fff;font-weight:bold;background:#3af;box-shadow:inset 0 1px 3px #178fe5;border-radius:3px}.is-disabled .pika-button{pointer-events:none;cursor:default;color:#999;opacity:0.3}.pika-button:hover{color:#fff !important;background:#ff8000 !important;box-shadow:none !important;border-radius:3px !important}.pika-week{font-size:11px;color:#999}.hs-form fieldset{border:0;padding:0;margin:0;max-width:500px}.hs-form fieldset.form-columns-1 .hs-input{width:95%}.hs-form fieldset.form-columns-1 .input{margin-right:8px}.hs-form fieldset.form-columns-1 input[type="checkbox"],.hs-form fieldset.form-columns-1 input[type="radio"]{width:auto}.hs-form fieldset.form-columns-2 .hs-form-field{width:50%;float:left}.hs-form fieldset.form-columns-2 .input{margin-right:8px}.hs-form fieldset.form-columns-3 .hs-form-field{width:32.7%;float:left}.hs-form fieldset.form-columns-3 .input{margin-right:8px}.hs-form label.hs-hidden{visibility:hidden}.hsformerror{margin:0 0 2px;padding:2px 6px;height:auto;background-color:#fdd2d0;font-size:11px;border:1px solid #fcb3af;padding:4px 16px 4px 10px;color:#000;display:none;background-image:-webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fefefe), color-stop(100%, #fdd2d0));background-image:-webkit-linear-gradient(#fefefe, #fdd2d0);background-image:-moz-linear-gradient(#fefefe, #fdd2d0);background-image:-o-linear-gradient(#fefefe, #fdd2d0);background-image:linear-gradient(#fefefe,#fdd2d0);-webkit-border-radius:4px;-moz-border-radius:4px;-ms-border-radius:4px;-o-border-radius:4px;border-radius:4px;-webkit-box-shadow:0 0 6px #ddd;-moz-box-shadow:0 0 6px #ddd;box-shadow:0 0 6px #ddd;z-index:99999}.hsformerror em{border:10px solid;border-color:#fdd2d0 transparent transparent;bottom:-17px;display:block;height:0;left:60px;position:absolute;width:0}.hsformerror p{font-family:Lucida Grande,Lucida Sans Unicode,bitstream vera sans,trebuchet ms,verdana,sans-serif;margin:0;float:left;margin-right:8px}.hsformerror:hover{cursor:default}.hsformerror .close-form-error{float:right;display:inline;top:3px;position:absolute;font-family:Verdana !important;color:#b17c79 !important;cursor:pointer !important;font-size:11px !important;font-weight:normal !important}.hsformerror .close-form-error:hover{color:#cc8884}@media (max-width: 400px), (min-device-width: 320px) and (max-device-width: 480px){form.hs-form .form-columns-2 .hs-form-field,form.hs-form .form-columns-3 .hs-form-field{float:none;width:100%}form.hs-form .form-columns-2 .hs-form-field .hs-input,form.hs-form .form-columns-3 .hs-form-field .hs-input{width:95%}}</style></head>
+<body class="single single-post postid-2265 single-format-standard mh-right-sb">
+<div class="mh-container">
+<header class="header-wrap clearfix"><div class="slicknav_menu"><a href="#" aria-haspopup="true" tabindex="0" class="slicknav_btn slicknav_collapsed"><span class="slicknav_menutxt">MENU</span><span class="slicknav_icon"><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span><span class="slicknav_icon-bar"></span></span></a><nav class="slicknav_nav slicknav_hidden" style="display: none;" aria-hidden="true" role="menu">
+		<div class="menu"></div>
+        <a href="https://www.lucidchart.com/users/registerLevel" class="sign-up-button">Try Lucidchart</a>
+        <a href="https://www.lucidchart.com/techblog/feed/rss/" class="rss-button"><i class="fa fa-rss fa-2x"></i></a>
+        <style>
+            .sign-up-button {
+                background-color: #55bbe7;
+                color: #fff;
+                padding: 3px 12px;
+                display: inline-block;
+                text-transform: uppercase;
+                font-weight: bold;
+                vertical-align: top;
+            }
+            .sign-up-button:hover {
+                background-color: #45abd7;
+                color: #fff;
+            }
+            .rss-button {
+                background: #f78d1e;
+                color: #fff;
+                display: inline-block;
+                padding: 4px 8px 0px 8px;
+                margin-left: 4px;
+            }
+            .rss-button:hover {
+                background: #fff;
+                color: #f78d1e;
+            }
+            .rss-button i.fa-2x {
+                font-size: 24px;
+            }
+        </style>
+	</nav></div>
+		<a href="https://lucidchart.com/"><img src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/lucidchart-logo.svg" width="200"></a>
+	<nav class="main-nav clearfix">
+		<div class="menu"></div>
+        <a href="https://www.lucidchart.com/users/registerLevel" class="sign-up-button">Try Lucidchart</a>
+        <a href="https://www.lucidchart.com/techblog/feed/rss/" class="rss-button"><i class="fa fa-rss fa-2x"></i></a>
+        <style>
+            .sign-up-button {
+                background-color: #55bbe7;
+                color: #fff;
+                padding: 3px 12px;
+                display: inline-block;
+                text-transform: uppercase;
+                font-weight: bold;
+                vertical-align: top;
+            }
+            .sign-up-button:hover {
+                background-color: #45abd7;
+                color: #fff;
+            }
+            .rss-button {
+                background: #f78d1e;
+                color: #fff;
+                display: inline-block;
+                padding: 4px 8px 0px 8px;
+                margin-left: 4px;
+            }
+            .rss-button:hover {
+                background: #fff;
+                color: #f78d1e;
+            }
+            .rss-button i.fa-2x {
+                font-size: 24px;
+            }
+        </style>
+	</nav>
+</header>
+<div class="mh-content-section clearfix">
+	<div id="main-content" class="mh-content">
+		<article class="entry-wrap clearfix post-2265 post type-post status-publish format-standard has-post-thumbnail hentry category-architecture category-web-development tag-angular-2">
+	<header class="entry-header"><ul id="crumbs"><li><a href="https://www.lucidchart.com/techblog">Home</a></li><li><a href="https://www.lucidchart.com/techblog/category/architecture/" rel="category tag">Architecture</a> </li><li> <a href="https://www.lucidchart.com/techblog/category/web-development/" rel="category tag">Web Development</a></li><li>Building Angular 2 Components on the Fly: A Dialog Box Example</li></ul>		<div class="clearfix">
+			<div class="entry-avatar">
+				<a href="https://www.lucidchart.com/techblog/author/ty-lewis/"><img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70"></a>
+			</div>
+			<h1 class="entry-title">Building Angular 2 Components on the Fly: A Dialog Box Example</h1>
+		</div>
+		<p class="entry-meta">
+<i class="fa fa-clock-o"></i><span class="updated">July 19, 2016</span>
+<i class="fa fa-user"></i><span class="entry-category">Ty Lewis</span>
+<i class="fa fa-comment"></i><span>30 Comments</span>
+</p>
+	</header>
+	
+<div class="entry-thumbnail">
+<img src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/angular-2-blog-post-image2x.png" alt="Building Angular 2 Components on the Fly: A Dialog Box Example thumbnail"></div>
+	<div class="entry-content content-margin clearfix">
+		<style>
+figure {
+    margin-bottom: 20px;
+    text-align: center;
+}
+figure img {
+    border: 1px solid lightgrey;
+}
+figure figcaption {
+    font-style: italic;
+}
+code:not(h2 code) {
+    font-size: 14px;
+}
+p.no-bottom-margin {
+    margin-bottom: 0;
+}
+pre.p-bottom-margin {
+    margin-bottom: 1.875rem;
+}
+</style>
+<p style="font-style: italic;">UPDATE 8-22-16: This post has been 
+updated to use Angular 2 version 2.0.0-rc.5. It was originally written 
+against the API provided by Angular 2 version 2.0.0-rc.4, but as Tom 
+Nurkkala pointed out in the comments, the relevant API from version 
+2.0.0-rc.4 has been deprecated.</p>
+<p style="font-style: italic;">UPDATE 9-24-16: A more succinct variation of this example has been added <a href="https://plnkr.co/edit/Op9dYqWTZsb98E90wN8V?p=info" target="_blank">here</a>. For a brief explanation of this variation, see the <a href="#afterwards">Afterwards</a> section below.</p>
+<p>Building components on the fly at runtime is not uncommon, but you won’t find a recipe for it in Angular 2’s <a href="https://angular.io/docs/ts/latest/cookbook/" target="_blank">official cookbook</a> just yet. In this post, we fill the gap by working through an example.</p>
+<p>A dialog box is a good example of an Angular 2 component you may want
+ to build on the fly. If your application has a fair number of them 
+(like <a href="https://www.lucidchart.com/" target="_blank">Lucidchart</a> does), and you feel put out at the thought of writing one large <code class=" language-javascript">ngSwitch</code>, then building them dynamically is a good alternative.</p>
+<p class="no-bottom-margin">We will build a simple dynamic dialog box for our example. (Check out the <a href="https://plnkr.co/edit/GmOUPtXYpzaY81qJjbHp?p=preview" target="_blank">completed example</a>.) Here is our initial app:</p>
+<pre class=" language-javascript"><code class=" language-javascript">@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token punctuation">:</span> <span class="token string">'my-app'</span><span class="token punctuation">,</span>
+    template<span class="token punctuation">:</span> `
+        <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"open-button"</span> <span class="token punctuation">(</span>click<span class="token punctuation">)</span><span class="token operator">=</span><span class="token string">'openDialogBox()'</span><span class="token operator">&gt;</span>Open dialog box<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    <span class="token template-string"><span class="token string">`,
+    styles: [`</span></span>
+        <span class="token punctuation">:</span>host <span class="token punctuation">{</span>
+            display<span class="token punctuation">:</span> flex<span class="token punctuation">;</span>
+            justify<span class="token operator">-</span>content<span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token punctuation">.</span>open<span class="token operator">-</span>button <span class="token punctuation">{</span>
+            padding<span class="token punctuation">:</span> 5px<span class="token punctuation">;</span>
+            border<span class="token punctuation">:</span> 1px solid black<span class="token punctuation">;</span>
+            cursor<span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    `<span class="token punctuation">]</span><span class="token punctuation">,</span>
+    directives<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AppComponent</span> <span class="token punctuation">{</span>
+    <span class="token function">openDialogBox</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// TODO: Open up a dialog box</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Fire this up in a Plunker, and you will see the following:</p>
+<figure><img title="Initial state of our demo app" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/init-state.png" alt="Screenshot showing a simple button that says, 'Open dialog box'"><br>
+<figcaption>Initial state of our demo app</figcaption>
+</figure>
+<p>Our goal is to open a dialog box when the user clicks the button 
+aptly labeled “Open dialog box.” Our main tool in accomplishing this 
+goal is Angular 2’s <code class=" language-javascript">ViewContainerRef</code> class, which provides a handy <code class=" language-javascript">createComponent</code> method. It is hard to describe a <code class=" language-javascript">ViewContainerRef</code> in familiar terms, but here is what we need to know about it:</p>
+<ul>
+<li>The <code class=" language-javascript">ViewContainerRef</code> can be informally thought of as a location in the DOM where new components can be inserted.</li>
+<li>Internally, this insertion location is specified by a DOM element referred to as the “anchor element.”</li>
+<li>When a new component is created using the <code class=" language-javascript">createComponent</code> method, the resulting component’s DOM gets inserted as a sibling to the anchor element.</li>
+</ul>
+<p>Given that rundown, here is how we plan to use <code class=" language-javascript">ViewContainerRef</code> in our example:</p>
+<ol>
+<li>We’ll pick a spot (i.e., an element) in the <code class=" language-javascript">AppComponent</code>‘s template where we would like to insert our dialog box, and we’ll set up a new <code class=" language-javascript">ViewContainerRef</code> there.</li>
+<li>We’ll use the <code class=" language-javascript">ViewContainerRef</code>‘s <code class=" language-javascript">createComponent</code> method to build and insert our dialog box at that location.</li>
+</ol>
+<p>The plan is easily summarized in into two steps but actually takes a fair bit of work to implement. Let’s get started.</p>
+<h2>Setting up the insertion location</h2>
+<p class="no-bottom-margin">Looking at the <code class=" language-javascript">AppComponent</code>’s template, there aren’t many elements to pick from for our insertion location—there is only one <code class=" language-html">div</code>. Let’s just add another <code class=" language-html">div</code> and use it:</p>
+<pre class="p-bottom-margin language-javascript"><code class=" language-javascript"><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    template<span class="token punctuation">:</span> `
+        <span class="token operator">&lt;</span>div<span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"open-button"</span> <span class="token punctuation">(</span>click<span class="token punctuation">)</span><span class="token operator">=</span><span class="token string">'openDialogBox()'</span><span class="token operator">&gt;</span>Open dialog box<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    `<span class="token punctuation">,</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<p class="no-bottom-margin">We can attach a <code class=" language-javascript">ViewContainerRef</code> to this <code class=" language-html">div</code> by adding a directive to it that has been injected with a <code class=" language-javascript">ViewContainerRef</code>. Here is our directive:</p>
+<pre class="p-bottom-margin language-javascript"><code class=" language-javascript">@<span class="token function">Directive</span><span class="token punctuation">(</span><span class="token punctuation">{</span> selector<span class="token punctuation">:</span> <span class="token string">'[dialogAnchor]'</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">DialogAnchorDirective</span> <span class="token punctuation">{</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span>
+        <span class="token keyword">private</span> viewContainer<span class="token punctuation">:</span> ViewContainerRef<span class="token punctuation">,</span>
+    <span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p class="no-bottom-margin">Here, we’ve added the directive to the <code class=" language-html">div</code>:</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    template<span class="token punctuation">:</span> `
+        <span class="token operator">&lt;</span>div <span class="token punctuation">[</span>dialogAnchor<span class="token punctuation">]</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>div <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">"open-button"</span> <span class="token punctuation">(</span>click<span class="token punctuation">)</span><span class="token operator">=</span><span class="token string">'openDialogBox()'</span><span class="token operator">&gt;</span>Open dialog box<span class="token operator">&lt;</span><span class="token operator">/</span>div<span class="token operator">&gt;</span>
+    `<span class="token punctuation">,</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<p>When the <code class=" language-javascript">DialogAnchorDirective</code> is created, it gets injected with a <code class=" language-javascript">ViewContainerRef</code> whose anchor element is set to our newly added <code class=" language-html">div</code>. Our dialog box’s DOM will get inserted as a sibling to this <code class=" language-html">div</code>.</p>
+<h2>Using <code class=" language-javascript">createComponent</code></h2>
+<p class="no-bottom-margin">We need to provide some way to actually use <code class=" language-javascript">DialogAnchorDirective</code>’s <code class=" language-javascript">viewContainer</code> to build our dialog box. We will do this by adding the following method to the <code class=" language-javascript">DialogAnchorDirective</code>:</p>
+<pre class="p-bottom-margin language-javascript"><code class=" language-javascript"><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token function">createDialog</span><span class="token punctuation">(</span>dialogComponent<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token keyword">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> DialogComponent <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span> ComponentRef <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>viewContainer<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">let</span> dialogComponentFactory <span class="token operator">=</span> 
+          <span class="token keyword">this</span><span class="token punctuation">.</span>componentFactoryResolver<span class="token punctuation">.</span><span class="token function">resolveComponentFactory</span><span class="token punctuation">(</span>dialogComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">let</span> dialogComponentRef <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>viewContainer<span class="token punctuation">.</span><span class="token function">createComponent</span><span class="token punctuation">(</span>dialogComponentFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        dialogComponentRef<span class="token punctuation">.</span>instance<span class="token punctuation">.</span>close<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+            dialogComponentRef<span class="token punctuation">.</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token keyword">return</span> dialogComponentRef<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+</code></pre>
+<p class="no-bottom-margin">There is quite a bit going on here, so we 
+will break it down, but before we do, this method has one small 
+dependency we need to set up first. It is the <code class=" language-javascript">componentFactoryResolver</code> helper variable, which we need to add to our <code class=" language-javascript">DialogAnchorDirective</code>:</p>
+<pre class="p-bottom-margin language-javascript"><code class=" language-javascript"><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token function">constructor</span><span class="token punctuation">(</span>
+        <span class="token keyword">private</span> viewContainer<span class="token punctuation">:</span> ViewContainerRef<span class="token punctuation">,</span>
+        <span class="token keyword">private</span> componentFactoryResolver<span class="token punctuation">:</span> ComponentFactoryResolver
+    <span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span></code></pre>
+<p class="no-bottom-margin">With that out of the way, let’s start with the method signature:</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token function">createDialog</span><span class="token punctuation">(</span>dialogComponent<span class="token punctuation">:</span> <span class="token punctuation">{</span> <span class="token keyword">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span> DialogComponent <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">:</span>ComponentRef<span class="token operator">&lt;</span>DialogComponent<span class="token operator">&gt;</span> <span class="token punctuation">{</span> <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token punctuation">}</span>
+</code></pre>
+<p>We pass in the type for our dynamic dialog box component, <code class=" language-javascript">DialogComponent</code>, and we get back a <code class=" language-javascript">ComponentRef</code> for the new component. (Note that the <code class=" language-javascript">DialogComponent</code>
+ is the custom dialog box component we keep referring to. We don’t 
+provide a listing for it here, but you can take a look at it in the <a href="https://plnkr.co/edit/GmOUPtXYpzaY81qJjbHp?p=preview">full demo</a>. Just know that it requires no special setup to be dynamically built.)</p>
+<p class="no-bottom-margin">This line removes any already-open dialog boxes:</p>
+<pre class="p-bottom-margin language-javascript"><code class=" language-javascript"><span class="token keyword">this</span><span class="token punctuation">.</span>viewContainer<span class="token punctuation">.</span><span class="token function">clear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p class="no-bottom-margin">These lines are where the component is actually created:</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">let</span> dialogComponentFactory <span class="token operator">=</span> 
+    <span class="token keyword">this</span><span class="token punctuation">.</span>componentFactoryResolver<span class="token punctuation">.</span><span class="token function">resolveComponentFactory</span><span class="token punctuation">(</span>dialogComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">let</span> dialogComponentRef <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>viewContainer<span class="token punctuation">.</span><span class="token function">createComponent</span><span class="token punctuation">(</span>dialogComponentFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>Notice that we resolve the <code class=" language-javascript">DialogComponent</code> type to a <code class=" language-javascript">ComponentFactory</code> using the newly added <code class=" language-javascript">componentFactoryResolver</code>. The factory then gets passed to <code class=" language-javascript">ViewContainerRef</code>’s <code class=" language-javascript">createComponent</code> method which builds, inserts, and returns a reference to the new dialog box component.</p>
+<p class="no-bottom-margin">Next, we set up a listener to an event that gets fired when the user tries to close the dialog box:</p>
+<pre class="p-bottom-margin language-javascript"><code class=" language-javascript">dialogComponentRef<span class="token punctuation">.</span>instance<span class="token punctuation">.</span>close<span class="token punctuation">.</span><span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">&gt;</span> <span class="token punctuation">{</span>
+    dialogComponentRef<span class="token punctuation">.</span><span class="token function">destroy</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+<p class="no-bottom-margin">Finally, we return the <code class=" language-javascript">ComponentRef</code> for the newly inserted dialog box component:</p>
+<pre class="p-bottom-margin language-javascript"><code class=" language-javascript"><span class="token keyword">return</span> componentCreated<span class="token punctuation">;</span></code></pre>
+<p class="no-bottom-margin">The last bit of setup is done in the <code class=" language-javascript">AppComponent</code>. First, we must indicate that the <code class=" language-javascript">AppComponent</code> dynamically builds <code class=" language-javascript">DialogComponent</code>s. We do this using the <code class=" language-javascript">entryComponents</code> option in the <code class=" language-javascript">@Component</code> annotation:</p>
+<pre class=" language-javascript"><code class=" language-javascript">@<span class="token function">Component</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    selector<span class="token punctuation">:</span> <span class="token string">'my-app'</span><span class="token punctuation">,</span>
+    template<span class="token punctuation">:</span> <span class="token template-string"><span class="token string">`...`</span></span><span class="token punctuation">,</span>
+    styles<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    directives<span class="token punctuation">:</span> <span class="token punctuation">[</span>DialogComponent<span class="token punctuation">,</span> DialogAnchorDirective<span class="token punctuation">]</span><span class="token punctuation">,</span>
+    entryComponents<span class="token punctuation">:</span> <span class="token punctuation">[</span>DialogComponent<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+<p class="no-bottom-margin">Lastly, we query for <code class=" language-javascript">AppComponent</code>’s child <code class=" language-javascript">DialogAnchorDirective</code> and use its <code class=" language-javascript">createDialog</code> method to complete <code class=" language-javascript">AppComponent</code>’s <code class=" language-javascript">openDialogBox</code> method:</p>
+<pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">export</span> <span class="token keyword">class</span> <span class="token class-name">AppComponent</span> <span class="token punctuation">{</span>
+    @<span class="token function">ViewChild</span><span class="token punctuation">(</span>DialogAnchorDirective<span class="token punctuation">)</span> dialogAnchor<span class="token punctuation">:</span> DialogAnchorDirective<span class="token punctuation">;</span>
+
+    <span class="token function">openDialogBox</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>dialogAnchor<span class="token punctuation">.</span><span class="token function">createDialog</span><span class="token punctuation">(</span>DialogComponent<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>Run the <a href="https://plnkr.co/edit/GmOUPtXYpzaY81qJjbHp?p=preview" target="_blank">completed example</a>, click on the button, and you will see the following:</p>
+<figure><img title="Final state of our demo app" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/final-state.png" alt="Screenshot showing a simple button that says, 'Open dialog box'"><br>
+<figcaption>Final state of our demo app</figcaption>
+</figure>
+<h2 id="afterwards">Afterwards</h2>
+<p>One of the main advantages of using a dedicated directive like <code class=" language-javascript">DialogAnchorDirective</code>
+ is that it can be injected into subcomponents. For some use cases, this
+ may not be necessary, so a pithier example, which eliminates this extra
+ directive altogether, can be found <a href="https://plnkr.co/edit/Op9dYqWTZsb98E90wN8V?p=info" target="_blank">here</a>. In that example notice how we access a <code class=" language-javascript">ViewContainerRef</code> on a <code class=" language-html">div</code> using the <code class=" language-javascript">@ViewChild</code>‘s “read” API.</p>
+<p><span style="font-style: italic;">This is the second in a series of posts about Angular 2. The first is titled <a href="https://www.lucidchart.com/techblog/2016/05/04/angular-2-best-practices-change-detector-performance/">Angular 2 Best Practices: Change Detector Performance</a>.</span></p>
+<div class="addtoany_share_save_container addtoany_content_bottom"><div class="a2a_kit a2a_kit_size_32 addtoany_list" data-a2a-url="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/" data-a2a-title="Building Angular 2 Components on the Fly: A Dialog Box Example" style="line-height: 32px;"><a class="a2a_button_facebook" href="https://www.lucidchart.com/#facebook" title="Facebook" rel="nofollow" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_facebook"></span><span class="a2a_label">Facebook</span></a><a class="a2a_button_twitter" href="https://www.lucidchart.com/#twitter" title="Twitter" rel="nofollow" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twitter"></span><span class="a2a_label">Twitter</span></a><a class="a2a_button_google_plus" href="https://www.lucidchart.com/#google_plus" title="Google+" rel="nofollow" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google_plus"></span><span class="a2a_label">Google+</span></a><a class="a2a_button_email" href="https://www.lucidchart.com/#email" title="Email" rel="nofollow" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_email"></span><span class="a2a_label">Email</span></a><a class="a2a_dd addtoany_share_save" href="https://www.addtoany.com/share#url=https%3A%2F%2Fwww.lucidchart.com%2Ftechblog%2F2016%2F07%2F19%2Fbuilding-angular-2-components-on-the-fly-a-dialog-box-example%2F&amp;title=Building%20Angular%202%20Components%20on%20the%20Fly%3A%20A%20Dialog%20Box%20Example"><span class="a2a_svg a2a_s__default a2a_s_a2a"></span><span class="a2a_label">Podziel się</span></a></div></div>
+        <div style="text-align: center; margin: 20px 0;">
+            <a href="https://www.lucidchart.com/users/registerLevel" class="sign-up-button large">Try Lucidchart Free</a>
+        </div>
+
+        <style>
+            .sign-up-button.large {
+                padding: 20px 30px;
+                font-size: 1.4em;
+                border-radius: 4px;
+                color: #fff;
+            }
+        </style>
+
+	</div>
+
+			<div class="entry-tags clearfix">
+			<span class="fa-stack fa-lg">
+				<i class="fa fa-circle fa-stack-2x"></i>
+				<i class="fa fa-tags fa-stack-1x fa-inverse"></i>
+			</span>
+        	<a href="https://www.lucidchart.com/techblog/tag/angular-2/" rel="tag">angular 2</a>        </div>
+			<ul class="entry-social clearfix">
+		    		<li class="entry-social-facebook">
+    			<a href="https://www.facebook.com/sharer/sharer.php?u=https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/&amp;t=Building%20Angular%202%20Components%20on%20the%20Fly:%20A%20Dialog%20Box%20Example" target="_blank">
+				<i class="fa fa-facebook"></i></a>
+			</li>
+			<li class="entry-social-twitter">
+				<a href="https://twitter.com/intent/tweet?text=Building%20Angular%202%20Components%20on%20the%20Fly:%20A%20Dialog%20Box%20Example:&amp;url=https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/" target="_blank">
+				<i class="fa fa-twitter"></i></a>
+			</li>
+			<li class="entry-social-google">
+				<a href="https://plus.google.com/share?https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/" target="_blank">
+				<i class="fa fa-google-plus"></i></a>
+			</li>
+			<li class="entry-social-linkedin">
+				<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/" target="_blank">
+				<i class="fa fa-linkedin"></i></a>
+			</li>
+					</ul>
+</article>		<nav class="post-nav-wrap content-margin content-background" role="navigation">
+<ul class="post-nav clearfix">
+<li class="post-nav-prev">
+<a href="https://www.lucidchart.com/techblog/2016/07/12/introducing-xtract-a-new-xml-deserialization-library-for-scala/" rel="prev"><i class="fa fa-chevron-left"></i>Previous post</a></li>
+<li class="post-nav-next">
+<a href="https://www.lucidchart.com/techblog/2016/08/04/an-implementers-overview-managing-cloud-identity-with-scim/" rel="next">Next post<i class="fa fa-chevron-right"></i></a></li>
+</ul>
+</nav>
+                			                														<section class="related-posts content-background">
+				<h4 class="related-section-title">Related Articles</h4>
+				<ul class="related-wrap content-margin">
+																<li class="related-item clearfix">
+							<div class="related-thumbnail image-frame">
+								<a href="https://www.lucidchart.com/techblog/2016/11/08/angular-2-and-observables-data-sharing-in-a-multi-view-application/" title="Angular 2 and Observables: Data Sharing in a Multi-View Application">
+																			<img src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/use-of-observables-blog-post.png" alt="Angular 2 and Observables: Data Sharing in a Multi-View Application thumbnail">																	</a>
+							</div>
+							<a href="https://www.lucidchart.com/techblog/2016/11/08/angular-2-and-observables-data-sharing-in-a-multi-view-application/"><h5 class="related-title">Angular 2 and Observables: Data Sharing in a Multi-View Application</h5></a>
+						</li>
+																<li class="related-item clearfix">
+							<div class="related-thumbnail image-frame">
+								<a href="https://www.lucidchart.com/techblog/2016/09/26/improving-angular-2-load-times/" title="Improving Angular 2 Load Times and a 29KB Hello World App">
+																			<img src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/heroimage.png" alt="Improving Angular 2 Load Times and a 29KB Hello World App thumbnail">																	</a>
+							</div>
+							<a href="https://www.lucidchart.com/techblog/2016/09/26/improving-angular-2-load-times/"><h5 class="related-title">Improving Angular 2 Load Times and a 29KB Hello World App</h5></a>
+						</li>
+																<li class="related-item clearfix">
+							<div class="related-thumbnail image-frame">
+								<a href="https://www.lucidchart.com/techblog/2016/05/04/angular-2-best-practices-change-detector-performance/" title="Angular 2 Best Practices: Change Detector Performance">
+																			<img src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/angular-blog-post-image2x.png" alt="Angular 2 Best Practices: Change Detector Performance thumbnail">																	</a>
+							</div>
+							<a href="https://www.lucidchart.com/techblog/2016/05/04/angular-2-best-practices-change-detector-performance/"><h5 class="related-title">Angular 2 Best Practices: Change Detector Performance</h5></a>
+						</li>
+									</ul>
+			</section>
+			        			<div class="comment-section">
+		<h4 class="comment-section-title">30 Comments</h4> 	<ol class="commentlist">
+				<li class="comment even thread-even depth-1" id="li-comment-87463">
+			<div id="comment-87463">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/78a7fae20ec950ec5fc7aae0d8a2a872.jpg" srcset="https://secure.gravatar.com/avatar/78a7fae20ec950ec5fc7aae0d8a2a872?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Vinod</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-87463">July 19, 2016 at 4:32 pm</a>
+									</div>
+								<div class="comment-text">
+					<p>Can this dynamically created component support 2 way data binding with @Input @Output</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment byuser comment-author-ty-lewis bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-87477">
+			<div id="comment-87477">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Ty Lewis</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-87477">July 20, 2016 at 1:42 pm</a>
+									</div>
+								<div class="comment-text">
+					<p>@Vinod I do not know for sure, but I suspect that the @Input and
+ @Output decorators provide metadata only relevant to template 
+compilation. But that does not mean we can’t set variables on the 
+component or subscribe to its event emitters. For example, if you look 
+at the demo you will see we subscribe to the close event emitted by the 
+DialogComponent. Also, here is an updated version of the example that 
+illustrates setting data on the dynamic component: <a href="https://plnkr.co/edit/7y2PMR9AMAlpwHAQAUho?p=preview" rel="nofollow">https://plnkr.co/edit/7y2PMR9AMAlpwHAQAUho?p=preview</a></p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="li-comment-87607">
+			<div id="comment-87607">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/50ecb7eee87a5d54c62484901497cfb3.jpg" srcset="https://secure.gravatar.com/avatar/50ecb7eee87a5d54c62484901497cfb3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author"><a href="http://www.tiagomatos.com/" rel="external nofollow" class="url">Tiago Matos</a></span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-87607">July 31, 2016 at 6:36 pm</a>
+									</div>
+								<div class="comment-text">
+					<p>Hi Lewis, tks for sharing this. It helped a lot.<br>
+I am wondering if it is possible load components dynamically without 
+directives. I mean, we have app, dialogComponent and dialogDirective. 
+Why don’t we user just dialogComponent to load it once Component is a 
+directive as well.<br>
+I really don’t know, I am pretty new in Angular2.<br>
+Also, if it is possible, the best approach still creating a directive separated like your post?<br>
+Cheers</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment byuser comment-author-ty-lewis bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-87609">
+			<div id="comment-87609">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Ty Lewis</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-87609">August 1, 2016 at 10:26 am</a>
+									</div>
+								<div class="comment-text">
+					<p>@Tiago I am glad you found this post helpful! It is true; the 
+directive is an unnecessary middleman in our simple example. We could 
+cut him out as in this plunker: <a href="https://plnkr.co/edit/R4olpIY8orKj9It7f9dK?p=preview" rel="nofollow">https://plnkr.co/edit/R4olpIY8orKj9It7f9dK?p=preview</a>
+ One reason I made it a directive is that the directive method provides 
+you the flexibility to put the DOM for the dynamic component where you 
+want. Now, I may misunderstand your point. I just realized that you may 
+be suggesting we make the DialogAnchorDirective into a 
+DialogAnchorComponent. We could do that too: <a href="https://plnkr.co/edit/BimI2FROXK6mEVS7oCIi?p=preview" rel="nofollow">https://plnkr.co/edit/BimI2FROXK6mEVS7oCIi?p=preview</a>
+ (Note in that plunker, the DialogAnchorComponent has an empty 
+template–kind of an Angular 2 design smell I would say maybe.) Let me 
+know know if this does not answer your question.</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="li-comment-87615">
+			<div id="comment-87615">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/50ecb7eee87a5d54c62484901497cfb3.jpg" srcset="https://secure.gravatar.com/avatar/50ecb7eee87a5d54c62484901497cfb3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author"><a href="http://www.tiagomatos.com/" rel="external nofollow" class="url">Tiago Matos</a></span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-87615">August 1, 2016 at 5:51 pm</a>
+									</div>
+								<div class="comment-text">
+					<p>That is I was looking for! Tks a lot!</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-87761">
+			<div id="comment-87761">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9911d4b321e3db007a5ee478c415b488.jpg" srcset="https://secure.gravatar.com/avatar/9911d4b321e3db007a5ee478c415b488?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Tom Nurkkala</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-87761">August 15, 2016 at 9:09 pm</a>
+									</div>
+								<div class="comment-text">
+					<p>In the following line, what does the declaration of dialogComponent mean?</p>
+<p>createDialog(dialogComponent: { new(): DialogComponent }):Promise&lt;ComponentRef&gt; { … }</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="li-comment-87763">
+			<div id="comment-87763">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9911d4b321e3db007a5ee478c415b488.jpg" srcset="https://secure.gravatar.com/avatar/9911d4b321e3db007a5ee478c415b488?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Tom Nurkkala</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-87763">August 15, 2016 at 11:56 pm</a>
+									</div>
+								<div class="comment-text">
+					<p>I’ve created an updated version of this example that uses non-deprecated Angular2 API calls and appears to work. Find it at <a href="https://plnkr.co/q98BLXAPeJ0pEaaQiRsQ" rel="nofollow">https://plnkr.co/q98BLXAPeJ0pEaaQiRsQ</a>.
+ It looks to me like the component factory function is no longer 
+asynchronous. Does that seem right? Am I on track with this example?</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment byuser comment-author-ty-lewis bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-87767">
+			<div id="comment-87767">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Ty Lewis</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-87767">August 16, 2016 at 10:09 am</a>
+									</div>
+								<div class="comment-text">
+					<p>@Tom I am guessing the type of the <code>dialogComponent</code> 
+parameter is the unclear part. I had to do some reading, but it seems 
+that TypeScript classes are considered objects containing “construct 
+signature” member (i.e., they are objects with a constructor). I guess 
+these are known as “constructor types.” <a href="https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#3.3.5" rel="nofollow">Here</a> and <a href="https://github.com/Microsoft/TypeScript/blob/master/doc/spec.md#3.8.9" rel="nofollow">here</a>
+ are the relevant documentation from the spec. So, it is just the 
+requisite type for passing a constructor into a function, which is what 
+need to pass to <code>componentResolver.resolveComponent</code>. </p>
+<p>Now, if you look at the <a href="https://github.com/angular/angular/blob/master/modules/@angular/core/src/linker/component_resolver.ts" rel="nofollow">code</a> for <code>resolveComponent</code> it uses <code>Type</code> as the type for its <code>component</code> parameter, but it seems <a href="https://github.com/angular/angular/blob/master/modules/@angular/core/src/type.ts" rel="nofollow">this just an alias</a> for a constructor type.</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment byuser comment-author-ty-lewis bypostauthor even thread-even depth-1" id="li-comment-87769">
+			<div id="comment-87769">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Ty Lewis</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-87769">August 16, 2016 at 10:13 am</a>
+									</div>
+								<div class="comment-text">
+					<p>@Tom Yep, that looks good! You are right; the <code>ComponentResolver</code> has since been deprecated in favor of the <code>ComponentFactoryResolverolver</code>. The API is changing so much these days! I will need to update this post.</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-87913">
+			<div id="comment-87913">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/354a558b2c33e719e7e34c28f5c48c99.jpg" srcset="https://secure.gravatar.com/avatar/354a558b2c33e719e7e34c28f5c48c99?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">T</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-87913">August 30, 2016 at 5:55 am</a>
+									</div>
+								<div class="comment-text">
+					<p>where can I find version with rc.4?</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment byuser comment-author-ty-lewis bypostauthor even thread-even depth-1" id="li-comment-87917">
+			<div id="comment-87917">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Ty Lewis</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-87917">August 30, 2016 at 8:44 am</a>
+									</div>
+								<div class="comment-text">
+					<p>T, in reply to Tiago’s comment, I posted several forks that 
+still use rc.4’s API. I think the the following one stays truest to the 
+original rc.4 version: <a href="https://plnkr.co/edit/7y2PMR9AMAlpwHAQAUho?p=info" rel="nofollow">https://plnkr.co/edit/7y2PMR9AMAlpwHAQAUho?p=info</a></p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-88067">
+			<div id="comment-88067">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/0e1234f22afa50ab0fbb72559768d4da.jpg" srcset="https://secure.gravatar.com/avatar/0e1234f22afa50ab0fbb72559768d4da?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">sourabh</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-88067">September 9, 2016 at 4:44 am</a>
+									</div>
+								<div class="comment-text">
+					<p>not working</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment byuser comment-author-ty-lewis bypostauthor even thread-even depth-1" id="li-comment-88071">
+			<div id="comment-88071">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Ty Lewis</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-88071">September 9, 2016 at 7:20 am</a>
+									</div>
+								<div class="comment-text">
+					<p>sourabh, sorry about that. It looks like there have been some 
+changes with the CDNs and the external dependencies. It is back into a 
+working state.</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-88217">
+			<div id="comment-88217">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/cc76ddbf2d3b61ca2844874ee9f0eb71.png" srcset="https://secure.gravatar.com/avatar/cc76ddbf2d3b61ca2844874ee9f0eb71?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author"><a href="http://www.jonrowe.com/" rel="external nofollow" class="url">Jon Rowe</a></span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-88217">September 16, 2016 at 4:01 am</a>
+									</div>
+								<div class="comment-text">
+					<p>Not sure if it’s due to changes in the core framework but I had to change the attribute annotation in the html template:</p>
+<p>should be :</p>
+<p>(no square brackets)</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="li-comment-88233">
+			<div id="comment-88233">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/565da52c40c8688858a9619cfc7d39f1.jpg" srcset="https://secure.gravatar.com/avatar/565da52c40c8688858a9619cfc7d39f1?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Alex</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-88233">September 16, 2016 at 11:30 pm</a>
+									</div>
+								<div class="comment-text">
+					<p>Made it work with zone updated to the following version</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment byuser comment-author-ty-lewis bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-88235">
+			<div id="comment-88235">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Ty Lewis</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-88235">September 17, 2016 at 12:39 am</a>
+									</div>
+								<div class="comment-text">
+					<p>Thanks, Alex. The Zone dependency is all updated now. Hopefully these dependency issues will settle.</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="li-comment-88357">
+			<div id="comment-88357">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/632baef7d764c8fc95366942a2435541.jpg" srcset="https://secure.gravatar.com/avatar/632baef7d764c8fc95366942a2435541?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author"><a href="http://kesuskim.com/" rel="external nofollow" class="url">Kesus</a></span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-88357">September 22, 2016 at 9:44 pm</a>
+									</div>
+								<div class="comment-text">
+					<p>Thanks for sharing this! Helps a lot. <img draggable="false" class="emoji" alt="🙂" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/1f642.svg"></p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-89047">
+			<div id="comment-89047">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/ee3a26109911a85f87aef37688667040.jpg" srcset="https://secure.gravatar.com/avatar/ee3a26109911a85f87aef37688667040?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">NS</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-89047">October 14, 2016 at 4:53 am</a>
+									</div>
+								<div class="comment-text">
+					<p>Hi this plunker isn’t work <img draggable="false" class="emoji" alt="🙁" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/1f641.svg"><br>
+<a href="https://plnkr.co/edit/R4olpIY8orKj9It7f9dK?p=preview" rel="nofollow">https://plnkr.co/edit/R4olpIY8orKj9It7f9dK?p=preview</a></p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment byuser comment-author-ty-lewis bypostauthor even thread-even depth-1" id="li-comment-89051">
+			<div id="comment-89051">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Ty Lewis</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-89051">October 14, 2016 at 9:43 am</a>
+									</div>
+								<div class="comment-text">
+					<p>@NS, I updated that example to be in a working state now. (I 
+need to update a few others from that comment where I listed a few other
+ examples.) I updated it to use Angular v2.1.0’s API; hopefully that is 
+OK for you.</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-89107">
+			<div id="comment-89107">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/ee3a26109911a85f87aef37688667040.jpg" srcset="https://secure.gravatar.com/avatar/ee3a26109911a85f87aef37688667040?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">NS</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-89107">October 17, 2016 at 7:22 am</a>
+									</div>
+								<div class="comment-text">
+					<p>Thanks.</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="li-comment-89141">
+			<div id="comment-89141">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/97dd417a9aa78e26e54f88051dbbb772.jpg" srcset="https://secure.gravatar.com/avatar/97dd417a9aa78e26e54f88051dbbb772?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">DILEEP KUMAR KOTTAKOTA</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-89141">October 18, 2016 at 11:51 pm</a>
+									</div>
+								<div class="comment-text">
+					<p>Hi @Ty Lewis<br>
+Thanks for the sharing. It helped us.<br>
+I have a doubt , Can we add two components at a time like<br>
+”<br>
+let dialogComponentFactory =<br>
+          this.componentFactoryResolver.resolveComponentFactory(DialogComponent);<br>
+dialogComponentFactory =<br>
+          this.componentFactoryResolver.resolveComponentFactory(MYCOMPONENT);<br>
+”<br>
+* where MYCOMPONENT is my another custom component.<br>
+when clicks on ‘open dialog box’ button, dialog box and MYCOMPONENT should added.</p>
+<p>Thanks in advance.<br>
+My actual intention is i need to add components dynamically to a div 
+based on json data(which is having list of components to be added to div
+ with row and column position details).</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment byuser comment-author-ty-lewis bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-89151">
+			<div id="comment-89151">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Ty Lewis</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-89151">October 19, 2016 at 9:24 am</a>
+									</div>
+								<div class="comment-text">
+					<p>Hi Dileep. I am not sure I understand the use case completely, but <a href="https://plnkr.co/edit/LExhIaHgnmJHe1rEm5c2?p=preview" rel="nofollow">here</a>
+ is a fork that adds another custom component in addition to the dialog 
+component. The additional component is the OverlayComponent. (It is 
+probably overkill to make the overlay like this.) Let me know if this 
+example does not quite capture your use case.</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="li-comment-89167">
+			<div id="comment-89167">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/97dd417a9aa78e26e54f88051dbbb772.jpg" srcset="https://secure.gravatar.com/avatar/97dd417a9aa78e26e54f88051dbbb772?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">DILEEP KUMAR KOTTAKOTA</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-89167">October 20, 2016 at 12:07 am</a>
+									</div>
+								<div class="comment-text">
+					<p>Hi thanks for reply.<br>
+My actual scenario is consider i have A(0-row,0-column),B(0,1),C(1,0),D(1,1),E(2,0),F(2-row,1-column) components.<br>
+I have to display in div as per row and coluumn positions like<br>
+	A B<br>
+	C D<br>
+	E F</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment byuser comment-author-ty-lewis bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-89183">
+			<div id="comment-89183">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Ty Lewis</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-89183">October 20, 2016 at 9:23 am</a>
+									</div>
+								<div class="comment-text">
+					<p>Because of the way ViewContainer’s work, we are somewhat limited
+ with how a dynamic component’s view can be inserted into the DOM. 
+Nevertheless, <a href="https://plnkr.co/edit/3SfM6xiIMpj60qLcsIJJ?p=preview" rel="nofollow">here</a>
+ is an attempt at a general solution to your problem. Notice how we use 
+multiple “anchor elements” to insert dynamic components in various 
+locations.</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="li-comment-89321">
+			<div id="comment-89321">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/d3ddabf9a696aa9b8e28fbe770d6dc87.jpg" srcset="https://secure.gravatar.com/avatar/d3ddabf9a696aa9b8e28fbe770d6dc87?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">AN</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-89321">October 23, 2016 at 5:11 pm</a>
+									</div>
+								<div class="comment-text">
+					<p>Hi Ty Lewis,</p>
+<p>thanks for the article, well explained. The only thing I wonder is … 
+how would you approach dynamic templates for the dialog content. There 
+is probably a better solution than creating multiple components with 
+different templates for the dialog?</p>
+<p>Thanks</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment byuser comment-author-ty-lewis bypostauthor odd alt thread-odd thread-alt depth-1" id="li-comment-89363">
+			<div id="comment-89363">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Ty Lewis</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-89363">October 25, 2016 at 9:22 am</a>
+									</div>
+								<div class="comment-text">
+					<p>AN, thank you for the feedback. For the dialog boxes in 
+Lucidchart, we actually do build separate components for each dialog. 
+The exact approach is similar to what can be found in this <a href="https://plnkr.co/edit/BERQW3kd08MFf9WToXEy?p=info" rel="nofollow">fork</a>. There–as you might have guessed–we treat <code>DialogComponent</code> as a generic dialog container for arbitrary content. Specific dialog boxes, like the <code>StopwatchDialogComponent</code>, reuse this generic <code>DialogComponent</code> in their own templates, wrapping their content with the dialog box.</p>
+<p>My colleague, Tyler Davis, has been mentioning to me that the Angular
+ 2 team may be building out better support for modals and dialogs. If I 
+find out more, I will be sure to reply.</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="li-comment-89375">
+			<div id="comment-89375">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/d3ddabf9a696aa9b8e28fbe770d6dc87.jpg" srcset="https://secure.gravatar.com/avatar/d3ddabf9a696aa9b8e28fbe770d6dc87?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">AN</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-89375">October 25, 2016 at 2:20 pm</a>
+									</div>
+								<div class="comment-text">
+					<p>Hi Ty Lewis,</p>
+<p>thanks for the fast response. Actually I did the same without watching the repo so I was on the right track at least <img draggable="false" class="emoji" alt="🙂" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/1f642.svg"></p>
+<p>Keep up the good work!</p>
+<p>Cheers</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-89403">
+			<div id="comment-89403">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/e6d967bba6448e168b51cde04b666259.jpg" srcset="https://secure.gravatar.com/avatar/e6d967bba6448e168b51cde04b666259?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Den</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-89403">October 26, 2016 at 12:43 am</a>
+									</div>
+								<div class="comment-text">
+					<p>Hello Ty Lewis,</p>
+<p>Thank you for this great article! It helped me a lot! Just a 
+question. What if I want to load an array of dynamic components? How can
+ I do that?</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment byuser comment-author-ty-lewis bypostauthor even thread-even depth-1" id="li-comment-89431">
+			<div id="comment-89431">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/9b825a4d62bdbe1a6819535a7e3e14d3.jpg" srcset="https://secure.gravatar.com/avatar/9b825a4d62bdbe1a6819535a7e3e14d3?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author">Ty Lewis</span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-89431">October 27, 2016 at 9:01 am</a>
+									</div>
+								<div class="comment-text">
+					<p>Den, I am glad this helped. Could you provide a little more context for you question? What exactly are you looking to do?</p>
+																				</div>
+			</div></li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-90049">
+			<div id="comment-90049">
+				<div class="vcard">
+					<img alt="" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/557bae205bee677bb6d4d766ab5345cd.jpg" srcset="https://secure.gravatar.com/avatar/557bae205bee677bb6d4d766ab5345cd?s=140&amp;d=mm&amp;r=g 2x" class="avatar avatar-70 photo" height="70" width="70">					<span class="comment-author"><a href="http://twitter.com/amcdnl" rel="external nofollow" class="url">Austin</a></span> •
+					<a href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#comment-90049">November 17, 2016 at 7:12 pm</a>
+									</div>
+								<div class="comment-text">
+					<p>Awesome post! If you wanna go a bit more advanced you 
+dynamically inject the modal into the body with something lile this 
+service i wrote <a href="https://github.com/swimlane/swui/blob/master/src/services/injection.service.ts" rel="nofollow">https://github.com/swimlane/swui/blob/master/src/services/injection.service.ts</a></p>
+																				</div>
+			</div></li><!-- #comment-## -->
+	</ol>
+			</div> 				<div id="respond" class="comment-respond">
+			<h3 id="reply-title" class="comment-reply-title"> <small><a rel="nofollow" id="cancel-comment-reply-link" href="https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/#respond" style="display:none;">Cancel reply</a></small></h3>				<form action="https://www.lucidchart.com/techblog/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+					<p class="comment-notes">Your email address will not be published.</p><textarea id="comment" name="comment" placeholder="Enter Message Here" class="comment-text-area" cols="45" rows="5" aria-required="true"></textarea><p></p><input id="author" name="author" placeholder="Enter Name" class="comment-name" size="30" aria-required="true" type="text">
+<input id="email" name="email" placeholder="Enter Email" class="comment-email" size="30" aria-required="true" type="text">
+<input id="url" name="url" placeholder="Enter URL" class="comment-url" size="30" type="text">
+<p class="form-submit"><input name="submit" id="comment-submit" class="submit" value="Send Comment" type="submit"> <input name="comment_post_ID" value="2265" id="comment_post_ID" type="hidden">
+<input name="comment_parent" id="comment_parent" value="0" type="hidden">
+</p><p style="display: none;"><input id="akismet_comment_nonce" name="akismet_comment_nonce" value="fc7ddaae55" type="hidden"></p><p style="display: none;"></p>				<input id="ak_js" name="ak_js" value="1480429233226" type="hidden"></form>
+					</div><!-- #respond -->
+					</div>
+    <aside id="main-sidebar" class="mh-sidebar">
+	<div class="sb-widget"><div class="widget-content">			<div class="textwidget"><p>Lucidchart is an <a href="https://www.lucidchart.com/">online flowchart maker</a>
+ used by more than 5 million people around the world to create 
+flowcharts, network diagrams, ER diagrams, UML diagrams, mind maps, and 
+more.  Because of its intuitive user interface and collaborative 
+features, it is the most popular <a href="https://www.lucidchart.com/pages/tour/visio_alternative">online Visio alternative.</a></p>
+
+<p>Lucidchart is one of the most popular productivity apps for Google 
+Apps, Confluence, JIRA, Jive and many other leading platforms.</p></div>
+		</div></div><div class="sb-widget"><div class="widget-content"><form role="search" method="get" id="searchform" class="searchform" action="https://www.lucidchart.com/techblog/">
+				<div>
+					<label class="screen-reader-text" for="s">Search for:</label>
+					<input name="s" id="s" type="text">
+					<input id="searchsubmit" value="Search" type="submit">
+				</div>
+			</form></div></div><div class="sb-widget"><div class="widget-content"><h4 class="widget-title">Categories</h4><label class="screen-reader-text" for="cat">Categories</label><select name="cat" id="cat" class="postform">
+	<option value="-1" selected="selected">Select Category</option>
+	<option class="level-0" value="32">Architecture</option>
+	<option class="level-0" value="38">Behind the Scenes</option>
+	<option class="level-0" value="203">Career</option>
+	<option class="level-0" value="25">Database</option>
+	<option class="level-0" value="30">DevOps</option>
+	<option class="level-0" value="34">Integrations</option>
+	<option class="level-0" value="52">Mobile</option>
+	<option class="level-0" value="48">Open Source</option>
+	<option class="level-0" value="75">Quality Assurance</option>
+	<option class="level-0" value="73">Software Testing</option>
+	<option class="level-0" value="1">Uncategorized</option>
+	<option class="level-0" value="36">Web Development</option>
+</select>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+	var dropdown = document.getElementById( "cat" );
+	function onCatChange() {
+		if ( dropdown.options[ dropdown.selectedIndex ].value > 0 ) {
+			location.href = "https://www.lucidchart.com/techblog/?cat=" + dropdown.options[ dropdown.selectedIndex ].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+})();
+/* ]]> */
+</script>
+
+</div></div>
+    <div class="sb-widget subscribe" id="fixe">
+
+        <p>Enter your email and get these articles right to your inbox.</p>
+        <!--[if lte IE 8]>
+        <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script>
+        <![endif]-->
+        <script charset="utf-8" type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/v2.js"></script>
+        <script>
+          hbspt.forms.create({
+            css: '',
+            portalId: '442690',
+            formId: '883f2dd1-9a3b-431c-a68a-e087604d371a'
+          });
+        </script><div class="hbspt-form" id="hbspt-form-1480429231927"><form novalidate="" accept-charset="UTF-8" action="https://forms.hubspot.com/uploads/form/v2/442690/883f2dd1-9a3b-431c-a68a-e087604d371a" enctype="multipart/form-data" id="hsForm_883f2dd1-9a3b-431c-a68a-e087604d371a" method="POST" class="hs-form stacked" data-form-id="883f2dd1-9a3b-431c-a68a-e087604d371a" data-portal-id="442690" data-reactid=".hbspt-forms-0"><div data-reactid=".hbspt-forms-0.0:$0"><div class="hs_email field hs-form-field" data-reactid=".hbspt-forms-0.0:$0.$email"><label class="" placeholder="Enter your Email" for="email-883f2dd1-9a3b-431c-a68a-e087604d371a" data-reactid=".hbspt-forms-0.0:$0.$email.0"><span data-reactid=".hbspt-forms-0.0:$0.$email.0.0">Email</span><span class="hs-form-required" data-reactid=".hbspt-forms-0.0:$0.$email.0.1">*</span></label><legend class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.0:$0.$email.1"></legend><div class="input" data-reactid=".hbspt-forms-0.0:$0.$email.$email"><input id="email-883f2dd1-9a3b-431c-a68a-e087604d371a" class="hs-input" name="email" required="" placeholder="" data-reactid=".hbspt-forms-0.0:$0.$email.$email.0" type="email"></div></div></div><div class="hs_submit" data-reactid=".hbspt-forms-0.2"><div class="hs-field-desc" style="display:none;" data-reactid=".hbspt-forms-0.2.0"></div><div class="actions" data-reactid=".hbspt-forms-0.2.1"><input value="Subscribe" class="hs-button primary large" data-reactid=".hbspt-forms-0.2.1.0" type="submit"></div></div><input name="hs_context" value="{&quot;rumScriptExecuteTime&quot;:275.34000000000003,&quot;rumServiceResponseTime&quot;:1906.21,&quot;rumFormRenderTime&quot;:272.5350000000001,&quot;rumTotalRequestTime&quot;:269.875,&quot;css&quot;:&quot;&quot;,&quot;pageUrl&quot;:&quot;https://www.lucidchart.com/techblog/2016/07/19/building-angular-2-components-on-the-fly-a-dialog-box-example/&quot;,&quot;pageTitle&quot;:&quot;Building Angular 2 Components on the Fly: Dialog Boxes&quot;,&quot;source&quot;:&quot;FormsNext-static-1.397&quot;,&quot;isHostedOnHubspot&quot;:false,&quot;timestamp&quot;:1480429233364,&quot;userAgent&quot;:&quot;Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:50.0) Gecko/20100101 Firefox/50.0&quot;,&quot;referrer&quot;:&quot;https://www.google.de/&quot;,&quot;hutk&quot;:&quot;346d2b30a4dcb756584abbffd019fe90&quot;,&quot;originalEmbedContext&quot;:{&quot;css&quot;:&quot;&quot;,&quot;portalId&quot;:&quot;442690&quot;,&quot;formId&quot;:&quot;883f2dd1-9a3b-431c-a68a-e087604d371a&quot;,&quot;target&quot;:&quot;#hbspt-form-1480429231927&quot;},&quot;recentFieldsCookie&quot;:{},&quot;boolCheckBoxFields&quot;:&quot;&quot;,&quot;dateFields&quot;:&quot;&quot;,&quot;smartFields&quot;:{},&quot;urlParams&quot;:{},&quot;formValidity&quot;:{},&quot;correlationId&quot;:&quot;6d7dab84-240a-4681-9321-d02d8b14af4d&quot;,&quot;disableCookieSubmission&quot;:false}" data-reactid=".hbspt-forms-0.3" type="hidden"></form></div>
+
+        <style>
+            .hs_email.field.hs-form-field label {
+                visibility: hidden;
+            }
+            .hs-form-field input[type="email"],
+            .hs_submit input[type="submit"] {
+                width: 100%;
+                box-sizing: border-box;
+                margin-bottom: 8px;
+                font-size: 1.2em;
+            }
+            .sb-widget.subscribe .hs-error-msgs {
+                display: none !important;
+            }
+            #fixe.fixedTop {
+                position: fixed;
+                top: 20px;
+                max-width: 300px;
+            }
+        </style>
+
+
+        <script>
+
+
+                if (jQuery(this).scrollTop() > 1264 && jQuery(window).width() > 970) {
+                jQuery("#fixe").addClass("fixedTop");
+                } else {
+                jQuery("#fixe").removeClass("fixedTop");
+                }
+
+                jQuery(window).scroll(function () {
+                  if (jQuery(this).scrollTop() > 1264 && jQuery(window).width() > 970) {
+                    jQuery("#fixe").addClass("fixedTop");
+                  } else {
+                    jQuery("#fixe").removeClass("fixedTop");
+                  }
+
+                });
+
+                jQuery(window).resize(function () {
+                  if (jQuery(this).scrollTop() > 1264 && jQuery(window).width() > 970) {
+                    jQuery("#fixe").addClass("fixedTop");
+                  } else {
+                    jQuery("#fixe").removeClass("fixedTop");
+                  }
+
+                });
+
+
+            // else {
+            // }
+
+        </script>
+
+
+    </div>
+</aside></div>
+<footer id="mh-footer" class="footer clearfix">
+			<nav class="social-nav clearfix">
+			<div class="menu-social-container"><ul id="menu-social" class="menu"><li id="menu-item-1485" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1485"><a href="https://www.facebook.com/lucidchart"><span class="social-icon"><i class="fa fa-mh-social"></i></span><span class="screen-reader-text">Facebook</span></a></li>
+<li id="menu-item-1486" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1486"><a href="https://twitter.com/lucidchart"><span class="social-icon"><i class="fa fa-mh-social"></i></span><span class="screen-reader-text">Twitter</span></a></li>
+<li id="menu-item-1487" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1487"><a href="https://plus.google.com/111464091826472565111/posts"><span class="social-icon"><i class="fa fa-mh-social"></i></span><span class="screen-reader-text">Google+</span></a></li>
+<li id="menu-item-1488" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1488"><a href="https://www.youtube.com/user/lucidchart"><span class="social-icon"><i class="fa fa-mh-social"></i></span><span class="screen-reader-text">YouTube</span></a></li>
+<li id="menu-item-1489" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-1489"><a href="https://www.linkedin.com/company/lucidsoftware"><span class="social-icon"><i class="fa fa-mh-social"></i></span><span class="screen-reader-text">LinkedIn</span></a></li>
+</ul></div>		</nav>
+	
+
+<style>
+.footer-urls{padding:0 0 25px 0;list-style:none;width:90%;margin:0 auto}
+@media only screen and (min-width:480px){.footer-urls{padding:3% 0 25px 0;width:100%;margin:0 auto}}
+@media only screen and (min-width:641px){.footer-urls li ul>li:before{content:""}}
+.footer-urls li ul li{display:block}
+.footer-urls li ul{padding:0 0 20px 0}
+.footer .footer-container .footer-urls li{position:relative}
+@media only screen and (min-width:641px){.footer-urls li{display:inline-block;width:7.5em;padding:0}}
+@media only screen and (min-width:768px){.footer-urls li{width:10em}}
+.footer-urls ul li{display:inline-block;color:#a3a3a3;font-size:12px;padding:4px 8px 0 4px;}
+.footer-urls ul li a{color:#a3a3a3;text-decoration:none}
+.footer-urls ul li a:hover{color:#909090}
+.flyout{list-style:none;margin-left:100px;padding:0}
+.footer-urls li .flyout ul{background:#0F0F0F;border-radius:5px;padding:5px 5px;list-style:none;position:absolute;z-index:15;width:150px;top:-50px}
+.flyout ul span{border-style:dashed;border-color:transparent;border-width:.1em;display:inline-block;font-size:100px;vertical-align:middle;border-right-style:solid;border-right-color:#0F0F0F;position:absolute;left:-20px;top:50px}
+.flyout ul span.triangle{top:50px}
+.flyout ul li{padding:5px 0 5px 10px;width:100%}
+.flyout ul li:before{display:none}
+.hidden{display:none}
+.invisible{visibility:hidden}
+.footer-urls h4 {font-size: 1rem;color: #c3c3c3;font-weight: 400;display: block;}
+.footer-container {padding: 20px 0 0 20px;}
+</style>
+<script>
+jQuery(document).ready(function() {
+jQuery('.popout').on('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    var id = jQuery(this).attr('href');
+        if (jQuery(id).hasClass('hidden')) {
+            jQuery(id).removeClass('hidden');
+        }
+        else {
+            jQuery(id).addClass('hidden');
+            }
+            jQuery('.flyout').not(id).addClass('hidden');
+
+    jQuery(document).one('click', function(e){
+        if(jQuery(id).has(e.target).length === 0){
+            jQuery(id).addClass('hidden');
+        }
+    });
+});
+});
+</script>
+
+
+    <div class="footer-container">
+        <ul class="footer-urls">
+            <li>
+                <ul>
+                    <li><h4>Lucidchart</h4></li>
+                    <li><a href="#tourists" class="popout">Tour</a><!--<div class="ui-icon ui-icon-triangle-1-e"></div>-->
+                        <div id="tourists" class="flyout hidden">
+                            <ul>
+                                <span></span>
+                                <li><a href="https://www.lucidchart.com/pages/tour">Features</a></li>
+                                <li><a href="https://www.lucidchart.com/pages/tour/visio_alternative">Visio online</a></li>
+                                <li><a href="https://www.lucidchart.com/pages/tour/visio_for_mac">Visio for Mac</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="#footer-documents" class="popout">Examples</a><!--<div class="ui-icon ui-icon-triangle-1-e"></div>-->
+                        <div id="footer-documents" class="flyout hidden">
+                            <ul>
+                                <span></span>
+                                <li><a href="https://www.lucidchart.com/pages/examples/flowchart_software">Flowchart</a></li>
+                                <li><a href="https://www.lucidchart.com/pages/examples/orgchart_software">Org chart</a></li>
+                                <li><a href="https://www.lucidchart.com/pages/tour/ER_diagram_tool">ER diagram</a></li>
+                                <li><a href="https://www.lucidchart.com/pages/examples/uml_diagram_tool">UML diagram</a></li>
+                                <li><a href="https://www.lucidchart.com/pages/examples/network_diagram_software">Network diagram</a></li>
+                                <li><a href="https://www.lucidchart.com/pages/examples/data-flow-diagram">Data flow diagram</a></li>
+                                <li><a href="https://www.lucidchart.com/pages/examples/wireframe_software">Wireframe</a></li>
+                                <li><a href="https://www.lucidchart.com/pages/examples/mind_mapping_software">Mind map</a></li>
+                                <li><a href="https://www.lucidchart.com/pages/examples/venn_diagram_maker">Venn diagram</a></li>
+                                <li><a href="https://www.lucidchart.com/pages/examples/floor-plans">Floor plan</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a href="https://www.lucidchart.com/users/registerLevel">Pricing</a></li>
+                    <li><a href="https://www.lucidchart.com/blog">Blog</a></li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li><h4>Partners</h4></li>
+                    <li><a href="https://www.lucidchart.com/pages/google-apps">Google Apps</a></li>
+                    <li><a href="https://www.lucidchart.com/pages/google-drive">Google Drive</a></li>
+                    <li><a href="https://www.lucidchart.com/pages/tour/confluence">Confluence</a></li>
+                    <li><a href="https://www.lucidchart.com/pages/tour/jira">JIRA</a></li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li><h4>About</h4></li>
+                    <li><a href="https://lucidchart.zendesk.com/hc/en-us" target="_blank">Help</a></li>
+                    <li><a href="https://www.lucidchart.com/pages/tos">Terms</a></li>
+                    <li><a href="https://www.lucidchart.com/pages/privacy">Privacy</a></li>
+                    <li><a href="https://www.lucidchart.com/contact" class="contact_us_link">Contact</a></li>
+                </ul>
+            </li>
+            <li>
+                <ul>
+                    <li><h4>Lucid Software</h4></li>
+                    <li><a href="https://www.lucidchart.com/pages/press">Press</a></li>
+                    <li><a href="https://www.golucid.co/#team" target="_blank">Team</a></li>
+                    <li><a href="https://www.golucid.co/jobs" target="_blank">Careers</a></li>
+                    <li><a href="#lucidpress" class="popout">Lucidpress</a><!--<div class="ui-icon ui-icon-triangle-1-e"></div>-->
+                        <div id="lucidpress" class="flyout hidden">
+                            <ul><span></span>
+                                <li><a href="https://www.lucidpress.com/?__hstc=151367206.346d2b30a4dcb756584abbffd019fe90.1480411145049.1480411145049.1480429221392.2&amp;__hssc=151367206.2.1480429221392&amp;__hsfp=527530718">Lucidpress</a></li>
+                                <li><a href="https://www.lucidpress.com/pages/examples/free-flyer-maker-online?__hstc=151367206.346d2b30a4dcb756584abbffd019fe90.1480411145049.1480411145049.1480429221392.2&amp;__hssc=151367206.2.1480429221392&amp;__hsfp=527530718" target="_blank">Flyer maker</a></li>
+                                <li><a href="https://www.lucidpress.com/pages/examples/free-brochure-maker-online?__hstc=151367206.346d2b30a4dcb756584abbffd019fe90.1480411145049.1480411145049.1480429221392.2&amp;__hssc=151367206.2.1480429221392&amp;__hsfp=527530718" target="_blank">Brochure maker</a></li>
+                                <li><a href="https://www.lucidpress.com/pages/examples/free-online-poster-maker?__hstc=151367206.346d2b30a4dcb756584abbffd019fe90.1480411145049.1480411145049.1480429221392.2&amp;__hssc=151367206.2.1480429221392&amp;__hsfp=527530718" target="_blank">Poster maker</a></li>
+                                <li><a href="https://www.lucidpress.com/pages/examples/free-pamphlet-maker-online?__hstc=151367206.346d2b30a4dcb756584abbffd019fe90.1480411145049.1480411145049.1480429221392.2&amp;__hssc=151367206.2.1480429221392&amp;__hsfp=527530718" target="_blank">Pamphlet maker</a></li>
+                                <li><a href="https://www.lucidpress.com/pages/examples/free-newsletter-software?__hstc=151367206.346d2b30a4dcb756584abbffd019fe90.1480411145049.1480411145049.1480429221392.2&amp;__hssc=151367206.2.1480429221392&amp;__hsfp=527530718" target="_blank">Newsletter software</a></li>
+                                <li><a href="https://www.lucidpress.com/pages/examples/free-digital-magazine-software?__hstc=151367206.346d2b30a4dcb756584abbffd019fe90.1480411145049.1480411145049.1480429221392.2&amp;__hssc=151367206.2.1480429221392&amp;__hsfp=527530718" target="_blank">Digital magazine</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+
+    </div>
+
+	<div class="copyright-wrap">
+        <p class="copyright">© Lucidchart <script>document.write(new Date().getFullYear())</script>2016</p>
+	</div>
+</footer>
+</div>
+<script src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/prism-2.js"></script>
+
+<!-- Start of Async HubSpot Analytics Code for WordPress v1.9.4 -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "blog-post"]);
+(function(d,s,i,r) {
+  if (d.getElementById(i)){return;}
+  var n = d.createElement(s),e = document.getElementsByTagName(s)[0];
+  n.id=i;n.src = '//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/442690.js';
+  e.parentNode.insertBefore(n, e);
+})(document, "script", "hs-analytics", 300000);
+</script>
+<!-- End of Async HubSpot Analytics Code -->
+<script type="text/javascript">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-5909456-1', 'lucidchart.com');
+    ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+    var _kmq = _kmq || [];
+    var _kmk = _kmk || 'a5d50354c435f0e24557077e252bf2a15fa75b51';
+    function _kms(u){
+      setTimeout(function(){
+        var d = document, f = d.getElementsByTagName('script')[0],
+        s = d.createElement('script');
+        s.type = 'text/javascript'; s.async = true; s.src = u;
+        f.parentNode.insertBefore(s, f);
+      }, 1);
+    }
+    _kms('//i.kissmetrics.com/i.js');
+    _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+
+  //HubSpot
+  var _hsq = _hsq || [];
+  window._hsq = _hsq;
+  (function(d,s,i,r) {
+    if (d.getElementById(i)){return;}
+    var n=d.createElement(s),e=d.getElementsByTagName(s)[0];
+    n.id=i;n.src='//js.hs-analytics.net/analytics/'+(Math.ceil(new Date()/r)*r)+'/442690.js';
+    e.parentNode.insertBefore(n, e);
+  })(document,"script","hs-analytics",300000);
+</script>
+
+
+
+<script type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/retina-1.js"></script>
+<script type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/current.js"></script>
+<script type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/config.txt"></script>
+<script type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/chart.js"></script>
+<script type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/lucidalert.js"></script><script charset="UTF-8" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/pl.js"></script><div style="position: static;"><div class="a2a_overlay" id="a2apage_overlay"></div><div id="a2apage_modal" class="a2a_menu a2a_modal" role="dialog" tabindex="-1" aria-label="Copy link" style="display:none"><div class="a2a_copy_link_container"><span id="a2a_copy_link_icon" class="a2a_svg a2a_s_link" onclick="a2a.gEl('a2a_copy_link_text').click()"></span><input id="a2a_copy_link_text" title="Copy link" type="text"><div id="a2a_copy_link_copied">Copied!</div></div></div><div class="a2a_menu a2a_full" id="a2apage_full" role="dialog" tabindex="-1" aria-label="Podziel się"><div class="a2a_full_header"><div id="a2apage_find_container" class="a2a_menu_find_container"><input id="a2apage_find" class="a2a_menu_find" onclick="a2a.focus_find()" onkeyup="a2a.do_find()" autocomplete="off" title="ZnajdĽ serwis, do którego chcesz dodać treść" type="text"><span id="a2apage_find_icon" class="a2a_svg a2a_s_find" onclick="a2a.focus_find()"><svg focusable="false" xmlns="http://www.w3.org/2000/svg" version="1.1" x="0" y="0" width="24" height="24" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><path fill="#CCCCCC" d="M19.7 18.2l-4.5-4.5c0.7-1.1 1.2-2.3 1.2-3.6 0-3.5-2.8-6.3-6.3-6.3 -3.5 0-6.3 2.8-6.3 6.3 0 3.5 2.8 6.3 6.3 6.3 1.4 0 2.6-0.4 3.6-1.2l4.5 4.5c0.6 0.6 1.3 0.7 1.7 0.2C20.4 19.5 20.3 18.8 19.7 18.2zM10.1 14.6c-2.5 0-4.5-2.1-4.5-4.5 0-2.5 2.1-4.5 4.5-4.5 2.5 0 4.5 2.1 4.5 4.5C14.6 12.5 12.6 14.6 10.1 14.6z"></path></svg></span></div></div><div class="a2a_full_services" id="a2apage_full_services" role="presentation"><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#facebook" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_facebook"></span>Facebook </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#twitter" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twitter"></span>Twitter </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#google_plus" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google_plus"></span>Google+ </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#pinterest" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pinterest"></span>Pinterest </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#email" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Email </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#linkedin" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_linkedin"></span>LinkedIn </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#reddit" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_reddit"></span>Reddit </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#tumblr" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_tumblr"></span>Tumblr </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#wordpress" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wordpress"></span>WordPress </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#google_gmail" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_gmail"></span>Google Gmail </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#whatsapp" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_whatsapp"></span>WhatsApp </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#stumbleupon" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_stumbleupon"></span>StumbleUpon </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#aim" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_aim"></span>AIM </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#amazon_wish_list" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_amazon"></span>Amazon Wish List </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#aol_mail" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_aol"></span>AOL Mail </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#app_net" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_app_net"></span>App.net </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#baidu" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_baidu"></span>Baidu </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#balatarin" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_balatarin"></span>Balatarin </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#bibsonomy" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_bibsonomy"></span>BibSonomy </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#bitty_browser" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_bitty"></span>Bitty Browser </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#blinklist" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_blinklist"></span>Blinklist </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#blogger_post" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_blogger"></span>Blogger Post </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#blogmarks" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_blogmarks"></span>BlogMarks </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#bookmarks_fr" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_bookmarks_fr"></span>Bookmarks.fr </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#box_net" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_box"></span>Box.net </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#buddymarks" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_buddymarks"></span>BuddyMarks </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#buffer" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_buffer"></span>Buffer </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#care2_news" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_care2"></span>Care2 News </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#citeulike" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_citeulike"></span>CiteULike </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#copy_link" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_link"></span>Copy Link </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#delicious" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_delicious"></span>Delicious </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#design_float" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_designfloat"></span>Design Float </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#diary_ru" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_diary_ru"></span>Diary.Ru </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#diaspora" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_diaspora"></span>Diaspora </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#digg" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_digg"></span>Digg </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#dihitt" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_dihitt"></span>diHITT </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#diigo" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_diigo"></span>Diigo </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#douban" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_douban"></span>Douban </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#draugiem" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_draugiem"></span>Draugiem </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#dzone" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_dzone"></span>DZone </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#evernote" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_evernote"></span>Evernote </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#facebook_messenger" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_facebook_messenger"></span>Facebook Messenger </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#fark" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_fark"></span>Fark </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#flipboard" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_flipboard"></span>Flipboard </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#folkd" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_folkd"></span>Folkd </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#google_bookmarks" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google"></span>Google Bookmarks </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#google_classroom" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google_classroom"></span>Google Classroom </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#hacker_news" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_y18"></span>Hacker News </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#hatena" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_hatena"></span>Hatena </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#instapaper" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_instapaper"></span>Instapaper </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#jamespot" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_jamespot"></span>Jamespot </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#kakao" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_kakao"></span>Kakao </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#kik" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_kik"></span>Kik </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#kindle_it" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_kindle"></span>Kindle It </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#known" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_known"></span>Known </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#line" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_line"></span>Line </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#livejournal" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_livejournal"></span>LiveJournal </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#mail_ru" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_mail_ru"></span>Mail.Ru </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#mendeley" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_mendeley"></span>Mendeley </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#meneame" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_meneame"></span>Meneame </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#mixi" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_mixi"></span>Mixi </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#myspace" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_myspace"></span>MySpace </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#netlog" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_netlog"></span>Netlog </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#netvouz" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_netvouz"></span>Netvouz </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#newsvine" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_newsvine"></span>NewsVine </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#nujij" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_nujij"></span>NUjij </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#odnoklassniki" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_odnoklassniki"></span>Odnoklassniki </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#oknotizie" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_oknotizie"></span>Oknotizie </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#outlook_com" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_outlook_com"></span>Outlook.com </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#pinboard" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pinboard"></span>Pinboard </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#plurk" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_plurk"></span>Plurk </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#pocket" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pocket"></span>Pocket </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#print" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_print"></span>Print </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#printfriendly" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_printfriendly"></span>PrintFriendly </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#protopage_bookmarks" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_protopage"></span>Protopage Bookmarks </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#pusha" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pusha"></span>Pusha </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#qzone" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_qzone"></span>Qzone </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#rediff" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_rediff"></span>Rediff MyPage </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#renren" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_renren"></span>Renren </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#segnalo" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_segnalo"></span>Segnalo </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#sina_weibo" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_sina_weibo"></span>Sina Weibo </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#sitejot" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_sitejot"></span>SiteJot </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#skype" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_skype"></span>Skype </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#slashdot" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_slashdot"></span>Slashdot </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#sms" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_sms"></span>SMS </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#stumpedia" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_stumpedia"></span>Stumpedia </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#svejo" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_svejo"></span>Svejo </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#symbaloo_feeds" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_symbaloo"></span>Symbaloo Feeds </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#telegram" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_telegram"></span>Telegram </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#trello" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_trello"></span>Trello </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#tuenti" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_tuenti"></span>Tuenti </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#twiddla" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twiddla"></span>Twiddla </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#typepad_post" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_typepad"></span>TypePad Post </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#viadeo" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_viadeo"></span>Viadeo </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#viber" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_viber"></span>Viber </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#vk" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_vk"></span>VK </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#wanelo" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wanelo"></span>Wanelo </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#webnews" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_webnews"></span>Webnews </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#wechat" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wechat"></span>WeChat </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#wykop" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_wykop"></span>Wykop </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#xing" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_xing"></span>XING </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#yahoo_bookmarks" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yahoo"></span>Yahoo Bookmarks </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#yahoo_mail" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yahoo"></span>Yahoo Mail </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#yahoo_messenger" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yim"></span>Yahoo Messenger </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#yoolink" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yoolink"></span>Yoolink </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#youmob" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_youmob"></span>YouMob </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#yummly" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yummly"></span>Yummly </a><i class="a2a_i"></i><i class="a2a_i"></i></div><div class="a2a_full_footer"><a href="https://www.addtoany.com/" title="Share Buttons" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_a2a"></span>AddToAny</a></div></div><div id="a2apage_dropdown" class="a2a_menu a2a_mini" onmouseover="a2a.onMouseOver_stay()" onmouseout="a2a.onMouseOut_delay()" tabindex="-1" aria-label="Podziel się" style="display:none"><div id="a2apage_title_container" class="a2a_menu_title_container" style="display:none"><div id="a2apage_title" class="a2a_menu_title"></div></div><div class="a2a_mini_services" id="a2apage_mini_services"><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#facebook" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_facebook"></span>Facebook </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#twitter" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_twitter"></span>Twitter </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#google_plus" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_google_plus"></span>Google+ </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#pinterest" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_pinterest"></span>Pinterest </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#email" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Email </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#linkedin" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_linkedin"></span>LinkedIn </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#reddit" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_reddit"></span>Reddit </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#tumblr" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_tumblr"></span>Tumblr </a></div><div id="a2apage_cols_container" class="a2a_cols_container"><div class="a2a_col1" id="a2apage_col1"></div><div id="a2apage_2_col1" style="display:none"><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#google_gmail" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_gmail"></span>Google Gmail </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#aol_mail" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_aol"></span>AOL Mail </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#outlook_com" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_outlook_com"></span>Outlook.com </a><a rel="nofollow" class="a2a_i" href="https://www.lucidchart.com/#yahoo_mail" target="_blank"><span class="a2a_svg a2a_s__default a2a_s_yahoo"></span>Yahoo Mail </a><a rel="nofollow" class="a2a_i a2a_emailer" href="https://www.lucidchart.com/#email_form" target="_blank" id="a2apage_any_email"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Any email </a><a rel="nofollow" class="a2a_i a2a_emailer a2a_email_client" href="https://www.lucidchart.com/#email_form" target="" id="a2apage_email_client"><span class="a2a_svg a2a_s__default a2a_s_email"></span>Email app</a></div><div class="a2a_clear"></div></div><div class="a2apage_wide a2a_wide"><a href="" id="a2apage_show_more_less" class="a2a_menu_show_more_less a2a_more" title="Pokaż wszystko"><span class="a2a_svg a2a_s__default a2a_s_a2a"></span>Więcej…</a></div></div><div style="height: 1px; width: 1px; position: absolute; z-index: 100000; top: 0px; visibility: hidden;"><iframe id="a2apage_sm_ifr" style="height: 1px; width: 1px; border: 0px none; left: 0px; top: 0px; position: absolute; z-index: 100000; display: none;" title="AddToAny Utility Frame" transparency="true" allowtransparency="true" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/sm14.htm" height="1" frameborder="0" width="1"></iframe></div></div>
+
+
+
+
+
+
+
+<script type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/form.js"></script>
+<script type="text/javascript" src="Building%20Angular%202%20Components%20on%20the%20Fly%20%20Dialog%20Boxes_pliki/wp-embed.js"></script>
+
+</body></html>
