@@ -18,3 +18,9 @@ wchodzimy na lokalnego developa, pull, git merge --ff MBCPOSDMBD-173-Edit_Vehicl
 Uwaga:
 gdyby jest problem z pushem feature brancha do remote (np to rebase) to trzeba zrobic:
 git push origin MBCPOSDMBD-173-Edit_Vehicle_Details --force
+
+
+
+
+Maven build bez testów:
+mvnw clean package -DskipTests
