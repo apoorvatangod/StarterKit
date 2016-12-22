@@ -9,3 +9,6 @@ International SOS - learning - haslo jak pierwsze plus na koncu !
 marciAug1 - amex
 
 http://scrumpokerlive.azurewebsites.net/app/#/home
+
+edit SVG: http://www.drawsvg.org/
+http://www.ideaboardz.com/
