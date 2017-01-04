@@ -6,7 +6,7 @@ wchodzimy na lokalnego developa, pull, git merge --ff MBCPOSDMBD-173-Edit_Vehicl
 
 International SOS - learning - haslo jak pierwsze plus na koncu !
 
-marciAug1 - amex
+marciAug1 - amex - Do..1..
 
 http://scrumpokerlive.azurewebsites.net/app/#/home
 
