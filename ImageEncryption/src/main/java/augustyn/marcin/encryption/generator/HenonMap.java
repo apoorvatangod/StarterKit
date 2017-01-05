@@ -1,5 +1,7 @@
 package augustyn.marcin.encryption.generator;
 
+import edu.princeton.cs.introcs.StdDraw;
+
 import javax.vecmath.Point2d;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,12 +30,41 @@ public class HenonMap {
         }
         return result;
     }
-
+    // compare default value graph with https://en.wikipedia.org/wiki/H%C3%A9non_map
     private static Point2d getNextValueForHenonMap(Point2d previousPoint) {
         Point2d newValue = new Point2d();
         newValue.x = 1 - (a * Math.pow(previousPoint.x, 2)) + previousPoint.y;
         newValue.y = b * previousPoint.x;
         return newValue;
+    }
+
+    // draw bifurcation diagram - compare with http://www-m8.ma.tum.de/personen/hayes/chaos/Henon.html
+    public static void drawBifurcationDiagram() {
+        int N = 800;
+        StdDraw.clear();
+        StdDraw.setXscale(0, 1.5);
+        StdDraw.setYscale(-1.5, 1.5);
+        StdDraw.text(0.5,-1.5,"x=f(a)");
+
+        for (double a_temp = 0; a_temp <= 1.5; a_temp += 1.5/N) {
+            setA(a_temp);
+            // choose random initial value
+            Point2d point_temp = new Point2d(Math.random(), Math.random());
+
+            // ignore first 1000 iterates
+            for (int i = 0; i < 1000; i++)
+                point_temp = getNextValueForHenonMap(point_temp);
+
+            // plot next 100 iterates
+            for (int i = 0; i < 100; i++) {
+                point_temp = getNextValueForHenonMap(point_temp);
+                StdDraw.point(a_temp, point_temp.x);
+            }
+
+            StdDraw.show(1);
+        }
+        //reset to default
+        setA(1.4);
     }
 
     public static void setA(double a) {

@@ -31,7 +31,7 @@ public class LogisticMap {
         return result;
     }
 
-    // draw bifurcation diagram
+    // draw bifurcation diagram - compare with https://en.wikipedia.org/wiki/Logistic_map
     public static void drawBifurcationDiagram() {
         int N = 800;
         StdDraw.clear();
