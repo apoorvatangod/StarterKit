@@ -30,6 +30,14 @@ Protractor (do testowania E2E - end to end) czyli testowanie gui www od strony k
 unirest - biblioteka do wysylania zapytan restowych dla Javy
 Java FX + Scene Builder
 
+Help&Manual - program do tworzenia dokumentacji
+Enterprise Architect - program do tworzenia diagramów klas itd
+
 
 Scrum Training 16.09.16
 OASP4JS Training 23.09.16
+
+Diva - Java 1.8, SpringBoot, Angular2, TypeScript, HTML, CSS, Karma, gulp, npm, Git, IntelliJ, Atom, Jenkins, Jira, Confluence, OpenShift
+
+P18 - Java 1.6, Git + SVN dla dokumentacji, Eclipse, Jira, Confluence, Help & Manual, Enterprise Architect, creation of HLD (High Level Design)
+and LLD (Low Level Design) for class components (use cases)
