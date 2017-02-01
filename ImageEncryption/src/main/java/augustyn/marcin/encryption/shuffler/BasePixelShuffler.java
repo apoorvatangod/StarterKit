@@ -1,5 +1,6 @@
 package augustyn.marcin.encryption.shuffler;
 
+import augustyn.marcin.encryption.utils.ImageReadWriteUtil;
 import augustyn.marcin.encryption.utils.MatConverter;
 import org.opencv.core.Mat;
 import org.opencv.core.Point3;
@@ -10,7 +11,22 @@ import java.util.List;
 /**
  * Created by Marcin.
  */
-public abstract class BasePixelShuffler {
+public abstract class BasePixelShuffler implements PixelShuffler{
+    public boolean execute(String inputPath, String outputPath, int iterationNumber) {
+        Mat image = ImageReadWriteUtil.read(inputPath);
+        int rows = image.rows();
+        int cols = image.cols();
+        List<Point3> pixelList = generatePixelListFromMat(image);
+
+        List<Integer> randomPixelNumbersInList = getRandomPixelsNumbers(iterationNumber, pixelList.size() - 1);
+        for(int i = 0; i < 2 * iterationNumber; i += 2){
+            pixelList = switchPixels(pixelList, randomPixelNumbersInList.get(i), randomPixelNumbersInList.get(i + 1));
+        }
+        Mat image2 = generateMatFromPixelList(pixelList, rows, cols);
+        ImageReadWriteUtil.write(image2, outputPath);
+        return true;
+    }
+
     private List<Point3> generatePixelListFromMat(Mat imageMat){
         return MatConverter.matToPoint3ArrayList(imageMat);
     }
@@ -23,5 +39,5 @@ public abstract class BasePixelShuffler {
         imagePixelList.set(pixelIndex2, temp);
         return imagePixelList;
     }
-    abstract List<Integer> getRandomPixelsNumbers(int numberOfRandomNumbersToGenerate);
+    abstract List<Integer> getRandomPixelsNumbers(int numberOfRandomNumbersToGenerate, int numberOfPixels);
 }

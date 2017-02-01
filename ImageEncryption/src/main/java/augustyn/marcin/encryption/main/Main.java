@@ -4,6 +4,8 @@ import augustyn.marcin.encryption.external.Imshow;
 import augustyn.marcin.encryption.generator.HenonMap;
 import augustyn.marcin.encryption.generator.LogisticMap;
 import augustyn.marcin.encryption.generator.TinkerBellMap;
+import augustyn.marcin.encryption.shuffler.LogisticMapPixelShuffler;
+import augustyn.marcin.encryption.shuffler.PixelShuffler;
 import augustyn.marcin.encryption.utils.Visualisation;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -32,10 +34,13 @@ public class Main {
 
 
         System.loadLibrary( Core.NATIVE_LIBRARY_NAME );
-        Mat sourceImg =imread("C:/Users/Wacek/Desktop/original.jpg",CV_LOAD_IMAGE_COLOR);
-        Imshow im = new Imshow("Original");
-        im.setResizable(true);
-        im.showImage(sourceImg);
+//        Mat sourceImg =imread("C:/Users/Wacek/Desktop/original.jpg",CV_LOAD_IMAGE_COLOR);
+//        Imshow im = new Imshow("Original");
+//        im.setResizable(true);
+//        im.showImage(sourceImg);
+
+        PixelShuffler shuffler = new LogisticMapPixelShuffler();
+        shuffler.execute("C:/Users/Wacek/Desktop/original.jpg", "C:/Users/Wacek/Desktop/lol.jpg", 2000000);
 
     }
 }
